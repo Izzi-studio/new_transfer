@@ -1,0 +1,28 @@
+.article__img
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 25px
+    padding: 25px
+    width: 100%
+    height: auto
+    display: block
+    margin-top: 40px
+    +r($desktop)
+        padding: 10px
+        border-radius: 10px
+    +r($tablet)
+        padding: 0
+.article__soc-wrap
+    margin-top: 30px
+    display: flex
+    align-items: center
+.article__soc-txt
+    font-weight: bold
+    color: $blueColor
+    margin-right: 25px
+.article__soc-item
+    & + &
+        margin-left: 25px
+.article__inner
+    margin-top: 25px

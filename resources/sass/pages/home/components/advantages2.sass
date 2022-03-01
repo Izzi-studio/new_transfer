@@ -1,0 +1,77 @@
+.advantages2__wrap
+    margin-top: 56px
+.advantages2__block
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    border-left: 2px solid #FDBA37
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 0px 12px 12px 0px
+    position: relative
+    padding: 45px 40px 35px 164px
+    min-height: 294px
+    +r($desktop)
+        padding: 20px 24px 144px 24px
+        min-height: 214px
+    & + &
+        margin-top: 50px
+.advantages2__block-icon
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: 30px
+    left: 30px
+    width: 90px
+    height: 90px
+    padding: 4px
+    +r($desktop)
+        top: 30px
+        left: 25px
+    img
+        max-width: 100%
+        max-height: 100%
+        display: block
+.advantages2__block-title
+    font-size: 30px
+    +r($desktop)
+        font-size: 20px
+        margin-left: 120px
+        min-height: 105px
+.advantages2__block-txt
+    line-height: 28px
+    margin-top: 12px
+    +rmin($desktop + 1)
+        display: block !important
+    +r($desktop)
+        display: none
+
+.advantages2__block-btn
+    display: none
+    background: #FFFFFF
+    border: 1px solid #1072D8
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    width: 46px
+    height: 46px
+    position: absolute
+    bottom: 23px
+    left: 47px
+    &::after
+        content: ''
+        width: 100%
+        height: 100%
+        display: block
+        background: url(/images/arrow_blue_slider.svg) no-repeat center / 16px auto
+        transform: rotate(90deg)
+        transition: 0.3s
+    +r($desktop)
+        display: block
+
+.advantages2__block_active
+    .advantages2__block-btn
+        &::after
+            transform: rotate(-90deg)

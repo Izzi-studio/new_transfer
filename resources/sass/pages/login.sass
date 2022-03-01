@@ -1,0 +1,44 @@
+.login
+    padding-bottom: 250px
+    overflow: hidden
+    min-height: 750px
+    +r($desktop)
+        padding-bottom: 0
+        min-height: initial
+    a
+        font-weight: bold
+        font-size: 17px
+        color: $blueColor
+        text-decoration: none
+        &:hover
+            text-decoration: underline
+.login__container
+    position: relative
+.login__decor
+    min-width: 835px
+    max-width: 835px
+    position: absolute
+    top: -20px
+    left: calc(50% - 120px)
+    +r(1400)
+        left: 50%
+    +r($desktop)
+        display: none
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 50%
+        left: 120px
+        transform: translateY(-50%)
+        width: calc(100% + 80px)
+        height: calc(100% + 80px)
+        background-color: $blueColor
+        opacity: 0.05
+        box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+        border-radius: 25px
+.login__decor-img
+    width: 100%
+    height: auto
+    display: block
+    position: relative

@@ -1,0 +1,61 @@
+.footer__top
+    background: #F9F9F9
+    padding: 60px 0
+    +r($tablet)
+        padding: 35px 0
+.footer__bottom
+    padding: 15px 0
+.footer__copy
+    color: $headerColor
+    font-size: 15px
+.footer__wrap-logo
+    margin-bottom: 45px
+    +r($tablet)
+        margin-bottom: 25px
+    img
+        width: 220px
+        height: auto
+        display: block
+        +r($tablet)
+            width: 170px
+.footer__header-link
+    font-weight: bold
+    font-size: 18px
+    color: $headerColor
+    text-decoration: none
+.footer__link
+    text-decoration: none
+    font-weight: normal
+    font-size: 15px
+    color: $headerColor
+    padding-left: 34px
+    position: relative
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        left: 0
+        width: 20px
+        height: 20px
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 100% auto
+.footer__link_email
+    &::before
+        background-image: url(/images/message-ic.svg)
+.footer__link_phone
+    &::before
+        background-image: url(/images/phone-ic.svg)
+.footer__soc-title
+    font-size: 18px
+    color: #A5A5A5
+.footer__soc-wrap
+    margin-top: 20px
+    display: flex
+    +r($tablet)
+        margin-top: 15px
+.footer__soc-item
+    & + &
+        margin-left: 45px

@@ -1,0 +1,21 @@
+.offer-details
+    padding: 15px 0
+    display: none
+.offer-details__item
+    & + &
+        margin-top: 10px
+.offer-details__title
+    padding-left: 20px
+    color: $headerColor
+    position: relative
+    font-weight: 700
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 12px
+        left: 0
+        width: 6px
+        height: 6px
+        border-radius: 50%
+        background-color: $blueColor

@@ -1,0 +1,91 @@
+.form-progress
+    background: #FFFFFF
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 40px
+    display: flex
+    justify-content: space-between
+    padding: 30px
+    max-width: 650px
+    width: 100%
+    counter-reset: i
+    position: relative
+    overflow: hidden
+    +r($desktop)
+        max-width: 100%
+.form-progress_steps_3
+    max-width: 960px
+    +r($desktop)
+        max-width: 100%
+.form-progress_steps_more-3
+    max-width: 100%
+.form-progress__item
+    width: 100%
+    text-align: center
+    font-weight: 500
+    font-size: 21px
+    line-height: 35px
+    position: relative
+    padding-top: 100px
+    padding-left: 10px
+    padding-right: 10px
+    +r($desktop)
+        padding-top: 74px
+    +r($tablet)
+        padding-top: 40px
+    span
+        color: $headerColor
+        +r($desktop)
+            display: none
+    &::before
+        content: counter(i)
+        counter-increment: i
+        display: block
+        position: absolute
+        top: 0
+        left: 50%
+        transform: translateX(-50%)
+        width: 74px
+        height: 74px
+        border-radius: 50%
+        border: 1px solid #F9F9F9
+        background-color: #fff
+        box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+        font-weight: bold
+        color: #fff
+        -webkit-text-stroke: 1px $headerColor
+        font-size: 40px
+        display: flex
+        justify-content: center
+        align-items: center
+        z-index: 2
+        +r($tablet)
+            width: 40px
+            height: 40px
+            font-size: 25px
+    &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 37px
+        right: 50%
+        width: 100%
+        height: 1px
+        background-color: #D7D7D7
+        +r($tablet)
+            top: 20px
+    &:first-child
+        &::after
+            top: 0
+            width: 1000px
+            height: 74px
+            background-color: #fff
+            +r($desktop)
+                height: 40px
+.form-progress__item_active
+    span
+        color: $blueColor
+    &::before
+        border: 1px solid $blueColor
+        -webkit-text-stroke: 1px $blueColor
+    &::after
+        background-color: $blueColor

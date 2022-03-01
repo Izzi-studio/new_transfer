@@ -1,0 +1,69 @@
+.banner
+    padding-top: 60px
+    padding-bottom: 140px
+    overflow: hidden
+    position: relative
+    +r($desktop)
+        padding-bottom: 0
+        overflow: visible
+    +r($mobile)
+        padding-top: 35px
+.banner__title
+    font-weight: normal
+    font-size: 40px
+    line-height: 56px
+    strong
+        color: $headerColor
+    +r($mobile)
+        font-size: 25px
+        line-height: normal
+.banner__txt
+    font-size: 19px
+    margin-top: 15px
+    +r($mobile)
+        font-size: 17px
+.banner__list
+    margin-top: 20px
+    display: flex
+    align-items: center
+
+.banner__item
+    padding-left: 22px
+    position: relative
+    font-size: 18px
+    color: #3F3F3F
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 50%
+        left: 0
+        transform: translateY(-50%)
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        background-color: #FDBA37
+    & + &
+        margin-left: 20px
+
+.banner__banner-form
+    margin-top: 40px
+    position: relative
+    z-index: 2
+.banner__desktop-img
+    width: 995px
+    display: block
+    position: absolute
+    left: 50%
+    +r($wide)
+        width: 830px
+        left: 52%
+    +r($desktop)
+        display: none
+.banner__mobile-img
+    display: none
+    width: 100%
+    height: auto
+    margin-top: 5px
+    +r($desktop)
+        display: block
