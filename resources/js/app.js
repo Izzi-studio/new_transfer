@@ -1,11 +1,11 @@
-require('./bootstrap');
+window.axios = require('axios')
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
+window.$ = window.jQuery = require('jquery')
 
+import Swiper, { Navigation } from 'swiper';
 import activeHeaderScroll from './components/activeHeaderScroll'
 import burgerMenu from './components/burgerMenu'
 import headerHeightFun from './components/headerHeightFun'
-import initPopups from './components/initPopups'
-import initSelectric from './components/initSelectric'
-import initSliders from './components/initSliders'
 import scrollTop from './components/scrollTop'
 import sectionNavigation from './components/sectionNavigation'
 import vhModule from './components/vhModule'
@@ -14,9 +14,6 @@ $(document).ready(function() {
     activeHeaderScroll()
     burgerMenu()
     headerHeightFun()
-    // initPopups()
-    // initSelectric()
-    initSliders()
     scrollTop()
     sectionNavigation()
     vhModule()
@@ -55,5 +52,35 @@ $(document).ready(function() {
 
     $('.offer__btn-companies').click(function () {
         $(this).closest('.offer').toggleClass('offer_open_companies')
+    })
+
+    new Swiper('.reviews__slider', {
+        modules: [ Navigation ],
+        slidesPerView: 1,
+        spaceBetween: 20,
+        grabCursor: true,
+        navigation: {
+            nextEl: '.reviews__slider .swiper-button-next',
+            prevEl: '.reviews__slider .swiper-button-prev',
+        },
+        breakpoints: {
+            768: {
+                slidesPerView: 2,
+            },
+            992: {
+                slidesPerView: 3,
+            }
+        }
+    })
+
+    new Swiper('.advantages__slider', {
+        modules: [ Navigation ],
+        slidesPerView: 1,
+        spaceBetween: 30,
+        grabCursor: true,
+        navigation: {
+            nextEl: '.advantages__slider .swiper-button-next',
+            prevEl: '.advantages__slider .swiper-button-prev',
+        },
     })
 })

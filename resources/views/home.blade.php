@@ -86,7 +86,7 @@
 <section class="reviews section_bg_blue section_padding_blue">
     <div class="container">
         <h2 class="section-title">Wie es funktioniert</h2>
-        <div class="swiper-container reviews__slider">
+        <div class="swiper reviews__slider">
             <div class="swiper-wrapper">
                 <div class="swiper-slide reviews__slide">
                     <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
@@ -193,7 +193,7 @@
                 </div>
             </div>
             <div class="col-12 d-lg-none">
-                <div class="swiper-container advantages__slider">
+                <div class="swiper advantages__slider">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide advantages__block">
                             <h3 class="advantages__block-title">Wir nehmen Ihnen jede Arbeit ab</h3>
