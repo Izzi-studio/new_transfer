@@ -1,0 +1,28 @@
+@import "components/offer-company"
+@import "components/offer-details"
+@import "components/offer"
+@import "components/sidebar"
+
+.profile__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+.profile__bill
+    font-weight: bold
+    font-size: 21px
+    color: $blueColor
+    background: #FFFFFF
+    border: 1px solid #F3F3F3
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding: 15px 20px
+.profile-info
+    padding-left: 30px
+    +r($wide)
+        padding-left: 0
+.profile-search input[type="text"]
+    height: 60px
+    padding-right: 60px
+    background-image: url(/images/search-ic_blue.svg)
+    background-repeat: no-repeat
+    background-position: right 18px center

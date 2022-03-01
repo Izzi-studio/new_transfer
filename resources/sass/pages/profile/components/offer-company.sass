@@ -1,0 +1,82 @@
+.offer-companies
+    padding: 20px 0
+    display: none
+.offer-company + .offer-company
+    margin-top: 20px
+
+.offer-company__header
+    display: flex
+    justify-content: space-between
+    align-items: center
+.offer-company__logo
+    display: block
+    width: 128px
+    height: auto
+    +r($wide)
+        width: 100px
+.offer-company__link
+    font-weight: bold
+    font-size: 17px
+    color: $blueColor
+    text-decoration: none
+    position: relative
+    padding-right: 30px
+    &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 1px
+        right: 0
+        height: 100%
+        width: 16px
+        background: url(/images/arrow_blue_slider.svg) no-repeat center / 100% auto
+.offer-company__body
+    margin-top: 10px
+    display: flex
+    justify-content: space-between
+    +r($tablet)
+        flex-direction: column
+.offer-company__col
+    width: calc( 50% - 70px )
+    +r(1400)
+        width: calc( 50% - 10px )
+    +r($tablet)
+        width: 100%
+    p
+        line-height: 34px
+.offer-company__desc
+    color: $headerColor
+.offer-company__phone, .offer-company__email
+    color: $headerColor
+    padding-left: 35px
+    position: relative
+    text-decoration: none
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        left: 0
+        width: 20px
+        height: 20px
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 100% auto
+.offer-company__email
+    &::before
+        background-image: url(/images/message-ic.svg)
+.offer-company__phone
+    &::before
+        background-image: url(/images/phone-ic.svg)
+.offer-company__footer
+    display: flex
+    align-items: center
+    margin-top: 6px
+.offer-company__count-rating
+    margin-left: 20px
+    font-weight: 500
+    font-size: 17px
+    color: $blueColor
+.offer-company__rating
+    filter: url(#solid)

@@ -1,0 +1,167 @@
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+select,
+textarea
+    -webkit-appearance: none
+    background-color: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding-left: 22px
+    padding-right: 22px
+    width: 100%
+    color: $headerColor
+    &::-webkit-input-placeholder, &::-moz-placeholder,  &:-ms-input-placeholder
+        font-family: $font-family
+        font-weight: normal
+        font-size: 15px
+        color: #A5A5A5
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="password"],
+select
+    height: 46px
+
+select
+    background-image: url(/images/arrow_dark.svg)
+    background-repeat: no-repeat
+    background-position: right 13px center
+    background-size: 11px
+
+input[type=number]
+    -moz-appearance: textfield
+
+textarea
+    resize: none
+    padding-top: 13px
+    height: 144px
+
+.btn, input[type="submit"]
+    background: $blueColor
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    font-weight: 700
+    font-size: 15px
+    height: 46px
+    display: flex
+    justify-content: center
+    text-align: center
+    align-items: center
+    padding-left: 30px
+    padding-right: 30px
+    border: none
+    color: #fff
+    transition: opacity 0.3s
+    min-width: 140px
+    &:hover
+        opacity: 0.9
+        color: #fff
+    &:focus
+        outline: none
+    &.btn_width_long
+        min-width: 280px
+
+.form-field
+    width: 100%
+.form-field__label
+    font-weight: 500
+    font-size: 15px
+    color: #1A1A1A
+    padding-left: 13px
+    padding-bottom: 8px
+
+.form-checkbox
+    position: relative
+    min-height: 24px
+    cursor: pointer
+    input[type="checkbox"]
+        position: absolute
+        z-index: -1
+        opacity: 0
+        pointer-events: none
+        &:checked + .form-checkbox__checkbox
+            &::before
+                opacity: 1
+.form-checkbox__checkbox
+    border: 1px solid $blueColor
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 50px
+    position: absolute
+    top: 1px
+    left: 0
+    width: 24px
+    height: 24px
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: url(/images/check_blue.svg) no-repeat center / 9px auto
+        opacity: 0
+        transition: 0.1s
+.form-checkbox__label
+    text-indent: 38px
+    line-height: 25px
+
+.form-file
+    height: 46px
+    position: relative
+    display: inline-flex
+    align-items: center
+    cursor: pointer
+    input[type="file"]
+        position: absolute
+        opacity: 0
+        z-index: -1
+        pointer-events: none
+        max-width: 0
+        width: 0
+.form-file__label
+    font-weight: bold
+    font-size: 15px
+    color: $blueColor
+    padding-left: 28px
+    position: relative
+    &::before
+        position: absolute
+        top: 6px
+        left: 0
+        display: block
+        content: ''
+        width: 16px
+        height: 16px
+        background: url(/images/file.svg) no-repeat center / 100% auto
+
+.form-rating
+    width: 190px
+    height: 28px
+    display: flex
+    flex-direction: row-reverse
+    input
+        position: absolute
+        z-index: -1
+        opacity: 0
+        pointer-events: none
+    label
+        margin-left: 12px
+        cursor: pointer
+        &:last-child
+            margin-left: 0
+    & > label:before
+        display: block
+        content: ''
+        width: 28px
+        height: 28px
+        background-repeat: no-repeat
+        background-image: url(/images/form-star_empty.svg)
+        background-size: 100% 100%
+        background-position: center
+    & input:checked ~ label:before
+        background-image: url(/images/form-star_full.svg)

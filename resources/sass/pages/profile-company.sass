@@ -1,0 +1,82 @@
+.profile-company__header
+    display: flex
+    align-items: center
+    +r($mobile)
+        flex-direction: column
+        align-items: flex-start
+.profile-company__logo
+    width: 210px
+    height: auto
+    display: block
+.profile-company__title
+    font-weight: 500
+    margin-left: 50px
+    font-size: 31px
+    +r($mobile)
+        margin-left: 0
+        margin-top: 15px
+.profile-company__inner
+    margin-top: 23px
+.profile-company__subtitle
+    font-weight: 700
+    font-size: 21px
+    line-height: 30px
+    color: $blueColor
+.profile-company__link
+    font-weight: bold
+    font-size: 21px
+    line-height: 40px
+    color: $headerColor
+    position: relative
+    padding-left: 43px
+    position: relative
+    text-decoration: none
+    +r($mobile)
+        font-size: 19px
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        left: 0
+        width: 25px
+        height: 25px
+        background-repeat: no-repeat
+        background-position: center
+        background-size: 100% auto
+        filter: url(#solid)
+.profile-company__link_email
+    &::before
+        background-image: url(/images/message-ic.svg)
+.profile-company__link_phone
+    &::before
+        background-image: url(/images/phone-ic.svg)
+
+.profile-company__checkbox
+    position: relative
+    min-height: 24px
+    cursor: pointer
+.profile-company__checkbox-checkbox
+    border: 1px solid $blueColor
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 50px
+    position: absolute
+    top: 1px
+    left: 0
+    width: 24px
+    height: 24px
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 100%
+        height: 100%
+        background: url(/images/check_blue.svg) no-repeat center / 9px auto
+.profile-company__checkbox-label
+    text-indent: 38px
+    line-height: 25px
+    font-weight: bold
+    color: $headerColor

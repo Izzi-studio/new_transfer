@@ -1,0 +1,55 @@
+.profile-sidebar
+    background: #F8F8F8
+    border: 1px solid #F3F3F3
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding: 35px 30px
+    +r($wide)
+        padding: 20px
+.profile-sidebar__item
+    & + &
+        margin-top: 25px
+.profile-sidebar__link
+    background: #FFFFFF
+    border: 1px solid #F3F3F3
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding: 15px 20px
+    position: relative
+    width: 100%
+    display: block
+    font-weight: bold
+    font-size: 17px
+    color: $headerColor
+    text-decoration: none
+    &:hover
+        color: $blueColor
+.profile-sidebar__item_has-sublist
+    .profile-sidebar__link
+        &::after
+            content: '+'
+            display: block
+            position: absolute
+            right: 15px
+            top: 12px
+            font-size: 20px
+            font-weight: 700
+            font-family: $font-family
+            color: $headerColor
+.profile-sidebar__sublist
+    display: none
+    padding-top: 8px
+    padding-left: 20px
+.profile-sidebar__sublink
+    color: $headerColor
+    text-decoration: none
+.profile-sidebar__item_active
+    .profile-sidebar__link
+        color: $blueColor
+        &::after
+            content: '-'
+            color: $blueColor
+    .profile-sidebar__sublist
+        display: block
+.profile-sidebar__sublink_active
+    color: $blueColor

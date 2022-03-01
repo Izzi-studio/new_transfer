@@ -1,0 +1,55 @@
+.card-article
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 25px
+    position: relative
+    overflow: hidden
+    height: 100%
+    padding-bottom: 70px
+.card-article__img
+    width: 100%
+    display: block
+    height: 295px
+    object-fit: cover
+    +r($tablet)
+        height: 230px
+    +r($mobile)
+        height: 163px
+.card-article__title
+    font-weight: 500
+    font-size: 30px
+    line-height: 40px
+    margin-top: 30px
+    padding: 0 30px
+    color: $headerColor
+    +r($desktop)
+        font-size: 24px
+        line-height: normal
+        padding: 0 20px
+        margin-top: 20px
+    +r($tablet)
+        font-size: 21px
+.card-article__link
+    font-weight: bold
+    font-size: 17px
+    color: $blueColor
+    text-decoration: none
+    position: absolute
+    bottom: 30px
+    left: 30px
+    padding-right: 30px
+    +r($desktop)
+        left: 20px
+        bottom: 20px
+    &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 6px
+        right: 0
+        width: 16px
+        height: 12px
+        background: url(/images/arrow_blue_slider.svg) no-repeat center / 100% auto
+    &:hover
+        text-decoration: underline

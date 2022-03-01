@@ -1,0 +1,25 @@
+.review
+    display: flex
+    align-items: flex-start
+    +r($mobile)
+        flex-direction: column
+.review__info
+    +r($mobile)
+        margin-top: 11px
+.review__img
+    width: 160px
+    height: 160px
+    display: block
+    object-fit: cover
+    background: #FFFFFF
+    border: 1px solid #F3F3F3
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    margin-right: 30px
+.review__title
+    font-size: 21px
+.review__rating
+    filter: url(#solid)
+    margin-top: 10px
+.rating__txt
+    margin-top: 12px

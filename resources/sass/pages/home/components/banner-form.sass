@@ -1,0 +1,30 @@
+.banner-form
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 7px 7px 20px rgba(177, 177, 177, 0.2)
+    border-radius: 12px
+    padding: 40px 60px 40px 30px
+    max-width: 540px
+    width: 100%
+    +r($tablet)
+        padding: 30px 20px
+    input[type="text"], select
+        max-width: 280px
+        width: 100%
+        +r($tablet)
+            max-width: 100%
+    input[type="submit"]
+        min-width: 140px
+        max-width: 140px
+        margin-left: 23px
+        +r($tablet)
+            width: 100%
+            max-width: 100%
+            margin-left: 0
+            margin-top: 30px
+.banner-form__row
+    display: flex
+    +r($tablet)
+        flex-direction: column
+    & + &
+        margin-top: 20px

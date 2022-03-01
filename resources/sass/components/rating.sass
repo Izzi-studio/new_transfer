@@ -1,0 +1,40 @@
+.rating
+    height: 24px
+    min-width: 95px
+    max-width: 95px
+    background-image: url(/images/star_empty.png)
+    background-repeat: repeat-x
+    background-position: left center
+    position: relative
+    &::before
+        content: ''
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        width: 0
+        height: 100%
+        background-image: url(/images/star_full.png)
+        background-repeat: repeat-x
+        background-position: left center
+
+.rating_fullness_0-5:before
+    width: 7px
+.rating_fullness_1:before
+    width: 20px
+.rating_fullness_1-5:before
+    width: 26px
+.rating_fullness_2:before
+    width: 35px
+.rating_fullness_2-5:before
+    width: 46px
+.rating_fullness_3:before
+    width: 55px
+.rating_fullness_3-5:before
+    width: 66px
+.rating_fullness_4:before
+    width: 75px
+.rating_fullness_4-5:before
+    width: 86px
+.rating_fullness_5:before
+    width: 95px
