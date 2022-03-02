@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use App\Providers\RouteServiceProvider;
-use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+
+use App\Traits\Registers;
+use App\Traits\RegisterPartnerTrait;
+use App\Events\RegisterPartner;
+
+use Log;
 
 class RegisterController extends Controller
 {
@@ -23,7 +30,8 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-
+    use Registers;
+    use RegisterPartnerTrait;
     /**
      * Where to redirect users after registration.
      *
@@ -32,42 +40,52 @@ class RegisterController extends Controller
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
-     * Create a new controller instance.
+     * The user has been registered.
      *
-     * @return void
+     * @param  \Illuminate\Http\Request  $request
+     * @param  mixed  $user
+     * @return mixed
      */
-    public function __construct()
+    protected function registered(Request $request, $user)
     {
-        $this->middleware('guest');
-    }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-    }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        if ($user->isPartner() ) {
+            event(new RegisterPartner($user,$this->password));
+            Log::info('Registered Partner Login: '.$user->email.' PWD: '.$this->password);
+            Log::info('----DONE----');
+            Log::info('');
+
+            return  response()->json(['redirect_url'=>route('partner.register.thanks.view')], 200);
+
+        }
+
+        if ($user->isClient() ) {
+            Log::info('Registered Client Login: '.$user->email.' PWD: '.$this->password);
+
+
+            $proposal = $request->only('proposal')['proposal'];
+            $proposal['user_id'] = $user->id;
+            $proposal['additional_info'] = $request->only('additional_info')['additional_info'];
+
+            event(new NewProposal(Proposal::create($proposal)));
+            Log::info('----DONE----');
+            Log::info('');
+
+            $arraySubjects = [
+                '1'=>'Umzugsanfrage',
+                '2'=>'Reinigungsanfrage',
+                '3'=>'Umzugs - und Reinigungsanfrage',
+                '4'=>'Maleranfrage'
+            ];
+
+
+            $subject = $arraySubjects[$proposal['type_job_id']];
+
+            event(new RegisterClient($user,$this->password,$subject));
+
+            return  response()->json(['url'=>route('client.myInfo')], 200);
+
+        }
     }
 }

@@ -17,3 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::prefix('front')->middleware('api')->group(function () {
+
+    Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
+    Route::get('/types-jobs', [App\Http\Controllers\ApiFront\ApiFrontController::class,'jobsTypes'])->name('api.jobsTypes');
+});
