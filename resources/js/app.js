@@ -2,13 +2,43 @@ window.axios = require('axios')
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 window.$ = window.jQuery = require('jquery')
 
-import Swiper, { Navigation } from 'swiper';
-import activeHeaderScroll from './components/activeHeaderScroll'
-import burgerMenu from './components/burgerMenu'
-import headerHeightFun from './components/headerHeightFun'
-import scrollTop from './components/scrollTop'
-import sectionNavigation from './components/sectionNavigation'
-import vhModule from './components/vhModule'
+import Vue from 'vue'
+
+import router from './router'
+import store from './store'
+
+import FormField from './components/FormField'
+import FormCheckbox from './components/FormCheckbox'
+
+import RegisterPartner from './steps-forms/views/register-partner/index'
+
+import Swiper, { Navigation } from 'swiper'
+import activeHeaderScroll from './modules/activeHeaderScroll'
+import burgerMenu from './modules/burgerMenu'
+import headerHeightFun from './modules/headerHeightFun'
+import scrollTop from './modules/scrollTop'
+import sectionNavigation from './modules/sectionNavigation'
+import vhModule from './modules/vhModule'
+
+Vue.filter('capitalize', function (value) {
+    if (!value) return '';
+    value = value.toString();
+    return value.charAt(0).toUpperCase() + value.slice(1);
+});
+
+Vue.component('form-field', FormField)
+Vue.component('form-checkbox', FormCheckbox)
+
+if (document.getElementById('app')) {
+    new Vue({
+        el: '#app',
+        router,
+        store,
+        components: {
+            RegisterPartner
+        }
+    });
+}
 
 $(document).ready(function() {
     activeHeaderScroll()
