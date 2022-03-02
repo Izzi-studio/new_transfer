@@ -20,7 +20,22 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'gender',
+        'lastname',
         'password',
+        'role_id',
+        'company',
+        'phone',
+        'availability',
+        'coins',
+        'profile_slug',
+        'status',
+        'status_pay',
+        'active',
+        'postcode',
+        'city',
+        'street',
+        'house',
     ];
 
     /**
@@ -41,4 +56,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin(){
+        return $this->role_id == 0 ? true : false;
+    }
+
+    public function isClient(){
+        return $this->role_id == 1 ? true : false;
+    }
+
+    public function isPartner(){
+        return $this->role_id == 2 ? true : false;
+    }
+
+    public function regions()
+    {
+        return $this->hasMany('App\Models\PartnerRegions');
+    }
+
+    public function typesJobs()
+    {
+        return $this->hasMany('App\Models\PartnerWantJobs');
+    }
 }
