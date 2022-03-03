@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="formHandler" @input="isSended = false" class="steps-form__form">
-        <div class="row">
+        <div class="row mt-5 mt-lg-0">
             <div class="col-xl-7">
                 <button 
                     class="btn btn_theme_gray"
@@ -9,7 +9,7 @@
                 >
                     Zurück
                 </button>
-                <div class="row mt-4">
+                <div class="row mt-2">
                     <div class="col-md-6 mt-4">
                         <form-field
                             label="Passwort*"
@@ -31,7 +31,7 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">Passwords must match</p>
+                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">Das Passwort ist zu kurz</p>
                 
                 <h5 class="mt-5">Ich wünsche Anfragen für folgende Arbeiten*:</h5>
                 <div class="row">
@@ -47,7 +47,7 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Checkboxes required</p>
+                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
                 
                 <button class="btn mt-4">Ausgefullt</button>
             </div>
