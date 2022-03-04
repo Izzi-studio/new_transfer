@@ -17,9 +17,10 @@ use App\Traits\Registers;
 use App\Traits\RegisterPartnerTrait;
 use App\Traits\ProposalsFormTrait;
 use App\Traits\RegisterClientTrait;
+use App\Traits\CheckFieldTrait;
 use App\Events\RegisterPartner;
 use App\Events\NewProposal;
-
+use App\Events\RegisterClient;
 use Log;
 
 
@@ -40,6 +41,7 @@ class RegisterController extends Controller
     use Registers;
     use RegisterPartnerTrait;
     use ProposalsFormTrait;
+    use CheckFieldTrait;
     /**
      * Where to redirect users after registration.
      *
@@ -92,7 +94,7 @@ class RegisterController extends Controller
 
             event(new RegisterClient($user,$this->password,$subject));
 
-            return  response()->json(['url'=>route('client.myInfo')], 200);
+            return  response()->json(['redirect_url'=>route('home')], 200);
 
         }
     }

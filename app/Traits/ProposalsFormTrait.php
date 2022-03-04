@@ -21,7 +21,7 @@ trait ProposalsFormTrait {
     {
         app()->make(SeoMetaTags::class)->setMeta('system.client.form_transfer');
         $zip = $request->zip;
-        $action = Auth::user() ? route('formStore') : route('client.register.post');
+        $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
 		//$reviews = ReviewsOnMainPage::all();
 		//$faqs = Faq::transfer()->get();
@@ -53,17 +53,17 @@ trait ProposalsFormTrait {
      *
      * @return \Illuminate\View\View
      */
-    public function showFormСleaning(Request $request)
+    public function showReinigungFormClientView(Request $request)
     {
         app()->make(SeoMetaTags::class)->setMeta('system.client.form_cleaning');
 		$zip = $request->zip;
-        $regions = Regions::all();
-        $action = Auth::user() ? route('formStore') : route('registerClient');
+       // $regions = Regions::all();
+        $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		$reviews = ReviewsOnMainPage::all();
-		$faqs = Faq::cleaning()->get();
+		//$reviews = ReviewsOnMainPage::all();
+		//$faqs = Faq::cleaning()->get();
 
-        return view('front.client.cleaning-form', compact(['action','regions','zip','reviews','faqs']));
+        return view('front.client.reinigung-form', compact(['action','zip']));
     }
 
     /**
