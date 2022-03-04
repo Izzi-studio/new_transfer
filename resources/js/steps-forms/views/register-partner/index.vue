@@ -27,6 +27,7 @@ export default {
     mounted() {
         this.$store.dispatch('stepsForms/getTypeJobs')
         this.$store.dispatch('stepsForms/getRegions')
+        this.$store.commit('stepsForms/setUrlHandler', '/partner-werden')
     },
     components: {
         FormProgress,

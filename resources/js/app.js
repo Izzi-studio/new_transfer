@@ -9,8 +9,10 @@ import store from './store'
 
 import FormField from './components/FormField'
 import FormCheckbox from './components/FormCheckbox'
+import FormRadio from './components/FormRadio'
 
 import RegisterPartner from './steps-forms/views/register-partner/index'
+import Transfer from './steps-forms/views/transfer/index'
 
 import Swiper, { Navigation } from 'swiper'
 import activeHeaderScroll from './modules/activeHeaderScroll'
@@ -28,6 +30,7 @@ Vue.filter('capitalize', function (value) {
 
 Vue.component('form-field', FormField)
 Vue.component('form-checkbox', FormCheckbox)
+Vue.component('form-radio', FormRadio)
 
 if (document.getElementById('app')) {
     new Vue({
@@ -35,7 +38,8 @@ if (document.getElementById('app')) {
         router,
         store,
         components: {
-            RegisterPartner
+            RegisterPartner,
+            Transfer
         }
     });
 }

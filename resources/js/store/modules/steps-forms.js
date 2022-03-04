@@ -1,10 +1,10 @@
-import axios from "axios"
-
 const state = {
     formData: {},
     typesJobs: [],
     regions: [],
     currentStep: 1,
+    isHasEmail: false,
+    urlHandler: '',
 }
 
 const getters = {}
@@ -23,6 +23,9 @@ const mutations = {
     nextStep(state, payload) {
         state.currentStep = state.currentStep + 1
     },
+    setUrlHandler(state, payload) {
+        state.urlHandler = payload
+    }
 }
 
 const actions = {
@@ -44,6 +47,20 @@ const actions = {
                 
             })
     },
+    checkEmail(context, { email }) {        
+        return new Promise(resolve => {
+            axios.post('/check-email', {
+                email,
+            })
+                .then(({ data }) => {
+                    context.state.isHasEmail = !data.success
+                    resolve(data);
+                })
+                .catch(() => {
+
+                })
+        })
+    },
     sendData(context) {
         const formData = new FormData()
         
@@ -60,7 +77,7 @@ const actions = {
 
         axios({
             method: "POST",
-            url: '/partner-werden',
+            url: context.state.urlHandler,
             data: formData,
             headers: { "Content-Type": "multipart/form-data" },
         })

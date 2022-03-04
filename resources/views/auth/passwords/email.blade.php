@@ -1,47 +1,38 @@
 @extends('layouts.app')
-
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+<section class="login paddingTop60 headerHeightMarginTop">
+    <div class="container login__container">
+        <div class="row">
+            <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+                <h1 class="section-title text-start">Passwort vergessen?</h1>
+                <p class="mt-3">Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine E-Mail zum Zurücksetzen des Passwortes.</p>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                @if (session('status'))
+                    <div class="alert alert-success mb-0 mt-4" role="alert">
+                        {{ session('status') }}
+                    </div>
+                @endif
 
-                    <form method="POST" action="{{ route('password.email') }}">
+                <div class="row mt-5">
+                    <form class="col-lg-10" method="POST" action="{{ route('password.email') }}">
                         @csrf
-
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
-                            </div>
-                        </div>
+                        <label class="form-field">
+                            <p class="form-field__label">E-mail</p>
+                            <input type="email" name="email" value="{{ old('email') }}" required>
+                            @error('email')
+                                <p class="mt-2">
+                                    <strong class="text-danger">
+                                        {{ $message }}
+                                    </strong>
+                                </p>
+                            @enderror
+                        </label>
+                        <input class="mt-4 btn_width_long" type="submit" value="Passwort zurucksetzen">
                     </form>
                 </div>
             </div>
         </div>
+        <div class="login__decor"><img class="login__decor-img" src="/images/decor.png" alt=""></div>
     </div>
-</div>
+</section>
 @endsection

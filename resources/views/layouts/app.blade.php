@@ -8,10 +8,11 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    {!! SEOMeta::generate() !!}
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 
-<body>
+<body @guest data-is-auth="false" @else data-is-auth="true" @endguest>
     <div class="page-container">
         <header class="header">
             <div class="container header__container">
@@ -36,11 +37,39 @@
                                 <li class="header__subitem"><a class="header__sublink" href="#">test 3</a></li>
                             </ul>
                         </li>
+                        <li class="header__item header__item_has-menu">
+                            <a class="header__link" href="#">Ratgeber</a>
+                            <ul class="header__submenu">
+                                <!--  -->
+                            </ul>
+                        </li>
                     </ul>
                     <ul class="header__menu-inner">
-                        <li class="header__item"><a class="header__link" href="#">Anmeldung</a></li>
-                        <li class="header__item"><a class="header__link header__link_partner" href="#">Partner
-                                werden</a></li>
+                        @guest
+                            <li class="header__item">
+                                <a class="header__link" href="{{ route('login') }}">Anmeldung</a>
+                            </li>
+                            <li class="header__item">
+                                <a class="header__link header__link_partner" href="{{ route('partner.register.view') }}">Partner werden</a>
+                            </li>
+                        @else
+                            @if(auth()->user()->isClient())
+                                <li class="header__item">
+                                    <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                                </li>
+                            @elseif(auth()->user()->isPartner())
+                                <li class="header__item">
+                                    <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                                </li>
+                            @else
+                                <li class="header__item">
+                                    <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                                </li>
+                            @endif
+                                <li class="header__item">
+                                    <a class="header__link" href="#">Ausloggen</a>
+                                </li>
+                        @endguest
                     </ul>
                 </nav>
                 <div class="header__wrap-burger">
