@@ -2,19 +2,26 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+
+use App\Models\Proposal;
+use App\Models\User;
+
 
 use App\Traits\Registers;
 use App\Traits\RegisterPartnerTrait;
+use App\Traits\ProposalsFormTrait;
+use App\Traits\RegisterClientTrait;
 use App\Events\RegisterPartner;
+use App\Events\NewProposal;
 
 use Log;
+
 
 class RegisterController extends Controller
 {
@@ -28,10 +35,11 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    use RegisterClientTrait;
     use RegistersUsers;
     use Registers;
     use RegisterPartnerTrait;
+    use ProposalsFormTrait;
     /**
      * Where to redirect users after registration.
      *
@@ -46,7 +54,7 @@ class RegisterController extends Controller
      * @param  mixed  $user
      * @return mixed
      */
-    protected function registered(Request $request, $user)
+    protected function registered(Request $request, User $user)
     {
 
 
