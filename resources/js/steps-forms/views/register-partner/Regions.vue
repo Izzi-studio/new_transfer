@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="formHandler" @input="isSended = false" class="steps-form__form">
-        <div class="row">
+        <div class="row mt-5 mt-lg-0">
             <div class="col-xl-8">
                 <button 
                     class="btn btn_theme_gray"
@@ -23,7 +23,7 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Checkboxes required</p>
+                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
                 
                 <div class="d-flex mt-4">
                     <button 
