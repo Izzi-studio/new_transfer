@@ -53,6 +53,8 @@ Route::group([
     Route::get('/gartner', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('client.form.gartner.view');
     Route::get('/schreiner', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('client.form.schreiner.view');
 
+    //static pages
+    Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticPage');
 });
 
 
