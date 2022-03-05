@@ -36,10 +36,31 @@ Route::group([
     Route::get('ratgeber/{blogCategory:slug}', [App\Http\Controllers\BlogController::class, 'сategoryView'])->name('blog.category.view');
     Route::get('ratgeber/{blogCategory:slug}/{post:slug}', [App\Http\Controllers\BlogController::class, 'postView'])->name('blog.post.view');
 
+    //faq
+    Route::get('/faq', [App\Http\Controllers\FaqController::class, 'faqView'])->name('page.faq.view');
+
+    //contact
+    Route::get('/kontakt',[App\Http\Controllers\PageController::class,'contacts'])->name('page.contacts.view');
+
+    //forms
+    Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
+    Route::get('/reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('client.form.reinigung.view');
+    Route::get('/umzug-und-reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugUndReinigungFormClientView'])->name('client.form.umzugundreinigung.view');
+    Route::get('/malar', [App\Http\Controllers\Auth\RegisterController::class, 'showMalarFormClientView'])->name('client.form.malar.view');
+    Route::get('/bodenleger', [App\Http\Controllers\Auth\RegisterController::class, 'showBodenlegerFormClientView'])->name('client.form.bodenleger.view');
+    Route::get('/heizung', [App\Http\Controllers\Auth\RegisterController::class, 'showHeizungFormClientView'])->name('client.form.heizung.view');
+    Route::get('/elektriker', [App\Http\Controllers\Auth\RegisterController::class, 'showElektrikerFormClientView'])->name('client.form.elektriker.view');
+    Route::get('/gartner', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('client.form.gartner.view');
+    Route::get('/schreiner', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('client.form.schreiner.view');
+
+    //static pages
+    Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticPage');
 });
 
-Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
-Route::get('/reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('client.form.reinigung.view');
+
+
+
+
 Route::post('register-client', [App\Http\Controllers\Auth\RegisterController::class,'newClientAndSaveProposal'])->name('client.register.post');
 Route::post('check-email', [App\Http\Controllers\Auth\RegisterController::class,'checkEmail'])->name('client.check.email');
 
