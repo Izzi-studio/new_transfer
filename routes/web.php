@@ -36,6 +36,9 @@ Route::group([
     Route::get('ratgeber/{blogCategory:slug}', [App\Http\Controllers\BlogController::class, 'сategoryView'])->name('blog.category.view');
     Route::get('ratgeber/{blogCategory:slug}/{post:slug}', [App\Http\Controllers\BlogController::class, 'postView'])->name('blog.post.view');
 
+    //faq
+    Route::get('/faq', [App\Http\Controllers\FaqController::class, 'faqView'])->name('faq.view');
+
     //forms
     Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
     Route::get('/reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('client.form.reinigung.view');
