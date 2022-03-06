@@ -30,7 +30,7 @@
                             type="number"
                             required
                             placeholder="PLZ*"
-                            v-model="fields.postcode"
+                            v-model="fields['additional_info[to][zip]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -39,7 +39,7 @@
                             type="text"
                             required
                             placeholder="Ort*"
-                            v-model="fields.city"
+                            v-model="fields['additional_info[to][city]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -48,7 +48,7 @@
                             type="text"
                             required
                             placeholder="Strasse*"
-                            v-model="fields.street"
+                            v-model="fields['additional_info[to][street]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -56,7 +56,7 @@
                             label="Nr"
                             type="text"
                             placeholder="Nr"
-                            v-model="fields['additional_info[from][number]']"
+                            v-model="fields['additional_info[to][number]']"
                         />
                     </div>
                 </div>
@@ -64,14 +64,14 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][house_type]']"
+                            v-model="fields['additional_info[to][house_type]']"
                             val="Mehrfamilienhaus"
                             label="Mehrfamilienhaus"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][house_type]']"
+                            v-model="fields['additional_info[to][house_type]']"
                             val="Einfamilienhaus"
                             label="Einfamilienhaus"
                         />
@@ -81,14 +81,14 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][lift]']"
+                            v-model="fields['additional_info[to][lift]']"
                             val="Kein Lift"
                             label="Kein Lift"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][lift]']"
+                            v-model="fields['additional_info[to][lift]']"
                             val="Mit Lift"
                             label="Mit Lift"
                         />
@@ -101,7 +101,7 @@
                             type="text"
                             required
                             placeholder="Stock*"
-                            v-model="fields['additional_info[from][floor]']"
+                            v-model="fields['additional_info[to][floor]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -110,7 +110,7 @@
                             type="text"
                             required
                             placeholder="Fläche in m2*"
-                            v-model="fields['additional_info[from][square]']"
+                            v-model="fields['additional_info[to][square]']"
                         />
                     </div>
                 </div>
@@ -124,14 +124,14 @@ export default {
     data: () => ({
         fields: {
             'proposal[region_id]': '',
-            'additional_info[from][number]': '',
-            'additional_info[from][house_type]': 'Mehrfamilienhaus',
-            'additional_info[from][lift]': 'Kein Lift',
-            'additional_info[from][floor]': '',
-            'additional_info[from][square]': '',
-            postcode: '',
-            city: '',
-            street: '',
+            'additional_info[to][zip]': '',
+            'additional_info[to][city]': '',
+            'additional_info[to][street]': '',
+            'additional_info[to][number]': '',
+            'additional_info[to][house_type]': 'Mehrfamilienhaus',
+            'additional_info[to][lift]': 'Kein Lift',
+            'additional_info[to][floor]': '',
+            'additional_info[to][square]': '',
         },
         fieldsGroupName: 'to'
     }),

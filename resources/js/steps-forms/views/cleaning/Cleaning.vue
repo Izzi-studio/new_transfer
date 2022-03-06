@@ -5,6 +5,19 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
+                            <p class="form-field__label">Reinigungstyp*</p>
+                            <select v-model="fields['additional_info[cleaning]']" required>
+                                <option value="Umzugsreinigung">Umzugsreinigung</option>
+                                <option value="Fensterreinigung">Fensterreinigung</option>
+                                <option value="Bodenreinigung">Bodenreinigung</option>
+                                <option value="Baureinigung">Baureinigung</option>
+                                <option value="Büroreinigung">Büroreinigung</option>
+                                <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <div class="form-field">
                             <p class="form-field__label">Region*</p>
                             <select v-model="fields['proposal[region_id]']" required>
                                 <option
@@ -23,7 +36,7 @@
                             type="number"
                             required
                             placeholder="PLZ*"
-                            v-model="fields['additional_info[from][zip]']"
+                            v-model="fields['additional_info[zip]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -32,7 +45,7 @@
                             type="text"
                             required
                             placeholder="Ort*"
-                            v-model="fields['additional_info[from][city]']"
+                            v-model="fields['additional_info[city]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -41,7 +54,7 @@
                             type="text"
                             required
                             placeholder="Strasse*"
-                            v-model="fields['additional_info[from][street]']"
+                            v-model="fields['additional_info[street]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -49,7 +62,7 @@
                             label="Nr"
                             type="text"
                             placeholder="Nr"
-                            v-model="fields['additional_info[from][number]']"
+                            v-model="fields['additional_info[number]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -68,28 +81,28 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][dayrange]']"
+                            v-model="fields['additional_info[dayrange]']"
                             val="Nicht Flexibel"
                             label="Nicht Flexibel"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][dayrange]']"
+                            v-model="fields['additional_info[dayrange]']"
                             val="+/- 1 Tag"
                             label="+/- 1 Tag"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][dayrange]']"
+                            v-model="fields['additional_info[dayrange]']"
                             val="+/- 2 Tagen"
                             label="+/- 2 Tagen"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][dayrange]']"
+                            v-model="fields['additional_info[dayrange]']"
                             val="+/- 3 Tagen"
                             label="+/- 3 Tagen"
                         />
@@ -99,14 +112,14 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][house_type]']"
+                            v-model="fields['additional_info[house_type]']"
                             val="Mehrfamilienhaus"
                             label="Mehrfamilienhaus"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][house_type]']"
+                            v-model="fields['additional_info[house_type]']"
                             val="Einfamilienhaus"
                             label="Einfamilienhaus"
                         />
@@ -116,14 +129,14 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][lift]']"
+                            v-model="fields['additional_info[lift]']"
                             val="Kein Lift"
                             label="Kein Lift"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-radio
-                            v-model="fields['additional_info[from][lift]']"
+                            v-model="fields['additional_info[lift]']"
                             val="Mit Lift"
                             label="Mit Lift"
                         />
@@ -136,7 +149,7 @@
                             type="text"
                             required
                             placeholder="Stock*"
-                            v-model="fields['additional_info[from][floor]']"
+                            v-model="fields['additional_info[floor]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -145,7 +158,7 @@
                             type="text"
                             required
                             placeholder="Anzahl der Zimmer*"
-                            v-model="fields['additional_info[from][rooms]']"
+                            v-model="fields['additional_info[rooms]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
@@ -154,7 +167,7 @@
                             type="text"
                             required
                             placeholder="Fläche in m2*"
-                            v-model="fields['additional_info[from][square]']"
+                            v-model="fields['additional_info[square]']"
                         />
                     </div>
                 </div>
@@ -162,49 +175,49 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Keller"
                             label="Keller"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Klavier"
                             label="Klavier"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Estrich"
                             label="Estrich"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Garage"
                             label="Garage"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Flügel"
                             label="Flügel"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Lagerung"
                             label="Lagerung"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[from][other][]']"
+                            v-model="fields['additional_info[other][]']"
                             val="Demontage / Montage"
                             label="Demontage / Montage"
                         />
@@ -229,24 +242,25 @@ import DatePicker from 'vue2-datepicker';
 export default {
     data: () => ({
         fields: {
-            'additional_info[from][zip]': '',
-            'additional_info[from][city]': '',
-            'additional_info[from][street]': '',
+            'additional_info[zip]': '',
+            'additional_info[city]': '',
+            'additional_info[street]': '',
+            'additional_info[cleaning]': '',
             'proposal[region_id]': '',
-            'additional_info[from][number]': '',
+            'additional_info[number]': '',
             'proposal[date_start]': '',
-            'additional_info[from][dayrange]': 'Nicht Flexibel',
-            'additional_info[from][house_type]': 'Mehrfamilienhaus',
-            'additional_info[from][lift]': 'Kein Lift',
-            'additional_info[from][floor]': '',
-            'additional_info[from][rooms]': '',
-            'additional_info[from][square]': '',
-            'additional_info[from][other][]': [],
+            'additional_info[dayrange]': 'Nicht Flexibel',
+            'additional_info[house_type]': 'Mehrfamilienhaus',
+            'additional_info[lift]': 'Kein Lift',
+            'additional_info[floor]': '',
+            'additional_info[rooms]': '',
+            'additional_info[square]': '',
+            'additional_info[other][]': [],
             'proposal[description]': '',
-            'proposal[type_job_id]': '1',
+            'proposal[type_job_id]': '2',
             _token: '',
         },
-        fieldsGroupName: 'from',
+        fieldsGroupName: 'cleaning',
         date: new Date()
     }),
     computed: {

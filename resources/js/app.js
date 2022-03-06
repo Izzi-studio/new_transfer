@@ -13,6 +13,7 @@ import FormRadio from './components/FormRadio'
 
 import RegisterPartner from './steps-forms/views/register-partner/index'
 import Transfer from './steps-forms/views/transfer/index'
+import Cleaning from './steps-forms/views/cleaning/index'
 
 import Swiper, { Navigation } from 'swiper'
 import activeHeaderScroll from './modules/activeHeaderScroll'
@@ -39,7 +40,8 @@ if (document.getElementById('app')) {
         store,
         components: {
             RegisterPartner,
-            Transfer
+            Transfer,
+            Cleaning
         }
     });
 }
