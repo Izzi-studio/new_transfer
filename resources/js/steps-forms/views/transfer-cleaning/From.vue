@@ -241,7 +241,7 @@ export default {
             'additional_info[from][square]': '',
             'additional_info[from][other][]': [],
             'proposal[description]': '',
-            'proposal[type_job_id]': '1',
+            'proposal[type_job_id]': '3',
             _token: '',
         },
         fieldsGroupName: 'from',

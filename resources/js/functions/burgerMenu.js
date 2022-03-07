@@ -7,13 +7,16 @@ export default function burgerMenu() {
             if (menu.hasClass('header__menu_active')) {
                 menu.removeClass('header__menu_active');
                 burger.removeClass('burger_active');
+                $('body').removeClass('overflow-hidden')
             } else {
                 menu.addClass('header__menu_active');
                 burger.addClass('burger_active');
+                $('body').addClass('overflow-hidden')
             }
         } else if (!menu.is(e.target) && menu.has(e.target).length === 0 && menu.hasClass('header__menu_active')) {
             menu.removeClass('header__menu_active');
             burger.removeClass('burger_active');
+            $('body').removeClass('overflow-hidden')
         }
     });
 

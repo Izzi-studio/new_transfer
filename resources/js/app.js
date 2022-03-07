@@ -7,20 +7,18 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 
+import DatePicker from 'vue2-datepicker';
 import FormField from './components/FormField'
 import FormCheckbox from './components/FormCheckbox'
 import FormRadio from './components/FormRadio'
 
-import RegisterPartner from './steps-forms/views/register-partner/index'
-import Transfer from './steps-forms/views/transfer/index'
-
 import Swiper, { Navigation } from 'swiper'
-import activeHeaderScroll from './modules/activeHeaderScroll'
-import burgerMenu from './modules/burgerMenu'
-import headerHeightFun from './modules/headerHeightFun'
-import scrollTop from './modules/scrollTop'
-import sectionNavigation from './modules/sectionNavigation'
-import vhModule from './modules/vhModule'
+import activeHeaderScroll from './functions/activeHeaderScroll'
+import burgerMenu from './functions/burgerMenu'
+import headerHeightFun from './functions/headerHeightFun'
+import scrollTop from './functions/scrollTop'
+import sectionNavigation from './functions/sectionNavigation'
+import vhModule from './functions/vhModule'
 
 Vue.filter('capitalize', function (value) {
     if (!value) return '';
@@ -31,6 +29,7 @@ Vue.filter('capitalize', function (value) {
 Vue.component('form-field', FormField)
 Vue.component('form-checkbox', FormCheckbox)
 Vue.component('form-radio', FormRadio)
+Vue.component('date-picker', DatePicker)
 
 if (document.getElementById('app')) {
     new Vue({
@@ -38,8 +37,16 @@ if (document.getElementById('app')) {
         router,
         store,
         components: {
-            RegisterPartner,
-            Transfer
+            RegisterPartner: () => import('./steps-forms/views/register-partner/index'),
+            Transfer: () => import('./steps-forms/views/transfer/index'),
+            Cleaning: () => import('./steps-forms/views/cleaning/index'),
+            TransferCleaning: () => import('./steps-forms/views/transfer-cleaning/index'),
+            Painting: () => import('./steps-forms/views/painting/index'),
+            Floorer: () => import('./steps-forms/views/floorer/index'),
+            Heating: () => import('./steps-forms/views/heating/index'),
+            Electrician: () => import('./steps-forms/views/electrician/index'),
+            Gartner: () => import('./steps-forms/views/gartner/index'),
+            Carpenter: () => import('./steps-forms/views/carpenter/index'),
         }
     });
 }
@@ -51,6 +58,11 @@ $(document).ready(function() {
     scrollTop()
     sectionNavigation()
     vhModule()
+
+    window.addEventListener('resize', () => {
+        vhModule()
+        headerHeightFun()
+    })
 
     $('.advantages2__block-btn').click(function () {
         const parent = $(this).closest('.advantages2__block')

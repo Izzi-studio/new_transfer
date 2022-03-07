@@ -3,18 +3,17 @@
         <form-progress
             :progress-text="progressText"
             :current-step="currentStep"
+            v-if="progressText.length > 1"
             class="mt-5"
         />
-        <from v-show="currentStep === 1" />
-        <to v-show="currentStep === 2" />
-        <contact v-show="currentStep === 3" />
+        <desc-work v-show="currentStep === 1" />
+        <contact v-show="currentStep === 2" />
     </div>
 </template>
 <script>
 import FormProgress from '../../FormProgress'
 import Contact from '../../ContactStep'
-import From from './From'
-import To from './To'
+import DescWork from './DescWork'
 
 export default {
     props: ['urlHandler'],
@@ -26,7 +25,7 @@ export default {
             return this.$store.state.stepsForms.currentStep
         },
         progressText() {
-            return this.isAuth ? ['Von', 'Nach'] : ['Von', 'Nach', 'Kontakt']          
+            return this.isAuth ? ['Beschreibung der Arbeit'] : ['Beschreibung der Arbeit', 'Kontakt']          
         },
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'
@@ -38,9 +37,8 @@ export default {
     },
     components: {
         FormProgress,
-        From,
-        To,
-        Contact
+        Contact,
+        DescWork
     }
 }
 </script>
