@@ -12,24 +12,13 @@ import FormField from './components/FormField'
 import FormCheckbox from './components/FormCheckbox'
 import FormRadio from './components/FormRadio'
 
-import RegisterPartner from './steps-forms/views/register-partner/index'
-import Transfer from './steps-forms/views/transfer/index'
-import Cleaning from './steps-forms/views/cleaning/index'
-import TransferCleaning from './steps-forms/views/transfer-cleaning/index'
-import Painting from './steps-forms/views/painting/index'
-import Floorer from './steps-forms/views/floorer/index'
-import Heating from './steps-forms/views/heating/index'
-import Electrician from './steps-forms/views/electrician/index'
-import Gartner from './steps-forms/views/gartner/index'
-import Carpenter from './steps-forms/views/carpenter/index'
-
 import Swiper, { Navigation } from 'swiper'
-import activeHeaderScroll from './modules/activeHeaderScroll'
-import burgerMenu from './modules/burgerMenu'
-import headerHeightFun from './modules/headerHeightFun'
-import scrollTop from './modules/scrollTop'
-import sectionNavigation from './modules/sectionNavigation'
-import vhModule from './modules/vhModule'
+import activeHeaderScroll from './functions/activeHeaderScroll'
+import burgerMenu from './functions/burgerMenu'
+import headerHeightFun from './functions/headerHeightFun'
+import scrollTop from './functions/scrollTop'
+import sectionNavigation from './functions/sectionNavigation'
+import vhModule from './functions/vhModule'
 
 Vue.filter('capitalize', function (value) {
     if (!value) return '';
@@ -48,16 +37,16 @@ if (document.getElementById('app')) {
         router,
         store,
         components: {
-            RegisterPartner,
-            Transfer,
-            Cleaning,
-            TransferCleaning,
-            Painting,
-            Floorer,
-            Heating,
-            Electrician,
-            Gartner,
-            Carpenter
+            RegisterPartner: () => import('./steps-forms/views/register-partner/index'),
+            Transfer: () => import('./steps-forms/views/transfer/index'),
+            Cleaning: () => import('./steps-forms/views/cleaning/index'),
+            TransferCleaning: () => import('./steps-forms/views/transfer-cleaning/index'),
+            Painting: () => import('./steps-forms/views/painting/index'),
+            Floorer: () => import('./steps-forms/views/floorer/index'),
+            Heating: () => import('./steps-forms/views/heating/index'),
+            Electrician: () => import('./steps-forms/views/electrician/index'),
+            Gartner: () => import('./steps-forms/views/gartner/index'),
+            Carpenter: () => import('./steps-forms/views/carpenter/index'),
         }
     });
 }
