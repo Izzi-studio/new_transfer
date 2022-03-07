@@ -237,8 +237,6 @@
     </form>
 </template>
 <script>
-import DatePicker from 'vue2-datepicker';
-
 export default {
     data: () => ({
         fields: {
@@ -293,9 +291,6 @@ export default {
             })
             this.$store.commit('stepsForms/nextStep')
         }
-    },
-    components: {
-        DatePicker,
     }
 }
 </script>

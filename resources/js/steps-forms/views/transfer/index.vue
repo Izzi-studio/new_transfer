@@ -2,7 +2,8 @@
     <div>
         <form-progress
             :progress-text="progressText"
-            :current-step="currentStep" 
+            :current-step="currentStep"
+            class="mt-5"
         />
         <from v-show="currentStep === 1" />
         <to v-show="currentStep === 2" />

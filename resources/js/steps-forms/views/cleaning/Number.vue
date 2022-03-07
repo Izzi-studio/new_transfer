@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="formHandler" class="steps-form__form">
-        <div class="row mt-5 mt-lg-0">
+        <div class="row mt-5">
             <div class="col-xl-8">
                 <button 
                     class="btn btn_theme_gray"

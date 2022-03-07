@@ -7,6 +7,7 @@ import Vue from 'vue'
 import router from './router'
 import store from './store'
 
+import DatePicker from 'vue2-datepicker';
 import FormField from './components/FormField'
 import FormCheckbox from './components/FormCheckbox'
 import FormRadio from './components/FormRadio'
@@ -15,6 +16,12 @@ import RegisterPartner from './steps-forms/views/register-partner/index'
 import Transfer from './steps-forms/views/transfer/index'
 import Cleaning from './steps-forms/views/cleaning/index'
 import TransferCleaning from './steps-forms/views/transfer-cleaning/index'
+import Painting from './steps-forms/views/painting/index'
+import Floorer from './steps-forms/views/floorer/index'
+import Heating from './steps-forms/views/heating/index'
+import Electrician from './steps-forms/views/electrician/index'
+import Gartner from './steps-forms/views/gartner/index'
+import Carpenter from './steps-forms/views/carpenter/index'
 
 import Swiper, { Navigation } from 'swiper'
 import activeHeaderScroll from './modules/activeHeaderScroll'
@@ -33,6 +40,7 @@ Vue.filter('capitalize', function (value) {
 Vue.component('form-field', FormField)
 Vue.component('form-checkbox', FormCheckbox)
 Vue.component('form-radio', FormRadio)
+Vue.component('date-picker', DatePicker)
 
 if (document.getElementById('app')) {
     new Vue({
@@ -43,7 +51,13 @@ if (document.getElementById('app')) {
             RegisterPartner,
             Transfer,
             Cleaning,
-            TransferCleaning
+            TransferCleaning,
+            Painting,
+            Floorer,
+            Heating,
+            Electrician,
+            Gartner,
+            Carpenter
         }
     });
 }
