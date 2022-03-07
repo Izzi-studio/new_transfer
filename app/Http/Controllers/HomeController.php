@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SeoMetaTags;
+use App\Models\Faq;
+use App\Models\ReviewsOnMainPage;
 
 class HomeController extends Controller
 {
@@ -16,6 +18,8 @@ class HomeController extends Controller
     public function index()
     {
         app()->make(SeoMetaTags::class)->setMeta('system.main_page');
-        return view('home');
+        $faqs = Faq::all();
+        $reviews = ReviewsOnMainPage::orderBy('id','DESC')->get();
+        return view('home',compact(['faqs','reviews']));
     }
 }
