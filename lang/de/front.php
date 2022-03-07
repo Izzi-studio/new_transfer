@@ -8,7 +8,7 @@ return [
     'transfer' => 'Umzug',
     'cleaning' => 'Reinigung',
     'transfer_cleaning' => 'Umzug + Reinigung',
-    'paint_work' => 'Maler',
+    'paint_work' => 'Maleranfrage',
     'bodenleger'=>'Bodenleger',
     'heizung'=>'Heizung',
     'elektriker'=>'Elektriker',
