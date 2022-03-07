@@ -11,9 +11,9 @@
 </template>
 <script>
 import FormProgress from '../../FormProgress'
+import Contact from '../../ContactStep'
 import From from './From'
 import To from './To'
-import Contact from './Contact'
 
 export default {
     props: ['urlHandler'],

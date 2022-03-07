@@ -88,72 +88,17 @@
         <h2 class="section-title">Wie es funktioniert</h2>
         <div class="swiper reviews__slider">
             <div class="swiper-wrapper">
+                @foreach($reviews as $review)
                 <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
+                    <p class="reviews__slide-date">{{$review->date}}</p>
+                    <p class="reviews__slide-company">{{$review->company}}</p>
+                    <p class="reviews__slide-txt">{!! $review->getReviewDescription->message !!}</p>
                     <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
+                        <div class="reviews__slide-author">{{$review->getReviewDescription->name}}</div>
+                        <div class="rating rating_fullness_{{$review->rating}} reviews__slide-rating"></div>
                     </div>
                 </div>
-                <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
-                    <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
-                    <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
-                    <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
-                    <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
-                    </div>
-                </div>
-                <div class="swiper-slide reviews__slide">
-                    <p class="reviews__slide-date">Vor 2 Wochen, Privatumzug Durch</p>
-                    <p class="reviews__slide-company">Diversa Group AG</p>
-                    <p class="reviews__slide-txt">Nie, Nie Wieder Zeihe Ich Ohne Umzugsunternehmen Um! Dank Offerten 365
-                        Hat Mein Letzter Umzug So Einfach Und So Schnell Geklappt, Dass Wir Schon Am Nächsten Tag Eine
-                        Einweihungsparty Feiern Konnten. Danke!</p>
-                    <div class="reviews__slide-wrap">
-                        <div class="reviews__slide-author">Hamudi</div>
-                        <div class="rating rating_fullness_5 reviews__slide-rating"></div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="swiper-buttons-wrapper">
                 <div class="swiper-button-prev"></div>
@@ -313,88 +258,18 @@
     <div class="container">
         <h2 class="section-title">FAQ </h2>
         <div>
+            @foreach($faqs as $faq)
             <div class="faq-block mt-4">
                 <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wann sollte ich mich bei Umzugsfuchs melden?</h3>
+                    <h3 class="faq-block__title">{{$faq->getFaqDescription->heading}}</h3>
                     <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
                         lesen</button>
                 </div>
                 <div class="faq-block__slide">
-                    <p>lorem</p>
+                    {{ $faq->getFaqDescription->content }}
                 </div>
             </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Kann Umzugsfuchs meinen kompletten Haushalt zügeln?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Welche Sonderleistungen kann ich in Anspruch nehmen?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wie viel kostet mich ein Umzug bei Umzugsfuchs?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wann sollte ich mich bei Umzugsfuchs melden?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wann sollte ich mich bei Umzugsfuchs melden?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wann sollte ich mich bei Umzugsfuchs melden?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>lorem</p>
-                </div>
-            </div>
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">Wann sollte ich mich bei Umzugsfuchs melden?</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
-                </div>
-                <div class="faq-block__slide">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex aliquid soluta iure id, tempore totam
-                        nobis eligendi quod itaque facilis aut nisi, velit deleniti, illum consequatur deserunt tenetur
-                        quaerat ipsum.</p>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="d-flex justify-content-center mt-4">
             <button class="btn faq__btn">Alles sehen</button>

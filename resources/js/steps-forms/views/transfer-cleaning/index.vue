@@ -4,16 +4,18 @@
             :progress-text="progressText"
             :current-step="currentStep" 
         />
-        <cleaning v-show="currentStep === 1" />
-        <number v-show="currentStep === 2" />
-        <contact v-show="currentStep === 3" />
+        <from v-show="currentStep === 1" />
+        <to v-show="currentStep === 2" />
+        <cleaning v-show="currentStep === 3" />
+        <contact v-show="currentStep === 4" />
     </div>
 </template>
 <script>
 import FormProgress from '../../FormProgress'
 import Contact from '../../ContactStep'
+import From from './From'
+import To from './To'
 import Cleaning from './Cleaning'
-import Number from './Number'
 
 export default {
     props: ['urlHandler'],
@@ -25,7 +27,7 @@ export default {
             return this.$store.state.stepsForms.currentStep
         },
         progressText() {
-            return this.isAuth ? ['Reinigung', 'Anzahl'] : ['Reinigung', 'Anzahl', 'Kontakt']          
+            return this.isAuth ? ['Von', 'Nach', 'Reinigung'] : ['Von', 'Nach', 'Reinigung', 'Kontakt']          
         },
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'
@@ -37,9 +39,10 @@ export default {
     },
     components: {
         FormProgress,
-        Cleaning,
-        Number,
-        Contact
+        From,
+        To,
+        Contact,
+        Cleaning
     }
 }
 </script>

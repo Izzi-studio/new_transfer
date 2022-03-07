@@ -12,6 +12,19 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
+                            <p class="form-field__label">Reinigungstyp*</p>
+                            <select v-model="fields['additional_info[cleaning]']" required>
+                                <option value="Umzugsreinigung">Umzugsreinigung</option>
+                                <option value="Fensterreinigung">Fensterreinigung</option>
+                                <option value="Bodenreinigung">Bodenreinigung</option>
+                                <option value="Baureinigung">Baureinigung</option>
+                                <option value="Büroreinigung">Büroreinigung</option>
+                                <option value="Unterhaltsreinigung">Unterhaltsreinigung</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mt-4">
+                        <div class="form-field">
                             <p class="form-field__label">Fenster</p>
                             <select v-model="fields['additional_info[windows]']">
                                 <option value="">-</option>
@@ -108,6 +121,7 @@
 export default {
     data: () => ({
         fields: {
+            'additional_info[cleaning]': '',
             'additional_info[windows]': '',
             'additional_info[shower_wc]': '',
             'additional_info[bath_wc]': '',

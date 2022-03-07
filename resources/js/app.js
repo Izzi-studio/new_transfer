@@ -14,6 +14,7 @@ import FormRadio from './components/FormRadio'
 import RegisterPartner from './steps-forms/views/register-partner/index'
 import Transfer from './steps-forms/views/transfer/index'
 import Cleaning from './steps-forms/views/cleaning/index'
+import TransferCleaning from './steps-forms/views/transfer-cleaning/index'
 
 import Swiper, { Navigation } from 'swiper'
 import activeHeaderScroll from './modules/activeHeaderScroll'
@@ -41,7 +42,8 @@ if (document.getElementById('app')) {
         components: {
             RegisterPartner,
             Transfer,
-            Cleaning
+            Cleaning,
+            TransferCleaning
         }
     });
 }
@@ -53,6 +55,11 @@ $(document).ready(function() {
     scrollTop()
     sectionNavigation()
     vhModule()
+
+    window.addEventListener('resize', () => {
+        vhModule()
+        headerHeightFun()
+    })
 
     $('.advantages2__block-btn').click(function () {
         const parent = $(this).closest('.advantages2__block')

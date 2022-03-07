@@ -24,23 +24,110 @@
                         <li class="header__item header__item_has-menu">
                             <a class="header__link" href="#">Offerten</a>
                             <ul class="header__submenu">
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 1</a></li>
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 2</a></li>
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 3</a></li>
-                            </ul>
-                        </li>
-                        <li class="header__item header__item_has-menu">
-                            <a class="header__link" href="#">Hilfe</a>
-                            <ul class="header__submenu">
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 1</a></li>
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 2</a></li>
-                                <li class="header__subitem"><a class="header__sublink" href="#">test 3</a></li>
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.umzug.view')}}"
+                                    >
+                                        Offerten für Umzug
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.reinigung.view')}}"
+                                    >
+                                        Offerten für Reinigung
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.umzugundreinigung.view')}}"
+                                    >
+                                        Offerten für Umzug + Reinigung
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.malar.view')}}"
+                                    >
+                                        Offerten Für Maler/Gipser
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.bodenleger.view')}}"
+                                    >
+                                        Bodenleger kostenlos anfragen
+                                    </a>
+                                </li>
+                                
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.heizung.view')}}"
+                                    >
+                                        Heizungsanbieter kostenlos anfragen
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.elektriker.view')}}"
+                                    >
+                                        Elektriker kostenlos anfragen
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.gartner.view')}}"
+                                    >
+                                        Gärtner kostenlos anfragen
+                                    </a>
+                                </li>
+
+                                <li class="header__subitem">
+                                    <a 
+                                        class="header__sublink" 
+                                        href="{{route('client.form.schreiner.view')}}"
+                                    >
+                                        Schreiner kostenlos anfragen
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="header__item header__item_has-menu">
                             <a class="header__link" href="#">Ratgeber</a>
                             <ul class="header__submenu">
-                                <!--  -->
+                                @foreach($categories as $category)
+                                    <li class="header__subitem">
+                                        <a class="header__sublink" href="{{route('blog.category.view',$category->slug)}}">{{$category->getCategoryDescription->name}}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                        <li class="header__item header__item_has-menu">
+                            <a class="header__link" href="#">Hilfe</a>
+                            <ul class="header__submenu">
+                                <li class="header__subitem">
+                                    <a class="header__sublink" href="{{route('page.faq.view')}}">FAQ</a>
+                                </li>
+                                <li class="header__subitem">
+                                    <a class="header__sublink" href="{{route('staticpage.view','uber_uns')}}">Über uns</a>
+                                </li>
+                                <li class="header__subitem">
+                                    <a class="header__sublink" href="{{route('page.contacts.view')}}">Kontakt</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -67,8 +154,22 @@
                                 </li>
                             @endif
                                 <li class="header__item">
-                                    <a class="header__link" href="#">Ausloggen</a>
+                                    <a 
+                                        class="header__link" 
+                                        href="#" 
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                    >
+                                        Ausloggen
+                                    </a>
                                 </li>
+                                <form 
+                                    id="logout-form"
+                                    method="POST" 
+                                    class="d-none" 
+                                    action="{{ route('logout') }}" 
+                                >
+                                    @csrf
+                                </form>
                         @endguest
                     </ul>
                 </nav>
@@ -97,12 +198,12 @@
                                 class="footer__link footer__link_email mt-4" href="mailto:test@gmail.com">Kontakt</a><a
                                 class="footer__link footer__link_phone mt-4" href="tel:0443603174">044 360 31 74</a>
                         </div>
-                        <div class="col-6 col-lg-auto mt-lg-0 order-1 order-lg-2"><a class="footer__header-link"
-                                href="#">Datenschutz</a></div>
+                        <div class="col-6 col-lg-auto mt-lg-0 order-1 order-lg-2">
+                            <a class="footer__header-link" href="{{ route('staticpage.view', 'datenschutz') }}">Datenschutz</a></div>
                         <div class="col-6 col-lg-auto mt-lg-0 order-2 order-lg-3"><a class="footer__header-link"
-                                href="#">AGB</a></div>
+                                href="{{ route('staticpage.view','agb') }}">AGB</a></div>
                         <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4"><a class="footer__header-link"
-                                href="#">Impressum</a></div>
+                                href="{{ route('staticpage.view','impressum') }}">Impressum</a></div>
                         <div class="col-12 col-lg-auto mt-lg-0 mt-4 order-5">
                             <p class="footer__soc-title">Social networks</p>
                             <div class="footer__soc-wrap"><a class="footer__soc-item soc-item soc-item_inst"

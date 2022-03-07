@@ -145,14 +145,18 @@ export default {
     },
     methods: {
         formHandler() {
-            this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
-            })
-
             if(this.isAuth) {
+                this.$store.commit('stepsForms/setData', {
+                    key: this.fieldsGroupName,
+                    data: this.fields
+                })
+
                 this.$store.dispatch('stepsForms/sendData')
             } else {
+                this.$store.commit('stepsForms/setData', {
+                    key: this.fieldsGroupName,
+                    data: this.fields
+                })
                 this.$store.commit('stepsForms/nextStep')
             }
         }
