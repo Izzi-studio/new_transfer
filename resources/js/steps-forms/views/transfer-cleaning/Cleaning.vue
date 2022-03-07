@@ -129,7 +129,7 @@ export default {
             'additional_info[soil_type]': '',
             'additional_info[window_size]': '',
         },
-        fieldsGroupName: 'number'
+        fieldsGroupName: 'cleaning'
     }),
     computed: {
         isAuth() {

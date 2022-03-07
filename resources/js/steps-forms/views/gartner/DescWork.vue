@@ -185,7 +185,7 @@ export default {
             _token: '',
         },
         isSended: false,
-        fieldsGroupName: 'from',
+        fieldsGroupName: 'desc-work',
         date: new Date()
     }),
     computed: {
