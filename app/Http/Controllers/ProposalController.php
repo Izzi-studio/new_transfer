@@ -40,6 +40,21 @@ class ProposalController extends Controller
                 //$route = route('client.getPWRequests');
                 $route = route('home');
                 break;
+            case 5:
+                $route = route('home');
+                break;
+            case 6:
+                $route = route('home');
+                break;
+            case 7:
+                $route = route('home');
+                break;
+            case 8:
+                $route = route('home');
+                break;
+            case 9:
+                $route = route('home');
+                break;
             default:
                 Log::info('Add Request. Wrong Job Type: '.$proposal['type_job_id']);
                 return response()->json(['url'=> route('client.myInfo')]);

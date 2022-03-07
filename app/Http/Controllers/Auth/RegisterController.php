@@ -86,7 +86,12 @@ class RegisterController extends Controller
                 '1'=>'Umzugsanfrage',
                 '2'=>'Reinigungsanfrage',
                 '3'=>'Umzugs - und Reinigungsanfrage',
-                '4'=>'Maleranfrage'
+                '4'=>'Maleranfrage',
+                '5'=>'Bodenleger',
+                '6'=>'Heizung',
+                '7'=>'Elektriker',
+                '8'=>'Gartner',
+                '9'=>'Schreiner',
             ];
 
 
