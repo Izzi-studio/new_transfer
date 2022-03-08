@@ -5,7 +5,18 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode: 'history',
-    routes: []
+    routes: [
+        {
+            path: '/benutzerkonto/personliche-daten/info',
+            name: 'personalData',
+            component: () => import('../profiles/client/views/PersonalData.vue')
+        },
+        {
+            path: '/benutzerkonto/personliche-daten/passwort-andern',
+            name: 'ChangePassword',
+            component: () => import('../profiles/client/views/ChangePassword.vue')
+        },
+    ]
 });
 
 export default router;

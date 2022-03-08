@@ -185,6 +185,9 @@ export default {
     },
     mounted() {
         this.updateDate()
+        if(this.$route.query.zip) {
+            this.fields['additional_info[zip]'] = this.$route.query.zip
+        }
     },
     methods: {
         updateDate() {

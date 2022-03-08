@@ -29,7 +29,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.umzug.view')}}"
                                     >
-                                        Offerten für Umzug
+                                        Umzug
                                     </a>
                                 </li>
 
@@ -38,7 +38,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.reinigung.view')}}"
                                     >
-                                        Offerten für Reinigung
+                                        Reinigung
                                     </a>
                                 </li>
 
@@ -47,7 +47,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.umzugundreinigung.view')}}"
                                     >
-                                        Offerten für Umzug + Reinigung
+                                        Umzug + Reinigung
                                     </a>
                                 </li>
 
@@ -56,7 +56,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.malar.view')}}"
                                     >
-                                        Offerten Für Maler/Gipser
+                                        Maler/Gipser
                                     </a>
                                 </li>
 
@@ -65,7 +65,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.bodenleger.view')}}"
                                     >
-                                        Bodenleger kostenlos anfragen
+                                        Bodenleger
                                     </a>
                                 </li>
                                 
@@ -74,7 +74,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.heizung.view')}}"
                                     >
-                                        Heizungsanbieter kostenlos anfragen
+                                        Heizungsanbieter
                                     </a>
                                 </li>
 
@@ -83,7 +83,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.elektriker.view')}}"
                                     >
-                                        Elektriker kostenlos anfragen
+                                        Elektriker
                                     </a>
                                 </li>
 
@@ -92,7 +92,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.gartner.view')}}"
                                     >
-                                        Gärtner kostenlos anfragen
+                                        Gärtner
                                     </a>
                                 </li>
 
@@ -101,7 +101,7 @@
                                         class="header__sublink" 
                                         href="{{route('client.form.schreiner.view')}}"
                                     >
-                                        Schreiner kostenlos anfragen
+                                        Schreiner
                                     </a>
                                 </li>
                             </ul>
@@ -157,13 +157,13 @@
                                     <a 
                                         class="header__link" 
                                         href="#" 
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        onclick="event.preventDefault(); logoutForm.submit();"
                                     >
                                         Ausloggen
                                     </a>
                                 </li>
                                 <form 
-                                    id="logout-form"
+                                    id="logoutForm"
                                     method="POST" 
                                     class="d-none" 
                                     action="{{ route('logout') }}" 

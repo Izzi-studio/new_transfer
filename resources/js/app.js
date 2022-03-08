@@ -1,6 +1,10 @@
 window.axios = require('axios')
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 window.$ = window.jQuery = require('jquery')
+window.toastr = require('toastr');
+window.toastr.options = {
+  "positionClass": "toast-bottom-right",
+}
 
 import Vue from 'vue'
 
@@ -47,6 +51,7 @@ if (document.getElementById('app')) {
             Electrician: () => import('./steps-forms/views/electrician/index'),
             Gartner: () => import('./steps-forms/views/gartner/index'),
             Carpenter: () => import('./steps-forms/views/carpenter/index'),
+            ClientSidebar: () => import('./profiles/client/Sidebar')
         }
     });
 }
@@ -87,9 +92,13 @@ $(document).ready(function() {
         }
     })
 
-    $('.profile-sidebar__item_has-sublist .profile-sidebar__link').click(function (e) {
-        e.preventDefault()
-        $(this).parent().toggleClass('profile-sidebar__item_active')
+    $('.profile').click(function (e) {
+        if ($(e.target).hasClass('profile-sidebar__link') &&
+            $(e.target).closest('.profile-sidebar__item_has-sublist')
+        ) {
+            $(e.target).parent().toggleClass('profile-sidebar__item_active') 
+        }
+
     })
 
     $('.offer__btn-details').click(function () {
