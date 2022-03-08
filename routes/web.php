@@ -53,6 +53,15 @@ Route::group([
     Route::get('/gartner', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('client.form.gartner.view');
     Route::get('/schreiner', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('client.form.schreiner.view');
 
+    Route::get('/benutzerkonto/{any?}', function (){
+        return view('client');
+    })->where('any', '[\/\w\.-]*');
+
+
+    Route::get('/firmenkonto', function (){
+        return view('firma');
+    });
+
     //static pages
     Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticpage.view');
 });

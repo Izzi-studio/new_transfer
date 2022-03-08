@@ -178,6 +178,8 @@ return [
         App\Providers\RouteServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         App\Providers\ViewServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
