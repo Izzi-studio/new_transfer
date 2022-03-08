@@ -44,12 +44,15 @@
     color: $headerColor
     text-decoration: none
 .profile-sidebar__item_active
-    .profile-sidebar__link
-        color: $blueColor
-        &::after
-            content: '-'
+    &.profile-sidebar__item_has-sublist
+        .profile-sidebar__link
             color: $blueColor
-    .profile-sidebar__sublist
-        display: block
+            &::after
+                content: '-'
+                color: $blueColor
+        .profile-sidebar__sublist
+            display: block
 .profile-sidebar__sublink_active
+    color: $blueColor
+.profile-sidebar__link_active
     color: $blueColor

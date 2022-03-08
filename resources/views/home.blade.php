@@ -14,17 +14,26 @@
                     <li class="banner__item">Geld</li>
                     <li class="banner__item">Nerven</li>
                 </ul><img class="banner__mobile-img" src="/images/banner-img.png" alt="">
-                <form class="banner-form banner__banner-form" action="#">
+                <form id="bannerForm" class="banner-form banner__banner-form" action="#" method="GET">
                     <div class="banner-form__row">
-                        <input type="text" placeholder="Ihre Postleitzahl" required>
+                        <input type="number" name="zip" placeholder="Ihre Postleitzahl" required>
                     </div>
                     <div class="banner-form__row">
-                        <select>
-                            <option value="" selected>Bitte wahlen Sie einen Dienst</option>
-                            <option value="1">Bitte wahlen 1</option>
-                            <option value="2">Bitte wahlen 2</option>
-                            <option value="3">Bitte wahlen 3</option>
-                            <option value="4">Bitte wahlen 4 </option>
+                        <select 
+                            required 
+                            name="form"
+                            onchange="bannerForm.action = event.target.value"
+                        >
+                            <option value="" selected disabled hidden>Bitte wahlen Sie einen Dienst</option>
+                            <option value="{{route('client.form.umzug.view')}}">Umzug</option>
+                            <option value="{{route('client.form.reinigung.view')}}">Reinigung</option>
+                            <option value="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</option>
+                            <option value="{{route('client.form.malar.view')}}">Maler/Gipser</option>
+                            <option value="{{route('client.form.bodenleger.view')}}">Bodenleger</option>
+                            <option value="{{route('client.form.heizung.view')}}">Heizungsanbieter</option>
+                            <option value="{{route('client.form.elektriker.view')}}">Elektriker</option>
+                            <option value="{{route('client.form.gartner.view')}}">Gärtner</option>
+                            <option value="{{route('client.form.schreiner.view')}}">Schreiner</option>
                         </select>
                         <input type="submit" value="Suchen">
                     </div>
@@ -77,8 +86,10 @@
     <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_1.png)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="section-title">Jetzt Umzugs-Angebot </h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn"><a class="btn" href="#">Umzug</a></div>
+                <h2 class="section-title">Jetzt Umzugs-Angebot einholen</h2>
+                <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                    <a class="btn" href="{{route('client.form.umzug.view')}}">Umzug</a>
+                </div>
             </div>
         </div>
     </div>
@@ -181,10 +192,10 @@
     <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_2.png)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="section-title">Sind Sie bereit, mit zuverlässigen<br> Umzugsunternehmen in Kontakt zu treten?
-                </h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn"><a class="btn" href="#">Offerten
-                        erhalten</a></div>
+                <h2 class="section-title">Jetzt Reinigungs-Angebot einholen</h2>
+                <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                    <a class="btn" href="{{route('client.form.reinigung.view')}}">Reinigung</a>
+                </div>
             </div>
         </div>
     </div>
@@ -248,8 +259,10 @@
     <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_3.png)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="section-title">Jetzt Umzugs-Angebot Einholen</h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn"><a class="btn" href="#">Umzug</a></div>
+                <h2 class="section-title">Jetzt Umzugs+Reinigungs Angebot einholen</h2>
+                <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                    <a class="btn" href="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</a>
+                </div>
             </div>
         </div>
     </div>
