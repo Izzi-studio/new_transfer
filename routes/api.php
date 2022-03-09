@@ -22,13 +22,15 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('front')->middleware('auth:api')->group(function () {
     Route::get('/client', [App\Http\Controllers\ApiFront\ApiUserController::class,'index'])->name('api.user.data');
     Route::put('/client', [App\Http\Controllers\ApiFront\ApiUserController::class,'update'])->name('api.user.update');
-    Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
+
+    Route::get('/client/proposals', [App\Http\Controllers\ApiFront\ApiProposalController::class,'index'])->name('api.user.proposals');
+
 });
 
 
 Route::prefix('front')->middleware('api')->group(function () {
 
- //   Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
+    Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
     Route::get('/types-jobs', [App\Http\Controllers\ApiFront\ApiFrontController::class,'jobsTypes'])->name('api.jobsTypes');
 
 });

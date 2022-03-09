@@ -55,7 +55,7 @@ Route::group([
 
     Route::get('/benutzerkonto/{any?}', function (){
         return view('client');
-    })->where('any', '[\/\w\.-]*');
+    })->where('any', '[\/\w\.-]*')->name('client.cabinet');
 
 
     Route::get('/firmenkonto', function (){
