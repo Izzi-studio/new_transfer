@@ -30,7 +30,9 @@ class Proposal extends Model
     ];
 
     public function getAdditionalInfoAttribute($value) {
-        return json_decode($value);
+
+        return json_decode($value, JSON_UNESCAPED_UNICODE);
+
     }
 
     public function getUser()

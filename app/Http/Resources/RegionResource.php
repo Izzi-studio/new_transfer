@@ -17,7 +17,8 @@ class RegionResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => __('front.'.$this->name)
+            'name' => __('front.'.$this->name),
+            'name_region' => $this->name
         ];
     }
 }

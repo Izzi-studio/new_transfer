@@ -78,4 +78,16 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\PartnerWantJobs');
     }
+
+    /**
+     * Get Users Proposals by Type Job
+     *
+     * @param  int $typeJobId 1,2,3,4
+     * @return $query
+     */
+    public function getProposalsByTypeJob($typeJobId){
+        return $this->hasMany('App\Models\Proposal','user_id','id')
+            ->where('type_job_id',$typeJobId)
+            ->orderBy('id','DESC');
+    }
 }
