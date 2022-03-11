@@ -13,8 +13,13 @@ const router = new VueRouter({
         },
         {
             path: '/benutzerkonto/personliche-daten/passwort-andern',
-            name: 'ChangePassword',
+            name: 'changePassword',
             component: () => import('../profiles/client/views/ChangePassword.vue')
+        },
+        {
+            path: '/benutzerkonto/:typeJob',
+            name: 'requests',
+            component: () => import('../profiles/client/views/Requests.vue')
         },
     ]
 });

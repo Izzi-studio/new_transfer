@@ -1,5 +1,6 @@
 const state = {
     formData: {},
+    initialData: {},
     typesJobs: [],
     regions: [],
     currentStep: 1,
@@ -47,6 +48,12 @@ const actions = {
                 
             })
     },
+    getClientValues(context, payload) {
+        axios.get(`/api/front/client/proposals/${payload}`)
+            .then(({ data }) => {
+                context.state.initialData = data.data
+            })
+    },
     checkEmail(context, { email }) {        
         return new Promise(resolve => {
             axios.post('/check-email', {
@@ -67,7 +74,9 @@ const actions = {
         for(let group in context.state.formData) {    
             for (let key in context.state.formData[group]) {
                 if (Array.isArray(context.state.formData[group][key])) {
-                    formData.append(key, JSON.stringify(context.state.formData[group][key]))
+                    for (let item in context.state.formData[group][key]) {
+                        formData.append(key, context.state.formData[group][key][item])
+                    }
                 } else {
                     if(key === 'upload_file' && !context.state.formData[group][key]) continue
                     formData.append(key, context.state.formData[group][key])

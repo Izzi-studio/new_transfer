@@ -68,56 +68,56 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Garten anlegen/umgestalten"
                             label="Garten anlegen/umgestalten"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Garten allg. pflegen"
                             label="Garten allg. pflegen"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Sitzplatz/Weg/Mauer anlege"
                             label="Sitzplatz/Weg/Mauer anlege"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Baum fällen"
                             label="Baum fällen"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Teich anlegen"
                             label="Teich anlegen"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Hecke/Stäucher schneiden"
                             label="Hecke/Stäucher schneiden"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Rasen anlegen/erneuern"
                             label="Rasen anlegen/erneuern"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Weitere"
                             label="Weitere"
                         />
@@ -177,7 +177,7 @@ export default {
             'additional_info[street]': '',
             'proposal[region_id]': '',
             'additional_info[number]': '',
-            'additional_info[work_should_be_done]': [],
+            'additional_info[work_should_be_done][]': [],
             'proposal[date_start]': '',
             'additional_info[dayrange]': 'Nicht Flexibel',
             'proposal[description]': '',
@@ -196,12 +196,31 @@ export default {
             return document.querySelector('meta[name="csrf-token"]').content
         },
         isSelectedCheckboxes() {
-            return this.fields['additional_info[work_should_be_done]'].length ? true : false
+            return this.fields['additional_info[work_should_be_done][]'].length ? true : false
         },
+        isAuth() {
+            return document.querySelector('body').dataset.isAuth == 'true'
+        },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
+        }
     },
     watch: {
         date() {
             this.updateDate()
+        },
+        initialData(data) {
+            this.fields['additional_info[zip]'] = data.additional_info.zip
+            this.fields['additional_info[city]'] = data.additional_info.city
+            this.fields['additional_info[street]'] = data.additional_info.street
+            this.fields['proposal[region_id]'] = data.region_id
+            this.fields['additional_info[number]'] = data.additional_info.number
+            this.fields['additional_info[work_should_be_done][]'] = data.additional_info.work_should_be_done
+            this.date = this.globalGetDate(data.date_start)
+            this.fields['additional_info[dayrange]'] = data.additional_info.dayrange
+            this.fields['proposal[description]'] = data.description
+
+            this.fields._method = 'PUT'
         }
     },
     mounted() {

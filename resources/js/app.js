@@ -35,6 +35,11 @@ Vue.component('form-checkbox', FormCheckbox)
 Vue.component('form-radio', FormRadio)
 Vue.component('date-picker', DatePicker)
 
+Vue.prototype.globalGetDate = (dateStr) => {
+    const dateParts = dateStr.split('-');
+    return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0])
+}
+
 if (document.getElementById('app')) {
     new Vue({
         el: '#app',

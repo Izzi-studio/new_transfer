@@ -68,42 +68,42 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Laminat"
                             label="Laminat"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Vinyl"
                             label="Vinyl"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Parkett"
                             label="Parkett"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Kork"
                             label="Kork"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Teppich"
                             label="Teppich"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Weitere"
                             label="Weitere"
                         />
@@ -115,13 +115,13 @@
                         <div class="form-field">
                             <p class="form-field__label">Wieviel Fläche soll verlegt werden?*</p>
                             <select v-model="fields['additional_info[square]']" required>
-                                <option value="&lt;30m&sup2;"> &lt;30m&sup2; </option>
-                                <option value="30-50m&sup2;"> 30-50m&sup2; </option>
-                                <option value="50-80m&sup2;"> 50-80m&sup2; </option>
-                                <option value="80-120m&sup2;"> 80-120m&sup2; </option>
-                                <option value="120-160m&sup2;"> 120-160m&sup2; </option>
-                                <option value="160-200m&sup2;"> 160-200m&sup2; </option>
-                                <option value="&gt;200m&sup2;"> &gt;200m&sup2; </option>
+                                <option value="<30m²"> &lt;30m&sup2; </option>
+                                <option value="30-50m²"> 30-50m&sup2; </option>
+                                <option value="50-80m²"> 50-80m&sup2; </option>
+                                <option value="80-120m²"> 80-120m&sup2; </option>
+                                <option value="120-160m²"> 120-160m&sup2; </option>
+                                <option value="160-200m²"> 160-200m&sup2; </option>
+                                <option value=">200m²"> &gt;200m&sup2; </option>
                             </select>
                         </div>
                     </div>
@@ -179,7 +179,7 @@ export default {
             'additional_info[street]': '',
             'proposal[region_id]': '',
             'additional_info[number]': '',
-            'additional_info[work_should_be_done]': [],
+            'additional_info[work_should_be_done][]': [],
             'proposal[date_start]': '',
             'additional_info[dayrange]': 'Nicht Flexibel',
             'proposal[description]': '',
@@ -199,12 +199,32 @@ export default {
             return document.querySelector('meta[name="csrf-token"]').content
         },
         isSelectedCheckboxes() {
-            return this.fields['additional_info[work_should_be_done]'].length ? true : false
+            return this.fields['additional_info[work_should_be_done][]'].length ? true : false
         },
+        isAuth() {
+            return document.querySelector('body').dataset.isAuth == 'true'
+        },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
+        }
     },
     watch: {
         date() {
             this.updateDate()
+        },
+        initialData(data) {
+            this.fields['additional_info[zip]'] = data.additional_info.zip
+            this.fields['additional_info[city]'] = data.additional_info.city
+            this.fields['additional_info[street]'] = data.additional_info.street
+            this.fields['additional_info[square]'] = data.additional_info.square
+            this.fields['proposal[region_id]'] = data.region_id
+            this.fields['additional_info[number]'] = data.additional_info.number
+            this.fields['additional_info[work_should_be_done][]'] = data.additional_info.work_should_be_done
+            this.date = this.globalGetDate(data.date_start)
+            this.fields['additional_info[dayrange]'] = data.additional_info.dayrange
+            this.fields['proposal[description]'] = data.description
+
+            this.fields._method = 'PUT'
         }
     },
     mounted() {

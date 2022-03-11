@@ -3,40 +3,45 @@
     border: 1px solid #F3F3F3
     box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
     border-radius: 8px
-    padding: 20px 30px
+    padding: 25px
     position: relative
+    display: flex
+    flex-direction: column
     +r($wide)
         padding: 15px
 .offer__header
     display: flex
-    align-items: flex-end
     +r($wide)
         flex-direction: column
-        align-items: flex-start
+    +r($mobile)
+        padding-right: 40px
+    .offer__direction
+        max-width: 410px
+        +r(1400)
+            max-width: 300px
 .offer__type
     font-weight: normal
 .offer__direction
     font-weight: bold
 .offer__type, .offer__direction
-    font-size: 30px
-    +r(1400)
-        font-size: 26px
+    font-size: 23px
     +r($tablet)
-        font-size: 22px
+        font-size: 20px
 .offer__body
     margin-top: 10px
+    margin-bottom: 10px
     .offer__direction
         font-size: 21px
         +r($tablet)
             font-size: 17px
 .offer__date
-    margin-left: 30px
+    // margin-left: 30px
     font-weight: bold
-    font-size: 17px
+    font-size: 15px
     color: $headerColor
-    +r($wide)
-        margin-left: 0
-        margin-top: 5px
+    // +r($wide)
+    //     margin-left: 0
+    //     margin-top: 5px
 .offer__btn-details
     font-size: 13px
     max-width: 140px
@@ -44,8 +49,8 @@
     padding-right: 28px
     position: absolute
     font-weight: 500
-    top: 11px
-    right: 30px
+    top: 25px
+    right: 25px
     +r($wide)
         right: 15px
     +r($mobile)
@@ -54,6 +59,7 @@
         height: 30px
         color: $blueColor
         overflow: hidden
+        top: 15px
     &:focus
         +r($mobile)
             color: $blueColor
@@ -86,6 +92,12 @@
         color: inherit
         margin-left: 7px
 
+.offer__btn-edit
+    font-size: 13px
+    width: max-content
+    font-weight: 500
+    height: 30px
+
 .offer__desc
     font-weight: 400
     font-size: 17px
@@ -96,7 +108,7 @@
     display: flex
     align-items: flex-start
     justify-content: space-between
-    margin-top: 10px
+    margin-top: auto
     +r($tablet)
         flex-direction: column
     .offer__desc
@@ -116,10 +128,10 @@
     width: max-content
     max-width: 100%
     +r($tablet)
-        margin-top: 25px
-    button + button
+        margin-top: 10px
+    * + *
         margin-left: 15px
-.offer__cancel, .offer__accept
+.offer__cancel, .offer__accept, .offer__edit
     font-weight: 500
     font-size: 17px
     color: $blueColor
@@ -127,6 +139,7 @@
     border: none
     position: relative
     width: max-content
+    text-decoration: none
     &::before
         content: ''
         position: absolute
@@ -143,6 +156,13 @@
         left: 0
         background-image: url(/images/close-ic_white.svg)
         filter: url(#solid)
+.offer__edit
+    padding-left: 30px
+    filter: grayscale(1)
+    &::before
+        width: 16px
+        left: 0
+        background-image: url(/images/edit-ic.png)
 .offer__accept
     padding-left: 30px
     &::before

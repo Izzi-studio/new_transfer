@@ -17,7 +17,7 @@
                         class="col-md-4 mt-4"
                     >
                         <form-checkbox
-                            v-model="fields.regions_ids"
+                            v-model="fields['regions_ids[]']"
                             :val="region.id"
                             :label="region.name"
                         />
@@ -43,14 +43,14 @@
 export default {
     data: () => ({
         fields: {
-            regions_ids: [],
+            'regions_ids[]': [],
         },
         fieldsGroupName: 'regions',
         isSended: false
     }),
     computed: {
         isSelectedCheckboxes() {
-            return this.fields.regions_ids.length ? true : false
+            return this.fields['regions_ids[]'].length ? true : false
         },
         regions() {
             return this.$store.state.stepsForms.regions
@@ -58,8 +58,8 @@ export default {
     },
     methods: {
         selectAll() {
-            this.fields.regions_ids = []
-            this.fields.regions_ids = this.regions.map(i => i.id)
+            this.fields['regions_ids[]'] = []
+            this.fields['regions_ids[]'] = this.regions.map(i => i.id)
         },
         formHandler() {
             this.isSended = true

@@ -14,30 +14,33 @@
                     <li class="banner__item">Geld</li>
                     <li class="banner__item">Nerven</li>
                 </ul><img class="banner__mobile-img" src="/images/banner-img.png" alt="">
-                <form id="bannerForm" class="banner-form banner__banner-form" action="#" method="GET">
-                    <div class="banner-form__row">
-                        <input type="number" name="zip" placeholder="Ihre Postleitzahl" required>
-                    </div>
-                    <div class="banner-form__row">
-                        <select 
-                            required 
-                            name="form"
-                            onchange="bannerForm.action = event.target.value"
-                        >
-                            <option value="" selected disabled hidden>Bitte wahlen Sie einen Dienst</option>
-                            <option value="{{route('client.form.umzug.view')}}">Umzug</option>
-                            <option value="{{route('client.form.reinigung.view')}}">Reinigung</option>
-                            <option value="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</option>
-                            <option value="{{route('client.form.malar.view')}}">Maler/Gipser</option>
-                            <option value="{{route('client.form.bodenleger.view')}}">Bodenleger</option>
-                            <option value="{{route('client.form.heizung.view')}}">Heizungsanbieter</option>
-                            <option value="{{route('client.form.elektriker.view')}}">Elektriker</option>
-                            <option value="{{route('client.form.gartner.view')}}">Gärtner</option>
-                            <option value="{{route('client.form.schreiner.view')}}">Schreiner</option>
-                        </select>
-                        <input type="submit" value="Suchen">
-                    </div>
-                </form>
+                
+                @if(!(auth()->user() && auth()->user()->isPartner()))
+                    <form id="bannerForm" class="banner-form banner__banner-form" action="#" method="GET">
+                        <div class="banner-form__row">
+                            <input type="number" name="zip" placeholder="Ihre Postleitzahl" required>
+                        </div>
+                        <div class="banner-form__row">
+                            <select 
+                                required 
+                                name="form"
+                                onchange="bannerForm.action = event.target.value"
+                            >
+                                <option value="" selected disabled hidden>Bitte wahlen Sie einen Dienst</option>
+                                <option value="{{route('client.form.umzug.view')}}">Umzug</option>
+                                <option value="{{route('client.form.reinigung.view')}}">Reinigung</option>
+                                <option value="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</option>
+                                <option value="{{route('client.form.malar.view')}}">Maler/Gipser</option>
+                                <option value="{{route('client.form.bodenleger.view')}}">Bodenleger</option>
+                                <option value="{{route('client.form.heizung.view')}}">Heizungsanbieter</option>
+                                <option value="{{route('client.form.elektriker.view')}}">Elektriker</option>
+                                <option value="{{route('client.form.gartner.view')}}">Gärtner</option>
+                                <option value="{{route('client.form.schreiner.view')}}">Schreiner</option>
+                            </select>
+                            <input type="submit" value="Suchen">
+                        </div>
+                    </form>
+                @endif
             </div>
             <div class="col-lg-5"><img class="banner__desktop-img" src="/images/banner-img.png" alt=""></div>
         </div>
@@ -87,9 +90,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Umzugs-Angebot einholen</h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn">
-                    <a class="btn" href="{{route('client.form.umzug.view')}}">Umzug</a>
-                </div>
+                @if(!(auth()->user() && auth()->user()->isPartner()))
+                    <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                        <a class="btn" href="{{route('client.form.umzug.view')}}">Umzug</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -193,9 +198,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Reinigungs-Angebot einholen</h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn">
-                    <a class="btn" href="{{route('client.form.reinigung.view')}}">Reinigung</a>
-                </div>
+                @if(!(auth()->user() && auth()->user()->isPartner()))
+                    <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                        <a class="btn" href="{{route('client.form.reinigung.view')}}">Reinigung</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -260,9 +267,11 @@
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Umzugs+Reinigungs Angebot einholen</h2>
-                <div class="d-flex justify-content-center banner-txt__wrap-btn">
-                    <a class="btn" href="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</a>
-                </div>
+                @if(!(auth()->user() && auth()->user()->isPartner()))
+                    <div class="d-flex justify-content-center banner-txt__wrap-btn">
+                        <a class="btn" href="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
@@ -272,16 +281,16 @@
         <h2 class="section-title">FAQ </h2>
         <div>
             @foreach($faqs as $faq)
-            <div class="faq-block mt-4">
-                <div class="faq-block__visible">
-                    <h3 class="faq-block__title">{{$faq->getFaqDescription->heading}}</h3>
-                    <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
-                        lesen</button>
+                <div class="faq-block mt-4">
+                    <div class="faq-block__visible">
+                        <h3 class="faq-block__title">{{$faq->getFaqDescription->heading}}</h3>
+                        <button class="faq-block__btn" data-hide-txt="Weniger" data-show-txt="Mehr lesen">Mehr
+                            lesen</button>
+                    </div>
+                    <div class="faq-block__slide">
+                        {{ $faq->getFaqDescription->content }}
+                    </div>
                 </div>
-                <div class="faq-block__slide">
-                    {{ $faq->getFaqDescription->content }}
-                </div>
-            </div>
             @endforeach
         </div>
         <div class="d-flex justify-content-center mt-4">
