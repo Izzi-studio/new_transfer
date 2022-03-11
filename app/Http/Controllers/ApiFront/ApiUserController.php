@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Str;
 use Intervention\Image\ImageManagerStatic as Image;
-
+use Hash;
 
 class ApiUserController extends Controller
 {
@@ -50,6 +50,28 @@ class ApiUserController extends Controller
 
 
         return new UserResource(User::find(auth()->user()->id));
+    }
+
+    /**
+     * Update password
+     * @param  Request $request
+     * @return Illuminate\Http\Response
+     */
+    public function updatePassword(Request $request)
+    {
+        $this->validate($request, [
+            'old_password' => ['required'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+
+        if (Hash::check($request->old_password , auth()->user()->password )) {
+
+            auth()->user()->password = bcrypt($request->password);
+            auth()->user()->save();
+
+            return response()->json(['success'=>true], 200);
+        }
+        return response()->json(['success'=>false, 'old_password_err'=>__('front.old_password_err')], 401);
     }
 
 }

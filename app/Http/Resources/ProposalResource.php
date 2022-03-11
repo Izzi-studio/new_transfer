@@ -16,6 +16,7 @@ class ProposalResource extends JsonResource
     public function toArray($request)
     {
         $responded = $this->getResponded()->get();
+
         $partnersResponded = [];
         foreach($responded as $partner){
             $partnersResponded[] = [
@@ -37,6 +38,7 @@ class ProposalResource extends JsonResource
         $return['responded_partners'] = $partnersResponded;
         $return['region_from'] =  __('front.'.$this->getRegion->name);
         $return['description'] =  $this->description;
+        $return['region_id'] =  $this->region_id;
         $return['additional_info'] =  $this->additional_info;
         $return['date_start'] =   $this->date_start->format('d-m-Y');
         $return['created_at'] =  $this->created_at->format('d-m-Y - H:i');
@@ -48,7 +50,7 @@ class ProposalResource extends JsonResource
             'availability'=>$this->getUser->availability,
         ];
 
-        if($this->type_job_id == 1){
+        if($this->type_job_id == 1 || $this->type_job_id == 3){
             $return['region_to']  =  __('front.'.$this->additional_info['to']['region_name']);
         }
 

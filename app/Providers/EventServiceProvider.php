@@ -18,8 +18,29 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'App\Events\RegisterClient' => [
+            'App\Listeners\RegisterClientListener',
+        ],
         'App\Events\RegisterPartner' => [
             'App\Listeners\RegisterPartnerListener',
+        ],
+        'App\Events\NewProposal' => [
+            'App\Listeners\NewProposalListener',
+        ],
+        'App\Events\NotifyPartner' => [
+            'App\Listeners\SendNotifyEmailPartner',
+        ],
+        'App\Events\ProposalAccepted' => [
+            'App\Listeners\ProposalAcceptedListener',
+        ],
+        'App\Events\ProposalDelete' => [
+            'App\Listeners\ProposalDeleteListener',
+        ],
+        'App\Events\SendInvoicePartner' => [
+            'App\Listeners\SendInvoicePartnerListener',
+        ],
+        'App\Events\EmailChangeInfoPartner' => [
+            'App\Listeners\EmailChangeInfoPartnerListener',
         ],
     ];
 

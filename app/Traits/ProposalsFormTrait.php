@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits;
 
+use App\Models\Proposal;
 use App\Models\SeoMetaTags;
 use Auth;
 use App\Models\Regions;
@@ -165,5 +166,53 @@ trait ProposalsFormTrait {
 		//$faqs = Faq::malar()->get();
 
         return view('front.client.forms.schreiner-form', compact(['action','zip']));
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     * Show Edit Form.
+     * @param Proposal $proposal
+     * @return \Illuminate\View\View
+     */
+    public function showEditFormClientView(Proposal $proposal) {
+
+        switch ($proposal['type_job_id']) {
+            case 1:
+                $template = 'umzug-form';
+                break;
+            case 2:
+                $template = 'reinigung-form';
+                break;
+            case 3:
+                $template = 'umzug-reinigung-form';
+                break;
+            case 4:
+                $template = 'malar-form';
+                break;
+            case 5:
+                $template = 'bodenleger-form';
+                break;
+            case 6:
+                $template = 'heizung-form';
+                break;
+            case 7:
+                $template = 'elektriker-form';
+                break;
+            case 8:
+                $template = 'gartner-form';
+                break;
+            case 9:
+                $template = 'schreiner-form';
+                break;
+            default:
+                Log::info('Add Request. Wrong Job Type: '.$proposal['type_job_id']);
+                return response()->json(['url'=> route('client.myInfo')]);
+        }
+        $action = route('api.user.proposals.update',$proposal->id);
+
+
+        return view('front.client.forms.'.$template, compact(['action']));
     }
 }

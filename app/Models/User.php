@@ -90,4 +90,33 @@ class User extends Authenticatable
             ->where('type_job_id',$typeJobId)
             ->orderBy('id','DESC');
     }
+
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getProposalsByClient(){
+
+        return $this->hasMany('App\Models\Proposal','user_id','id');
+    }
+
+
+    /**
+     * Get Matching Users
+     *
+     * @param int $regionId,
+     * @param int $typeJobId
+     * @return $query
+     */
+    public function scopeGetMatchingConditionUsers($query, $regionId, $typeJobId)
+    {
+        return $query->join('partner_want_jobs as pwj','pwj.user_id','users.id')
+            ->join('partner_regions as pr','pr.user_id','users.id')
+            ->where('pwj.type_job_id',$typeJobId)
+            ->where('pr.region_id',$regionId)
+            ->select('users.id as user_id','users.name','users.email','users.company');
+
+    }
+
 }

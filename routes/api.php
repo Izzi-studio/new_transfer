@@ -22,8 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('front')->middleware('auth:api')->group(function () {
     Route::get('/client', [App\Http\Controllers\ApiFront\ApiUserController::class,'index'])->name('api.user.data');
     Route::put('/client', [App\Http\Controllers\ApiFront\ApiUserController::class,'update'])->name('api.user.update');
+    Route::put('/client/password/update', [App\Http\Controllers\ApiFront\ApiUserController::class,'updatePassword'])->name('api.user.password.update');
 
     Route::get('/client/proposals', [App\Http\Controllers\ApiFront\ApiProposalController::class,'index'])->name('api.user.proposals');
+    Route::get('/client/proposals/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'show'])->name('api.user.proposals.show');
+    Route::delete('/client/proposals/delete/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'destroy'])->name('api.user.proposals.delete');
+    Route::put('/client/proposals/update/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'update'])->name('api.user.proposals.update');
 
 });
 

@@ -54,8 +54,8 @@ trait RegisterPartnerTrait {
 
 		$data = $request->all();
 
-		$data['types_of_jobs'] = json_decode($data['types_of_jobs']);
-		$data['regions_ids'] = json_decode($data['regions_ids']);
+		//$data['types_of_jobs'] = json_decode($data['types_of_jobs']);
+		//$data['regions_ids'] = json_decode($data['regions_ids']);
 
         Log::info('create partner');
         $this->password = $data['password'];
