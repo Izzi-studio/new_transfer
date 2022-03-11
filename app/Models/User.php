@@ -105,7 +105,7 @@ class User extends Authenticatable
     /**
      * Get Matching Users
      *
-     * @param int $regionId,
+     * @param int $regionId
      * @param int $typeJobId
      * @return $query
      */
