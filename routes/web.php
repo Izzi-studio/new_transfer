@@ -53,9 +53,13 @@ Route::group([
     Route::get('/gartner', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('client.form.gartner.view');
     Route::get('/schreiner', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('client.form.schreiner.view');
 
+    Route::get('/proposal/edit/{proposal}',[App\Http\Controllers\Auth\RegisterController::class, 'showEditFormClientView']);
+
     Route::get('/benutzerkonto/{any?}', function (){
         return view('client');
     })->where('any', '[\/\w\.-]*')->name('client.cabinet');
+
+
 
 
     Route::get('/firmenkonto', function (){

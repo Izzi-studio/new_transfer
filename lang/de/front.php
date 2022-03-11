@@ -39,6 +39,7 @@ return [
     'vaud' => 'Vaud',
     'valais' => 'Valais',
     'zug' => 'Zug',
-    'zurich' => 'Zürich'
+    'zurich' => 'Zürich',
+    'old_password_err' => 'Old pwd wrong'
 ];
 

@@ -95,11 +95,12 @@ class RegisterController extends Controller
             ];
 
 
+
             $subject = $arraySubjects[$proposal['type_job_id']];
 
             event(new RegisterClient($user,$this->password,$subject));
 
-            return  response()->json(['redirect_url'=>route('home')], 200);
+            return  response()->json(['redirect_url'=>route('client.cabinet',config('services.redirects_params.'.$proposal['type_job_id']))], 200);
 
         }
     }

@@ -30,4 +30,16 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'redirects_params'=>[
+        '1'=>'umzug',
+        '2'=>'reinigung',
+        '3'=>'umzug-und-reinigung',
+        '4'=>'maler',
+        '5'=>'bodenleger',
+        '6'=>'heizung',
+        '7'=>'elektriker',
+        '8'=>'gartner',
+        '9'=>'schreiner',
+    ]
+
 ];
