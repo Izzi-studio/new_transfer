@@ -135,6 +135,20 @@ export default {
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'
         },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
+        }
+    },
+    watch: {
+        initialData(data) {
+            this.fields['additional_info[cleaning]'] = data.additional_info.cleaning
+            this.fields['additional_info[windows]'] = data.additional_info.windows
+            this.fields['additional_info[shower_wc]'] = data.additional_info.shower_wc
+            this.fields['additional_info[bath_wc]'] = data.additional_info.bath_wc
+            this.fields['additional_info[wc]'] = data.additional_info.wc
+            this.fields['additional_info[soil_type]'] = data.additional_info.soil_type
+            this.fields['additional_info[window_size]'] = data.additional_info.window_size
+        }
     },
     methods: {
         formHandler() {

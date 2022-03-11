@@ -41,7 +41,7 @@
                         class="col-md-4 mt-4"
                     >
                         <form-checkbox
-                            v-model="fields.types_of_jobs"
+                            v-model="fields['types_of_jobs[]']"
                             :val="typesJob.id"
                             :label="typesJob.name"
                         />
@@ -60,14 +60,14 @@ export default {
         fields: {
             password: '',
             password_confirmation: '',
-            types_of_jobs: [],
+            'types_of_jobs[]': [],
         },
         fieldsGroupName: 'profile',
         isSended: false
     }),
     computed: {
         isSelectedCheckboxes() {
-            return this.fields.types_of_jobs.length ? true : false
+            return this.fields['types_of_jobs[]'].length ? true : false
         },
         isMatchPasswords() {
             return this.fields.password === this.fields.password_confirmation

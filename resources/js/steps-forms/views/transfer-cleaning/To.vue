@@ -13,11 +13,11 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">Region*</p>
-                            <select v-model="fields['proposal[region_id]']" required>
+                            <select v-model="fields['additional_info[to][region_name]']" required>
                                 <option
                                     v-for="region in regions"
-                                    :key="region.id"
-                                    :value="region.id"
+                                    :key="region.name_region"
+                                    :value="region.name_region"
                                 >
                                     {{ region.name }}
                                 </option>
@@ -123,7 +123,7 @@
 export default {
     data: () => ({
         fields: {
-            'proposal[region_id]': '',
+            'additional_info[to][region_name]': '',
             'additional_info[to][zip]': '',
             'additional_info[to][city]': '',
             'additional_info[to][street]': '',
@@ -142,23 +142,30 @@ export default {
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'
         },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
+        }
+    },
+    watch: {
+        initialData(data) {
+            this.fields['additional_info[to][region_name]'] = data.additional_info.to.region_name
+            this.fields['additional_info[to][zip]'] = data.additional_info.to.zip
+            this.fields['additional_info[to][city]'] = data.additional_info.to.city
+            this.fields['additional_info[to][street]'] = data.additional_info.to.street
+            this.fields['additional_info[to][number]'] = data.additional_info.to.number
+            this.fields['additional_info[to][house_type]'] = data.additional_info.to.house_type
+            this.fields['additional_info[to][lift]'] = data.additional_info.to.lift
+            this.fields['additional_info[to][floor]'] = data.additional_info.to.floor
+            this.fields['additional_info[to][square]'] = data.additional_info.to.square
+        }
     },
     methods: {
         formHandler() {
-            if(this.isAuth) {
-                this.$store.commit('stepsForms/setData', {
-                    key: this.fieldsGroupName,
-                    data: this.fields
-                })
-
-                this.$store.dispatch('stepsForms/sendData')
-            } else {
-                this.$store.commit('stepsForms/setData', {
-                    key: this.fieldsGroupName,
-                    data: this.fields
-                })
-                this.$store.commit('stepsForms/nextStep')
-            }
+            this.$store.commit('stepsForms/setData', {
+                key: this.fieldsGroupName,
+                data: this.fields
+            })
+            this.$store.commit('stepsForms/nextStep')
         }
     }
 }

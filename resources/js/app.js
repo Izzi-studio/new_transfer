@@ -35,6 +35,11 @@ Vue.component('form-checkbox', FormCheckbox)
 Vue.component('form-radio', FormRadio)
 Vue.component('date-picker', DatePicker)
 
+Vue.prototype.globalGetDate = (dateStr) => {
+    const dateParts = dateStr.split('-');
+    return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0])
+}
+
 if (document.getElementById('app')) {
     new Vue({
         el: '#app',
@@ -51,7 +56,7 @@ if (document.getElementById('app')) {
             Electrician: () => import('./steps-forms/views/electrician/index'),
             Gartner: () => import('./steps-forms/views/gartner/index'),
             Carpenter: () => import('./steps-forms/views/carpenter/index'),
-            ClientSidebar: () => import('./profiles/client/Sidebar')
+            ProfileClient: () => import('./profiles/client/index')
         }
     });
 }

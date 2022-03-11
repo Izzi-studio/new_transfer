@@ -253,11 +253,32 @@ export default {
         },
         csrfToken() {
             return document.querySelector('meta[name="csrf-token"]').content
+        },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
         }
     },
     watch: {
         date() {
             this.updateDate()
+        },
+        initialData(data) {
+            this.fields['additional_info[from][zip]'] = data.additional_info.from.zip
+            this.fields['additional_info[from][city]'] = data.additional_info.from.city
+            this.fields['additional_info[from][street]'] = data.additional_info.from.street
+            this.fields['proposal[region_id]'] = data.region_id
+            this.fields['additional_info[from][number]'] = data.additional_info.from.number
+            this.date = this.globalGetDate(data.date_start)
+            this.fields['additional_info[from][dayrange]'] = data.additional_info.from.dayrange
+            this.fields['additional_info[from][house_type]'] = data.additional_info.from.house_type
+            this.fields['additional_info[from][lift]'] = data.additional_info.from.lift
+            this.fields['additional_info[from][floor]'] = data.additional_info.from.floor
+            this.fields['additional_info[from][rooms]'] = data.additional_info.from.rooms
+            this.fields['additional_info[from][square]'] = data.additional_info.from.square
+            this.fields['additional_info[from][other][]'] = data.additional_info.from.other
+            this.fields['proposal[description]'] = data.description
+            
+            this.fields._method = 'PUT'
         }
     },
     mounted() {

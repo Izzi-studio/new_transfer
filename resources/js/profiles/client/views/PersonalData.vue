@@ -1,10 +1,10 @@
 <template>
     <form
         v-if="fields" 
-        class="profile-info"
         :class="{'opacity-50 pe-none': isUpdate}" 
         @submit.prevent="formHandler"
-    >
+    >   
+        <h4 class="d-block d-lg-none mb-3">Info</h4>
         <label class="form-photo">
             <input 
                 @change="updateAvatar" 

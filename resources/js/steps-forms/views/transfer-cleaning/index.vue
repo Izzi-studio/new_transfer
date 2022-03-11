@@ -37,6 +37,11 @@ export default {
     mounted() {
         this.$store.dispatch('stepsForms/getRegions')
         this.$store.commit('stepsForms/setUrlHandler', this.urlHandler)
+
+        const id = this.$route.path.replace(/[^0-9]/g,"")
+        if(this.isAuth && id) {
+            this.$store.dispatch('stepsForms/getClientValues', id)
+        }
     },
     components: {
         FormProgress,

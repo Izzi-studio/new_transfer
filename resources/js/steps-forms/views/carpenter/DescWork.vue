@@ -68,42 +68,42 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Möbel"
                             label="Möbel"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Haustüre"
                             label="Haustüre"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Decke"
                             label="Decke"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Zimmertüre"
                             label="Zimmertüre"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Küche"
                             label="Küche"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-checkbox
-                            v-model="fields['additional_info[work_should_be_done]']"
+                            v-model="fields['additional_info[work_should_be_done][]']"
                             val="Weitere"
                             label="Weitere"
                         />
@@ -163,7 +163,7 @@ export default {
             'additional_info[street]': '',
             'proposal[region_id]': '',
             'additional_info[number]': '',
-            'additional_info[work_should_be_done]': [],
+            'additional_info[work_should_be_done][]': [],
             'proposal[date_start]': '',
             'additional_info[dayrange]': 'Nicht Flexibel',
             'proposal[description]': '',
@@ -182,12 +182,31 @@ export default {
             return document.querySelector('meta[name="csrf-token"]').content
         },
         isSelectedCheckboxes() {
-            return this.fields['additional_info[work_should_be_done]'].length ? true : false
+            return this.fields['additional_info[work_should_be_done][]'].length ? true : false
         },
+        isAuth() {
+            return document.querySelector('body').dataset.isAuth == 'true'
+        },
+        initialData() {
+            return this.$store.state.stepsForms.initialData
+        }
     },
     watch: {
         date() {
             this.updateDate()
+        },
+        initialData(data) {
+            this.fields['additional_info[zip]'] = data.additional_info.zip
+            this.fields['additional_info[city]'] = data.additional_info.city
+            this.fields['additional_info[street]'] = data.additional_info.street
+            this.fields['proposal[region_id]'] = data.region_id
+            this.fields['additional_info[number]'] = data.additional_info.number
+            this.fields['additional_info[work_should_be_done][]'] = data.additional_info.work_should_be_done
+            this.date = this.globalGetDate(data.date_start)
+            this.fields['additional_info[dayrange]'] = data.additional_info.dayrange
+            this.fields['proposal[description]'] = data.description
+
+            this.fields._method = 'PUT'
         }
     },
     mounted() {

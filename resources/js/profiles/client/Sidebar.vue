@@ -18,13 +18,17 @@
                 </a>
             </template>
             <template v-else>
-                <router-link 
-                    class="profile-sidebar__link"
-                    active-class="profile-sidebar__link_active"
-                    :to="prefix+menuItem.to"
+                <span
+                    @click="$emit('clickToLink', menuItem.text)"
                 >
-                    {{ menuItem.text }}
-                </router-link>
+                    <router-link 
+                        class="profile-sidebar__link"
+                        active-class="profile-sidebar__link_active"
+                        :to="{path: prefix+menuItem.to, query: menuItem.query}"
+                    >
+                        {{ menuItem.text }}
+                    </router-link>
+                </span>
             </template>
             <ul
                 v-if="menuItem.submenu" 
@@ -34,6 +38,7 @@
                     class="profile-sidebar__subitem"
                     v-for="subItem in menuItem.submenu"
                     :key="subItem.to"
+                    @click="$emit('clickToLink', subItem.text)"
                 >
                     <router-link 
                         class="profile-sidebar__sublink"
@@ -70,7 +75,39 @@ export default {
                 },
                 {
                     text: 'Umzug',
-                    to: '/umzug'
+                    to: '/umzug',
+                },
+                {
+                    text: 'Reinigung',
+                    to: '/reinigung',
+                },
+                {
+                    text: 'Umzug + Reinigung',
+                    to: '/umzug-und-reinigung',
+                },
+                {
+                    text: 'Maler/Gipser',
+                    to: '/maler',
+                },
+                {
+                    text: 'Bodenleger',
+                    to: '/bodenleger',
+                },
+                {
+                    text: 'Heizungsanbieter',
+                    to: '/heizung',
+                },
+                {
+                    text: 'Elektriker',
+                    to: '/elektriker',
+                },
+                {
+                    text: 'Gärtner',
+                    to: '/gartner',
+                },
+                {
+                    text: 'Schreiner',
+                    to: '/schreiner',
                 }
             ]
         }
