@@ -23,49 +23,13 @@ class ProposalController extends Controller
 
         $proposal = $request->only('proposal')['proposal'];
 
-        switch ($proposal['type_job_id']) {
-            case 1:
-                //$route = route('client.getTRequests');
-                $route = route('home');
-                break;
-            case 2:
-               // $route = route('client.getCRequests');
-                $route = route('home');
-                break;
-            case 3:
-               // $route = route('client.getTCRequests');
-                $route = route('home');
-                break;
-            case 4:
-                //$route = route('client.getPWRequests');
-                $route = route('home');
-                break;
-            case 5:
-                $route = route('home');
-                break;
-            case 6:
-                $route = route('home');
-                break;
-            case 7:
-                $route = route('home');
-                break;
-            case 8:
-                $route = route('home');
-                break;
-            case 9:
-                $route = route('home');
-                break;
-            default:
-                Log::info('Add Request. Wrong Job Type: '.$proposal['type_job_id']);
-                return response()->json(['url'=> route('client.myInfo')]);
-        }
 
         $proposal['user_id'] = auth()->user()->id;
         $proposal['additional_info'] = $request->only('additional_info')['additional_info'];
 
         event(new NewProposal(Proposal::create($proposal)));
 
-        return response()->json(['redirect_url'=> $route]);
+        return response()->json(['redirect_url'=> config('services.redirects_params.'.$proposal['type_job_id'])]);
     }
     /**
      * Process Proposal.

@@ -55,7 +55,9 @@ class ApiProposalController extends Controller
         $proposalData['additional_info'] = $request->only('additional_info')['additional_info'];
         $proposal->update($proposalData);
 
-        return response()->json(['redirect_url'=>url()->previous()]);
+
+
+        return response()->json(['redirect_url'=>route('client.cabinet',config('services.redirects_params.'.$proposal['type_job_id']))]);
     }
 
     /**
