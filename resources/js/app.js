@@ -56,7 +56,7 @@ if (document.getElementById('app')) {
             Electrician: () => import('./steps-forms/views/electrician/index'),
             Gartner: () => import('./steps-forms/views/gartner/index'),
             Carpenter: () => import('./steps-forms/views/carpenter/index'),
-            ClientSidebar: () => import('./profiles/client/Sidebar')
+            ProfileClient: () => import('./profiles/client/index')
         }
     });
 }

@@ -1,5 +1,6 @@
 <template>
-    <div class="profile-info">
+    <div>
+        <h4 class="d-block d-lg-none mb-3">{{ typeJobText }}</h4>
         <profile-search @search="formSearch" />
         <div class="mt-5">
             <card 
@@ -25,6 +26,43 @@ export default {
         }
     },
     computed: {
+        typeJobText() {
+            if(this.typeJob === 'umzug') {
+                return 'Umzug'
+            }
+
+            if(this.typeJob === 'reinigung') {
+                return 'Reinigung'
+            }
+
+            if(this.typeJob === 'umzug-und-reinigung') {
+                return 'Umzug und Reinigun'
+            }
+
+            if(this.typeJob === 'maler') {
+                return 'Maler'
+            }
+
+            if(this.typeJob === 'bodenleger') {
+                return 'Bodenleger'
+            }
+
+            if(this.typeJob === 'heizung') {
+                return 'Heizung'
+            }
+
+            if(this.typeJob === 'elektriker') {
+                return 'Elektriker'
+            }
+
+            if(this.typeJob === 'gartner') {
+                return 'Gartner'
+            }
+
+            if(this.typeJob === 'schreiner') {
+                return 'Schreiner'
+            }
+        },
         typeJobId() {
             if(this.typeJob === 'umzug') {
                 return 1

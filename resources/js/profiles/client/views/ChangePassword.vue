@@ -1,10 +1,10 @@
 <template>
     <form
-        class="profile-info"
         :class="{'opacity-50 pe-none': isUpdate}" 
         @submit.prevent="formHandler"
         @input="isSended = false"
     >
+        <h4 class="d-block d-lg-none mb-3">Passwort ändern</h4>
         <div class="row">
             <div class="col-lg-5">
                 <form-field
