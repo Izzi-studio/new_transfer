@@ -62,9 +62,9 @@ Route::group([
 
 
 
-    Route::get('/firmenkonto', function (){
+    Route::get('/firmenkonto/{any?}', function (){
         return view('firma');
-    });
+    })->where('any', '[\/\w\.-]*')->name('partner.cabinet');
 
     //static pages
     Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticpage.view');

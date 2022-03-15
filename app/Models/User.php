@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -80,6 +81,27 @@ class User extends Authenticatable
     }
 
     /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getProposals(){
+
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id');
+    }
+
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getNewProposals(){
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')->whereStatus('<>',0);
+    }
+
+    /**
      * Get Users Proposals by Type Job
      *
      * @param  int $typeJobId 1,2,3,4
@@ -119,4 +141,53 @@ class User extends Authenticatable
 
     }
 
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getCountProposalsCabinet(){
+
+        $startDate = Carbon::now()->format('Y/m/d');
+
+        $new = $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')->whereStatus('<>',0)->where('date_start','>=',$startDate)->count();
+
+        $accepted = $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')->whereStatus(1)->count();
+
+        return $new + $accepted;
+    }
+    /**
+     * Get Proposals to Partner  by status
+     *
+     * @param  int $status 0,1,2
+     * @return $query
+     */
+    public function getProposalsByStatusCabinet($status, $year = null, $month = null){
+        if($year != null && $month != null){
+            $datastart = Carbon::create()->startOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+            $dataend = Carbon::create()->endOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+
+            return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+                'user_id','id','id','proposal_id')
+                ->where('proposals_to_partner.status',$status)
+                ->whereBetween('proposals_to_partner.created_at',[$datastart, $dataend])
+                ->orderBy('id','DESC');
+        }
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->where('proposals_to_partner.status',$status)
+            ->orderBy('id','DESC');
+    }
+    /**
+     * Get Reviews
+
+     * @return $query
+     */
+    public function getReviews(){
+        return $this->hasOne('App\Models\Review','user_id_to','id')
+            ->orderBy('id','DESC')
+            ->withDefault(['*' => null]);
+    }
 }

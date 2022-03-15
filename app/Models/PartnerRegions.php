@@ -11,6 +11,7 @@ class PartnerRegions extends Model
     use HasFactory;
 
     protected $fillable = ['user_id','region_id'];
+    protected $hidden = ['user_id','id'];
     /**
      * The table associated with the model.
      *

@@ -15,27 +15,32 @@ class ProposalResource extends JsonResource
      */
     public function toArray($request)
     {
-        $responded = $this->getResponded()->get();
+        $return = [];
+        if(auth()->user()->isClient()) {
+            $responded = $this->getResponded()->get();
 
-        $partnersResponded = [];
-        foreach($responded as $partner){
-            $partnersResponded[] = [
-                'name'=>$partner->getPartner->name,
-                'lastname'=>$partner->getPartner->lastname,
-                'phone'=>$partner->getPartner->phone,
-                'email'=>$partner->getPartner->email,
-                'company'=>$partner->getPartner->company,
-                'city'=>$partner->getPartner->city,
-                'street'=>$partner->getPartner->street,
-                'star_count'=>$partner->getReviewsCount(),
-                'rating_avg'=>(integer) $partner->getRatingAVG(),
-            ];
+            $partnersResponded = [];
+            foreach ($responded as $partner) {
+                $partnersResponded[] = [
+                    'name' => $partner->getPartner->name,
+                    'lastname' => $partner->getPartner->lastname,
+                    'phone' => $partner->getPartner->phone,
+                    'email' => $partner->getPartner->email,
+                    'company' => $partner->getPartner->company,
+                    'city' => $partner->getPartner->city,
+                    'street' => $partner->getPartner->street,
+                    'star_count' => $partner->getReviewsCount(),
+                    'rating_avg' => (integer)$partner->getRatingAVG(),
+                ];
 
+            }
+            $return['responded_partners'] = $partnersResponded;
         }
 
-        $return = [];
+
         $return['id'] = $this->id;
-        $return['responded_partners'] = $partnersResponded;
+        $return['type_job_id'] = $this->type_job_id;
+
         $return['region_from'] =  __('front.'.$this->getRegion->name);
         $return['description'] =  $this->description;
         $return['region_id'] =  $this->region_id;
