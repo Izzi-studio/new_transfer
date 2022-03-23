@@ -256,17 +256,13 @@ export default {
             'additional_info[other][]': [],
             'proposal[description]': '',
             'proposal[type_job_id]': '2',
-            _token: '',
         },
         fieldsGroupName: 'cleaning',
         date: new Date()
     }),
     computed: {
         regions() {
-            return this.$store.state.stepsForms.regions
-        },
-        csrfToken() {
-            return document.querySelector('meta[name="csrf-token"]').content
+            return this.$store.state.regions
         },
         initialData() {
             return this.$store.state.stepsForms.initialData
@@ -309,7 +305,6 @@ export default {
             })
         },
         formHandler() {
-            this.fields._token = this.csrfToken
             this.$store.commit('stepsForms/setData', {
                 key: this.fieldsGroupName,
                 data: this.fields

@@ -28,7 +28,7 @@
                             <li class="header__subitem">
                                 <a 
                                     class="header__sublink" 
-                                    href="{{route('client.form.umzugundreinigung.view')}}"
+                                    href="{{route('client.form.umzug_und_reinigung.view')}}"
                                 >
                                     Umzug + Reinigung
                                 </a>
@@ -124,7 +124,7 @@
                         </li>
                     @elseif(auth()->user()->isPartner())
                         <li class="header__item">
-                            <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                            <a class="header__link" href="{{ route('partner.cabinet','personliche-daten/info') }}">{{auth()->user()->name}}</a>
                         </li>
                     @else
                         <li class="header__item">

@@ -182,7 +182,6 @@ export default {
             'additional_info[dayrange]': 'Nicht Flexibel',
             'proposal[description]': '',
             'proposal[type_job_id]': '8',
-            _token: '',
         },
         isSended: false,
         fieldsGroupName: 'desc-work',
@@ -190,10 +189,7 @@ export default {
     }),
     computed: {
         regions() {
-            return this.$store.state.stepsForms.regions
-        },
-        csrfToken() {
-            return document.querySelector('meta[name="csrf-token"]').content
+            return this.$store.state.regions
         },
         isSelectedCheckboxes() {
             return this.fields['additional_info[work_should_be_done][]'].length ? true : false

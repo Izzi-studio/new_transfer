@@ -1,8 +1,6 @@
 const state = {
     formData: {},
     initialData: {},
-    typesJobs: [],
-    regions: [],
     currentStep: 1,
     isHasEmail: false,
     urlHandler: '',
@@ -30,24 +28,6 @@ const mutations = {
 }
 
 const actions = {
-    getTypeJobs(context) {
-        axios.get('/api/front/types-jobs')
-            .then(({ data }) => {
-                context.state.typesJobs = data.data
-            })
-            .catch(() => {
-                
-            })
-    },
-    getRegions(context) {
-        axios.get('/api/front/regions')
-            .then(({ data }) => {
-                context.state.regions = data.data
-            })
-            .catch(() => {
-                
-            })
-    },
     getClientValues(context, payload) {
         axios.get(`/api/front/client/proposals/${payload}`)
             .then(({ data }) => {
@@ -70,6 +50,8 @@ const actions = {
     },
     sendData(context) {
         const formData = new FormData()
+
+        formData.append('_token', document.querySelector('meta[name="csrf-token"]').content)
         
         for(let group in context.state.formData) {    
             for (let key in context.state.formData[group]) {

@@ -73,7 +73,7 @@ export default {
             return this.fields.password === this.fields.password_confirmation
         },
         typesJobs() {
-            return this.$store.state.stepsForms.typesJobs
+            return this.$store.state.typesJobs
         }
     },
     methods: {

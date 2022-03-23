@@ -7,7 +7,7 @@
                 v-for="card in formattedCards"
                 :key="card.id"
                 :data="card"
-                :type-job-id="typeJobId"
+                :type-job-id="card.type_job_id"
                 class="mt-4"
                 @deleteOffer="deleteOffer"
             />
@@ -15,8 +15,8 @@
     </div>
 </template>
 <script>
-import ProfileSearch from '../../components/ProfileSearch.vue'
-import Card from '../../components/Card.vue'
+import ProfileSearch from '../../../components/ProfileSearch.vue'
+import Card from '../../../components/Card.vue'
 
 export default {
     data() {
@@ -27,81 +27,30 @@ export default {
     },
     computed: {
         typeJobText() {
-            if(this.typeJob === 'umzug') {
-                return 'Umzug'
-            }
-
-            if(this.typeJob === 'reinigung') {
-                return 'Reinigung'
-            }
-
-            if(this.typeJob === 'umzug-und-reinigung') {
-                return 'Umzug und Reinigun'
-            }
-
-            if(this.typeJob === 'maler') {
-                return 'Maler'
-            }
-
-            if(this.typeJob === 'bodenleger') {
-                return 'Bodenleger'
-            }
-
-            if(this.typeJob === 'heizung') {
-                return 'Heizung'
-            }
-
-            if(this.typeJob === 'elektriker') {
-                return 'Elektriker'
-            }
-
-            if(this.typeJob === 'gartner') {
-                return 'Gartner'
-            }
-
-            if(this.typeJob === 'schreiner') {
-                return 'Schreiner'
+            switch(this.$route.params.typeJob) {
+                case 'umzug': return 'Umzug'
+                case 'reinigung': return 'Reinigung'
+                case 'umzug-und-reinigung': return 'Umzug und Reinigun'
+                case 'maler': return 'Maler'
+                case 'bodenleger': return 'Bodenleger'
+                case 'heizung': return 'Heizung'
+                case 'elektriker': return 'Elektriker'
+                case 'gartner': return 'Gartner'
+                case 'schreiner': return 'Schreiner'
             }
         },
         typeJobId() {
-            if(this.typeJob === 'umzug') {
-                return 1
+            switch(this.$route.params.typeJob) {
+                case 'umzug': return 1
+                case 'reinigung': return 2
+                case 'umzug-und-reinigung': return 3
+                case 'maler': return 4
+                case 'bodenleger': return 5
+                case 'heizung': return 6
+                case 'elektriker': return 7
+                case 'gartner': return 8
+                case 'schreiner': return 9
             }
-
-            if(this.typeJob === 'reinigung') {
-                return 2
-            }
-
-            if(this.typeJob === 'umzug-und-reinigung') {
-                return 3
-            }
-
-            if(this.typeJob === 'maler') {
-                return 4
-            }
-
-            if(this.typeJob === 'bodenleger') {
-                return 5
-            }
-
-            if(this.typeJob === 'heizung') {
-                return 6
-            }
-
-            if(this.typeJob === 'elektriker') {
-                return 7
-            }
-
-            if(this.typeJob === 'gartner') {
-                return 8
-            }
-
-            if(this.typeJob === 'schreiner') {
-                return 9
-            }
-        },
-        typeJob() {
-            return this.$route.params.typeJob
         },
         formattedCards() {
             if(!this.searchFields) return this.cards
@@ -171,10 +120,6 @@ export default {
                     })
             }
         },
-        getDate(dateStr) {
-            const dateParts = dateStr.split('-');
-            return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0])
-        }
     },
     mounted() {
         axios.get('/api/front/client/proposals', {

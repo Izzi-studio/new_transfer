@@ -137,7 +137,7 @@ export default {
     }),
     computed: {
         regions() {
-            return this.$store.state.stepsForms.regions
+            return this.$store.state.regions
         },
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'

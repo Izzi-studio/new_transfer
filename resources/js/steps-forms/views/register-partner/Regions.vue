@@ -53,7 +53,7 @@ export default {
             return this.fields['regions_ids[]'].length ? true : false
         },
         regions() {
-            return this.$store.state.stepsForms.regions
+            return this.$store.state.regions
         }
     },
     methods: {

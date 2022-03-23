@@ -1,4 +1,4 @@
-.profile-sidebar
+.profile-sidebar, .profile-service
     background: #F8F8F8
     border: 1px solid #F3F3F3
     box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
@@ -6,7 +6,7 @@
     padding: 35px 30px
     +r($wide)
         padding: 20px
-.profile-sidebar__item
+.profile-sidebar__item, .profile-service__item
     & + &
         margin-top: 25px
 .profile-sidebar__link
@@ -17,7 +17,7 @@
     padding: 15px 20px
     position: relative
     width: 100%
-    display: block
+    display: flex
     font-weight: bold
     font-size: 17px
     color: $headerColor
@@ -56,3 +56,20 @@
     color: $blueColor
 .profile-sidebar__link_active
     color: $blueColor
+
+.profile-service__item
+    background: #FFFFFF
+    border: 1px solid #F3F3F3
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding: 15px 20px
+    position: relative
+    width: 100%
+    font-size: 17px
+    line-height: normal
+    color: $headerColor
+    text-decoration: none
+    font-weight: normal
+    span
+        color: $blueColor
+        font-weight: bold

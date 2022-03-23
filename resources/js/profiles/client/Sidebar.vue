@@ -19,12 +19,12 @@
             </template>
             <template v-else>
                 <span
-                    @click="$emit('clickToLink', menuItem.text)"
+                    @click="$emit('clickToLink')"
                 >
                     <router-link 
                         class="profile-sidebar__link"
                         active-class="profile-sidebar__link_active"
-                        :to="{path: prefix+menuItem.to, query: menuItem.query}"
+                        :to="prefix+menuItem.to"
                     >
                         {{ menuItem.text }}
                     </router-link>
@@ -38,7 +38,7 @@
                     class="profile-sidebar__subitem"
                     v-for="subItem in menuItem.submenu"
                     :key="subItem.to"
-                    @click="$emit('clickToLink', subItem.text)"
+                    @click="$emit('clickToLink')"
                 >
                     <router-link 
                         class="profile-sidebar__sublink"
