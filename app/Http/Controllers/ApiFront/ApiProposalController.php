@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiFront;
 
+use App\Models\TypesOfJobs;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -13,6 +14,7 @@ use App\Http\Resources\ProposalResource;
 use App\Events\ProposalDelete;
 use App\Events\ProposalAccepted;
 use Log;
+use PDF;
 class ApiProposalController extends Controller
 {
 
@@ -196,11 +198,35 @@ class ApiProposalController extends Controller
 
         return response()->json(['data'=>['result'=>true,'redirect_url'=>route('partner.cabinet','anfragen/angenommene')]]);
     }
-
-
     /**
-     * delete proposals.
+     * download proposal.
      * @param Proposal $proposal
+     * @return PDF
+     */
+    public function download(Proposal $proposal){
+
+        $cost = Setting::getByKey('system.setting.cost_'.config('services.types_jobs.'.$proposal->type_job_id));
+
+        $pdf = PDF::loadView('front.partner.proposalPDF',compact(['proposal','cost']));
+
+        return $pdf->download('anfragen_'. $proposal->date_start->format('Y-m-d') .'.pdf');
+    }
+
+    public function prices(){
+        $typesJobs = TypesOfJobs::all();
+
+        $result = [];
+
+        foreach ($typesJobs as $typesJob){
+            $result[$typesJob->name] = Setting::getByKey('system.setting.cost_'.config('services.types_jobs.'.$typesJob->id));
+        }
+
+        return response()->json(['data'=>['prices'=>$result]]);
+    }
+    /**
+     * delete proposal.
+     * @param Proposal $proposal
+     * @return \Illuminate\Http\Response
      */
     public function destroy(Proposal $proposal){
         event(new ProposalDelete($proposal));

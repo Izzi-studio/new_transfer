@@ -1,126 +1,46 @@
 <?php
 namespace App\Traits;
-use App\Events\EmailChangeInfoPartner;
 use App\Models\PartnerRegions;
 use App\Models\PartnerWantJobs;
-use App\Models\SeoMetaTags;
 use Illuminate\Http\Request;
 use Str;
 use Hash;
-use Intervention\Image\ImageManagerStatic as Image;
-use App\Models\RequestCahngePartnerInfo;
-
+use App\Models\User;
+use App\Models\Proposal;
+use App\Models\Setting;
 trait PartnerInfoTrait{
 
 
-
     /**
-     * Display form password.
-     *
+     * show list accept proposals.
+     * @param Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function myInfo()
-    {
-		if(!$this->active()){
-			 return view('front.partner.noactive');
-		}
-		
-        app()->make(SeoMetaTags::class)->setMeta('system.partner.my_info');
+    public function profile(Request $request, User $user){
+
+        $proposalId = $request->get('proposal_id',null);
+
         $regions = app()->make(PartnerRegions::class);
-        $regions = $regions->getCheckedRegionByUser(auth()->user()->id);
+        $regions = $regions->getCheckedRegionByUser($user->id);
 
         $typesofjobs = app()->make(PartnerWantJobs::class);
-        $typesofjobs = $typesofjobs->getCheckedTypesJobByUser(auth()->user()->id);
+        $typesofjobs =$typesofjobs->getCheckedTypesJobByUser($user->id);
 
+        $reviews = $user->getReviews()->paginate(Setting::getByKey('system.setting.limit_reviews_partner'));
 
-        return view('front.partner.cabinet-my-info',compact(['regions','typesofjobs']));
+        return view('front.partner.profile',compact(['regions','typesofjobs','reviews','user','proposalId']));
     }
 
-    /**
-     * Update profile partner
-     * @param  Request $request
-     * @return Illuminate\Http\RedirectRespons
-     */
-    public function updateInfo(Request $request){
+    public function profileProxy(User $user, Proposal $proposal){
 
-        $this->validate($request, [
-            'region_ids' => ['required','array'],
-            'types_of_jobs' => ['required','array'],
-            'name' => ['required'],
-            'company' => ['required'],
-            'lastname' => ['required'],
-            'phone' => ['required'],
-            'city' => ['required'],
-            'street' => ['required'],
-            'house' => ['required'],
-            'postcode' => ['required'],
-        ]);
+        return redirect(route('partner.profile',[$user->profile_slug,'proposal_id'=>$proposal->id]));
 
-        //auth()->user()->update($request->only('name','lastname','company','phone'));
-        if ($request->new_request_update === 'true') {
-            RequestCahngePartnerInfo::create([
-                'user_id' => auth()->user()->id,
-                'json_info' => json_encode($request->only('name', 'lastname', 'company', 'phone', 'city', 'street', 'house', 'postcode')),
-            ]);
 
-            event(new EmailChangeInfoPartner(auth()->user()));
-        }
-
-        if ($request->hasFile('avatar')) {
-            $name_file = Str::random(15).'.jpg';
-            $image = $request->file('avatar');
-            $image_save = Image::make($image->getRealPath());
-            $image_save->resize(128, 128);
-            $image_save->save(storage_path(env('LOCAL_PATH_AVATAR') . $name_file));
-            auth()->user()->avatar = $name_file;
-            auth()->user()->save();
-        }
-
-        PartnerWantJobs::whereUserId(auth()->user()->id)->delete();
-        PartnerRegions::whereUserId(auth()->user()->id)->delete();
-
-        foreach($request->types_of_jobs as $jobId){
-            PartnerWantJobs::create(['user_id'=>auth()->user()->id, 'type_job_id'=>$jobId]);
-        }
-
-        foreach($request->region_ids as $regionId){
-            PartnerRegions::create(['user_id'=>auth()->user()->id, 'region_id'=>$regionId]);
-        }
-
-        return back()->with('success', true);
     }
 
+    public function createReview(User $user, Proposal $proposal){
 
-    /**
-     * Display form password.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showPasswordForm()
-    {
-		if(!$this->active()){
-			 return view('front.partner.noactive');
-		}
-        app()->make(SeoMetaTags::class)->setMeta('system.partner.password');
-        return view('front.partner.password');
-    }
-
-    /**
-     * Update password
-     * @param  Request $request
-     * @return Illuminate\Http\RedirectRespons
-     */
-    public function updatePassword(Request $request)
-    {
-        $this->validate($request, [
-            'old_password' => ['required'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-
-        if (Hash::check($request->old_password , auth()->user()->password )) {
-            auth()->user()->update(['password' => bcrypt($request->password)]);
-            return redirect()->back()->with('success', true);
-        }
-        return back()->withErrors(['old_password'=>__('old_password')]);
+        return view('front.partner.create_review',compact(['user','proposal']));
     }
 }

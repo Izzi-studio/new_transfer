@@ -40,6 +40,17 @@ return [
         '7'=>'elektriker',
         '8'=>'gartner',
         '9'=>'schreiner',
+    ],
+    'types_jobs'=>[
+        '1'=>'umzug',
+        '2'=>'reinigung',
+        '3'=>'umzug_und_reinigung',
+        '4'=>'maler',
+        '5'=>'bodenleger',
+        '6'=>'heizung',
+        '7'=>'elektriker',
+        '8'=>'gartner',
+        '9'=>'schreiner',
     ]
 
 ];

@@ -20,6 +20,7 @@ class ReviewsResource extends JsonResource
             'message' =>  $this->message,
             'rating' =>  $this->rating,
             'publisher_name' =>  $this->getPostedUser->name,
+            'avatar' =>  $this->getPostedUser->avatar ? env('FRONT_PATH_AVATAR').$this->getPostedUser->avatar : null,
             'created_at' =>  $this->created_at->format('Y-m-d'),
             'proposal' =>  new ProposalResource($this->getProposal()->first()),
         ];

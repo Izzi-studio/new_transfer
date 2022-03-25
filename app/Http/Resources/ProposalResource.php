@@ -28,7 +28,9 @@ class ProposalResource extends JsonResource
                     'email' => $partner->getPartner->email,
                     'company' => $partner->getPartner->company,
                     'city' => $partner->getPartner->city,
+                    'avatar' => $partner->getPartner->avatar ? env('FRONT_PATH_AVATAR').$partner->getPartner->avatar : null,
                     'street' => $partner->getPartner->street,
+                    'profile_slug' => $partner->getPartner->profile_slug,
                     'star_count' => $partner->getReviewsCount(),
                     'rating_avg' => (integer)$partner->getRatingAVG(),
                 ];

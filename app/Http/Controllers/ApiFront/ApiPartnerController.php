@@ -112,10 +112,8 @@ class ApiPartnerController extends Controller
      */
     public function partnerReviews(){
 
-        $user = User::find(61);
+        return new ReviewsCollection(auth()->user()->getReviews()->get());
 
-       // return new ReviewsCollection(auth()->user()->getReviews()->get());
-        return new ReviewsCollection($user->getReviews()->get());
     }
 
 }

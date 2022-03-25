@@ -45,7 +45,7 @@ Route::group([
     //forms
     Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
     Route::get('/reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('client.form.reinigung.view');
-    Route::get('/umzug-und-reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugUndReinigungFormClientView'])->name('client.form.umzugundreinigung.view');
+    Route::get('/umzug-und-reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugUndReinigungFormClientView'])->name('client.form.umzug_und_reinigung.view');
     Route::get('/maler', [App\Http\Controllers\Auth\RegisterController::class, 'showMalarFormClientView'])->name('client.form.malar.view');
     Route::get('/bodenleger', [App\Http\Controllers\Auth\RegisterController::class, 'showBodenlegerFormClientView'])->name('client.form.bodenleger.view');
     Route::get('/heizung', [App\Http\Controllers\Auth\RegisterController::class, 'showHeizungFormClientView'])->name('client.form.heizung.view');
@@ -59,15 +59,21 @@ Route::group([
         return view('client');
     })->where('any', '[\/\w\.-]*')->name('client.cabinet');
 
-
-
-
     Route::get('/firmenkonto/{any?}', function (){
         return view('firma');
     })->where('any', '[\/\w\.-]*')->name('partner.cabinet');
 
     //static pages
     Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticpage.view');
+
+    Route::get('/proposals/download/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'download'])->name('partner.proposals.download');
+
+
+    Route::get('/firmenprofil/{user:profile_slug}/{proposal}', [App\Http\Controllers\Partner\PartnerController::class,'profileProxy'])->name('partner.profile.profile_proxy');
+    Route::get('/firmenprofil/{user:profile_slug}', [App\Http\Controllers\Partner\PartnerController::class,'profile'])->name('partner.profile');
+    Route::get('/firmenprofil/{user:profile_slug}/review/create/{proposal}', [App\Http\Controllers\Partner\PartnerController::class,'createReview'])->name('partner.profile.create_review');
+
+
 });
 
 

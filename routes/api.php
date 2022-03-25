@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 */
 
-Route::prefix('front')->middleware('api')->group(function () {
+Route::prefix('front')->middleware('auth:api')->group(function () {
     //client
     Route::prefix('client')->group(function(){
         Route::get('/', [App\Http\Controllers\ApiFront\ApiUserController::class,'index'])->name('api.user.data');
@@ -39,6 +39,8 @@ Route::prefix('front')->middleware('api')->group(function () {
         Route::get('/proposals', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposals'])->name('api.partner.proposals');
         Route::get('/proposals-counts', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposalsCounts'])->name('api.partner.proposals.counts');
         Route::put('/proposals/process/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'processProposals'])->name('api.partner.proposals.process');
+      //  Route::get('/proposals/download/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'download'])->name('api.partner.proposals.download');
+        Route::get('/proposals/prices', [App\Http\Controllers\ApiFront\ApiProposalController::class,'prices'])->name('api.partner.prices');
         Route::put('/password/update', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'updatePassword'])->name('api.partner.password.update');
         Route::get('/reviews', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'partnerReviews'])->name('api.partner.reviews');
     });
@@ -48,7 +50,6 @@ Route::prefix('front')->middleware('api')->group(function () {
 
 
 Route::prefix('front')->middleware('api')->group(function () {
-
     Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
     Route::get('/types-jobs', [App\Http\Controllers\ApiFront\ApiFrontController::class,'jobsTypes'])->name('api.jobsTypes');
 
