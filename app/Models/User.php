@@ -190,4 +190,16 @@ class User extends Authenticatable
             ->orderBy('id','DESC')
             ->withDefault(['*' => null]);
     }
+    public function getRatingAVG(){
+        return $this->hasMany('App\Models\Review','user_id_to','id')->avg('rating');
+    }
+
+    /**
+     * Get Companies
+
+     * @return $query
+     */
+    public function scopeCompanies(){
+        return $this->whereRoleId(2);
+    }
 }

@@ -25,6 +25,8 @@ Route::group([
 ], function ($router) {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
     //register partner
     Route::get('/partner-werden', [App\Http\Controllers\Auth\RegisterController::class, 'registerPartnerView'])->name('partner.register.view');
     Route::post('/partner-werden', [App\Http\Controllers\Auth\RegisterController::class,'registerPartner'])->name('partner.register.post');
@@ -41,6 +43,9 @@ Route::group([
 
     //contact
     Route::get('/kontakt',[App\Http\Controllers\PageController::class,'contacts'])->name('page.contacts.view');
+
+    //search page
+    Route::get('/firmen', [App\Http\Controllers\PageController::class,'search'])->name('page.search.view');
 
     //forms
     Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
@@ -66,6 +71,7 @@ Route::group([
     //static pages
     Route::get('{staticPage:slug}',[App\Http\Controllers\StaticPageController::class,'staticPageView'])->name('staticpage.view');
 
+    //proposal download
     Route::get('/proposals/download/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'download'])->name('partner.proposals.download');
 
 

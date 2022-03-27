@@ -28,4 +28,15 @@ class PageController extends Controller
         app()->make(SeoMetaTags::class)->setMeta('system.contacts');
         return view('front.contacts');
     }
+
+    /**
+     * Show contacts.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function search()
+    {
+        app()->make(SeoMetaTags::class)->setMeta('system.search');
+        return view('front.search_companies');
+    }
 }

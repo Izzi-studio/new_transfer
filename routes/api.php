@@ -46,10 +46,13 @@ Route::prefix('front')->middleware('auth:api')->group(function () {
     });
 
 
+
+
 });
 
 
 Route::prefix('front')->middleware('api')->group(function () {
+    Route::get('/companies', [App\Http\Controllers\ApiFront\ApiFrontController::class,'companies'])->name('api.companies');
     Route::get('/regions', [App\Http\Controllers\ApiFront\ApiFrontController::class,'regions'])->name('api.regions');
     Route::get('/types-jobs', [App\Http\Controllers\ApiFront\ApiFrontController::class,'jobsTypes'])->name('api.jobsTypes');
 
