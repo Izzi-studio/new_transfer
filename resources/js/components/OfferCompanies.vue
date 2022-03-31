@@ -6,12 +6,18 @@
             class="offer-company"
         >
             <div class="offer-company__header">
-                    <img class="offer-company__logo" src="/images/company-1.png" alt="">
-                    <a class="offer-company__link" href="#">Profil anzeigen</a></div>
+                <img class="offer-company__logo" :src="company.avatar || '/images/default-avatar.png'" alt="">
+                <a 
+                    class="offer-company__link" 
+                    :href="`/firmenprofil/${company.profile_slug}/${offerId}`"
+                >
+                    Profil anzeigen
+                </a>
+            </div>
             <div class="offer-company__body">
                 <div class="offer-company__col">
                     <p class="offer-company__desc">{{ company.company }}</p>
-                    <p class="offer-company__location">{{ company.name }}</p>
+                    <p class="offer-company__location">{{ company.city }}, {{ company.street }}</p>
                 </div>
                 <div class="offer-company__col">
                     <p>
@@ -42,6 +48,6 @@
 
 <script>
 export default {
-    props: ['data'],
+    props: ['data', 'offerId'],
 }
 </script>

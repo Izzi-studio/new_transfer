@@ -14,7 +14,7 @@
             >
                 {{ offerDirection }}
             </h4>
-            <h4 v-if="isPartner" class="offer__type">Umzug</h4>
+            <h4 v-if="isPartner" class="offer__type">{{ offerType }}</h4>
             <button 
                 class="offer__btn-details btn"
                 type="button"
@@ -38,7 +38,22 @@
             </button>
             <p v-if="isPartner" class="offer__desc">{{ offerDesc }}</p>
             <div class="offer__actions">
-                <button v-if="isPartner" class="offer__accept" type="button">Akzeptieren</button>
+                <button 
+                    v-if="isShowBtnAdd" 
+                    class="offer__accept" 
+                    type="button"
+                    @click="$emit('addOffer', data.id)"
+                >
+                    Akzeptieren
+                </button>
+                <a 
+                    v-if="isShowBtnDownload" 
+                    class="offer__download"
+                    :href="'/proposals/download/' + data.id"
+                    download 
+                >
+                    Download
+                </a>
                 <a
                     v-if="isClient"
                     :href="'/proposal/edit/' + data.id" 
@@ -50,6 +65,7 @@
                 <button 
                     class="offer__cancel" 
                     type="button"
+                    v-if="isShowBtnCancel"
                     @click="$emit('deleteOffer', data.id)"
                 >
                     Ablehnen
@@ -72,8 +88,16 @@
         />
         <offer-companies 
             v-if="isClient && data.responded_partners.length" 
-            :data="data.responded_partners" 
+            :data="data.responded_partners"
+            :offer-id="data.id"
         />
+        <p 
+            class="mt-2"
+            style="color: #1072D8;" 
+            v-if="data.price"
+        >
+            <strong>Preise {{ data.price }} €</strong>
+        </p>
     </div>
 </template>
 
@@ -86,7 +110,7 @@ import OfferDetailsTransferCleaning from './OfferDetailsTransferCleaning'
 import OfferDetailsFlexble from './OfferDetailsFlexble'
 
 export default {
-    props: ['data', 'typeJobId'],
+    props: ['data', 'typeJobId', 'isShowBtnDownload', 'isShowBtnCancel', 'isShowBtnAdd'],
     data: function() {
         return {
             isShowDetails: false,
@@ -166,6 +190,19 @@ export default {
             }
 
             return str
+        },
+        offerType() {
+            switch (this.typeJobId) {
+                case 1: return 'Umzug'
+                case 2: return 'Reinigung'
+                case 3: return 'Umzug und Reinigun'
+                case 4: return 'Maler'
+                case 5: return 'Bodenleger'
+                case 6: return 'Heizung'
+                case 7: return 'Elektriker'
+                case 8: return 'Gartner' 
+                case 9: return 'Schreiner'
+            }
         }
     },
     components: {

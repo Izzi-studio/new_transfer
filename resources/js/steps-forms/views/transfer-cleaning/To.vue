@@ -7,12 +7,12 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    Zurück
-                </button> 
+                    {{ trans('zurich') }}
+                </button>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Region*</p>
+                            <p class="form-field__label">{{ trans('form-labels.region') }}*</p>
                             <select v-model="fields['additional_info[to][region_name]']" required>
                                 <option
                                     v-for="region in regions"
@@ -26,41 +26,41 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="PLZ*"
+                            :label="trans('form-labels.postcode') + '*'"
                             type="number"
                             required
-                            placeholder="PLZ*"
+                            :placeholder="trans('form-labels.postcode') + '*'"
                             v-model="fields['additional_info[to][zip]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Ort*"
+                            :label="trans('form-labels.city') + '*'"
                             type="text"
                             required
-                            placeholder="Ort*"
+                            :placeholder="trans('form-labels.city') + '*'"
                             v-model="fields['additional_info[to][city]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Strasse*"
+                            :label="trans('form-labels.street') + '*'"
                             type="text"
                             required
-                            placeholder="Strasse*"
+                            :placeholder="trans('form-labels.street') + '*'"
                             v-model="fields['additional_info[to][street]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Nr"
+                            :label="trans('form-labels.number')"
                             type="text"
-                            placeholder="Nr"
+                            :placeholder="trans('form-labels.number')"
                             v-model="fields['additional_info[to][number]']"
                         />
                     </div>
                 </div>
-                <h5 class="mt-5">Haustyp</h5>
+                <h5 class="mt-5">{{ trans('form-labels.house_type') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -77,7 +77,7 @@
                         />
                     </div>
                 </div>
-                <h5 class="mt-5">Lift</h5>
+                <h5 class="mt-5">{{ trans('form-labels.lift') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -97,24 +97,24 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Stock*"
+                            :label="trans('form-labels.floor') + '*'"
                             type="text"
                             required
-                            placeholder="Stock*"
+                            :placeholder="trans('form-labels.floor') + '*'"
                             v-model="fields['additional_info[to][floor]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Fläche in m2*"
+                            :label="trans('form-labels.square') + '*'"
                             type="text"
                             required
-                            placeholder="Fläche in m2*"
+                            :placeholder="trans('form-labels.square') + '*'"
                             v-model="fields['additional_info[to][square]']"
                         />
                     </div>
                 </div>
-                <button class="btn mt-5">Weiter</button>
+                <button class="btn mt-5">{{ trans('weiter') }}</button>
             </div>
         </div>
     </form>
@@ -137,7 +137,7 @@ export default {
     }),
     computed: {
         regions() {
-            return this.$store.state.stepsForms.regions
+            return this.$store.state.regions
         },
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'

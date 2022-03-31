@@ -10,7 +10,7 @@
         </div>
         <div class="steps-form__inner">
             <div id="app">
-                <electrician url-handler="{{ $action }}" />
+                <electrician url-handler="{{ $action }}" localize="{{ json_encode(__('front')) }}" />
             </div>
         </div>
     </div>

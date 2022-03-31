@@ -17,7 +17,7 @@ import From from './From'
 import To from './To'
 
 export default {
-    props: ['urlHandler'],
+    props: ['urlHandler', 'localize'],
     data: () => ({
 
     }),
@@ -26,15 +26,25 @@ export default {
             return this.$store.state.stepsForms.currentStep
         },
         progressText() {
-            return this.isAuth ? ['Von', 'Nach'] : ['Von', 'Nach', 'Kontakt']          
+            let arr = []
+
+            arr.push(this.trans('label-step.from'))
+            arr.push(this.trans('label-step.to'))
+
+            if(!this.isAuth) {
+                arr.push(this.trans('label-step.contact'))
+            }
+
+            return arr
         },
         isAuth() {
             return document.querySelector('body').dataset.isAuth == 'true'
         },
     },
     mounted() {
-        this.$store.dispatch('stepsForms/getRegions')
+        this.$store.dispatch('getRegions')
         this.$store.commit('stepsForms/setUrlHandler', this.urlHandler)
+        this.$store.commit('setLocalize', JSON.parse(this.localize))
         
         const id = this.$route.path.replace(/[^0-9]/g,"")
         if(this.isAuth && id) {

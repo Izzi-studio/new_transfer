@@ -40,6 +40,10 @@ Vue.prototype.globalGetDate = (dateStr) => {
     return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0])
 }
 
+Vue.prototype.trans = (key) => {
+    return store.state.localize[key] ? store.state.localize[key] : key
+}
+
 if (document.getElementById('app')) {
     new Vue({
         el: '#app',
@@ -56,7 +60,10 @@ if (document.getElementById('app')) {
             Electrician: () => import('./steps-forms/views/electrician/index'),
             Gartner: () => import('./steps-forms/views/gartner/index'),
             Carpenter: () => import('./steps-forms/views/carpenter/index'),
-            ProfileClient: () => import('./profiles/client/index')
+            ProfileClient: () => import('./profiles/client/index'),
+            ProfileFirma: () => import('./profiles/firma/index'),
+            ResellFirma: () => import('./resell-firma/index'),
+            SearchCompanies: () => import('./search-companies/index'),
         }
     });
 }

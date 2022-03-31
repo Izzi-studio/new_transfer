@@ -10,7 +10,7 @@
         </div>
         <div class="steps-form__inner">
             <div id="app">
-                <floorer url-handler="{{ $action }}" />
+                <floorer url-handler="{{ $action }}" localize="{{ json_encode(__('front')) }}" />
             </div>
         </div>
     </div>

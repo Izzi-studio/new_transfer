@@ -10,7 +10,7 @@
         </div>
         <div class="steps-form__inner">
             <div id="app">
-                <painting url-handler="{{ $action }}" />
+                <painting url-handler="{{ $action }}" localize="{{ json_encode(__('front')) }}" />
             </div>
         </div>
     </div>

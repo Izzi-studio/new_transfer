@@ -7,7 +7,7 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    Zurück
+                    {{ trans('zurich') }}
                 </button>
                 <div class="row mt-2">
                     <div class="col-md-6 mt-4">
@@ -31,9 +31,9 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">Das Passwort ist zu kurz</p>
+                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">{{ trans('confirm_password_err') }}</p>
                 
-                <h5 class="mt-5">Ich wünsche Anfragen für folgende Arbeiten*:</h5>
+                <h5 class="mt-5">{{ trans('form-labels.jobs') }}*:</h5>
                 <div class="row">
                     <div 
                         v-for="typesJob in typesJobs"
@@ -47,9 +47,9 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
+                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
                 
-                <button class="btn mt-4">Ausgefullt</button>
+                <button class="btn mt-4">{{ trans('partner-profile-btn') }}</button>
             </div>
         </div>
     </form>
@@ -73,7 +73,7 @@ export default {
             return this.fields.password === this.fields.password_confirmation
         },
         typesJobs() {
-            return this.$store.state.stepsForms.typesJobs
+            return this.$store.state.typesJobs
         }
     },
     methods: {

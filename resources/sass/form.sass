@@ -209,3 +209,46 @@ textarea
         background-position: center
     & input:checked ~ label:before
         background-image: url(/images/form-star_full.svg)
+
+.multiselect__tags
+    min-height: 46px
+    border: 1px solid #F9F9F9
+    box-shadow: 4px 4px 15px rgba(177, 177, 177, 0.2)
+    border-radius: 8px
+    padding-left: 22px
+    font-size: 15px
+    color: $headerColor
+.multiselect__select
+    background-image: url(/images/arrow_dark.svg)
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 11px
+    height: 100%
+    z-index: 1
+    &:before
+        display: none
+
+.multiselect-checkboxes
+    .multiselect__placeholder
+        display: none
+    .multiselect__tags
+        height: 100%
+        padding: 0
+        display: flex
+        align-items: center
+    .multiselect__single
+        padding-left: 22px
+        margin-bottom: 0
+        font-size: 15px
+        color: $headerColor
+    .multiselect__option
+        &::after
+            display: none
+        &.multiselect__option--selected
+            background: none
+            &::before
+                background-color: #004FA8
+                border-color: #004FA8
+        &.multiselect__option--highlight
+            background-color: #eaf4ff
+            color: #35495e

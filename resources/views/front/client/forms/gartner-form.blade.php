@@ -10,7 +10,7 @@
         </div>
         <div class="steps-form__inner">
             <div id="app">
-                <gartner url-handler="{{ $action }}" />
+                <gartner url-handler="{{ $action }}" localize="{{ json_encode(__('front')) }}" />
             </div>
         </div>
     </div>

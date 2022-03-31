@@ -28,7 +28,7 @@
                             <li class="header__subitem">
                                 <a 
                                     class="header__sublink" 
-                                    href="{{route('client.form.umzugundreinigung.view')}}"
+                                    href="{{route('client.form.umzug_und_reinigung.view')}}"
                                 >
                                     Umzug + Reinigung
                                 </a>
@@ -110,12 +110,12 @@
                 </li>
             </ul>
             <ul class="header__menu-inner">
+                <li class="header__item">
+                    <a class="header__link" href="{{ route('page.search.view') }}">Firmen</a>
+                </li>
                 @guest
                     <li class="header__item">
                         <a class="header__link" href="{{ route('login') }}">Anmeldung</a>
-                    </li>
-                    <li class="header__item">
-                        <a class="header__link header__link_partner" href="{{ route('partner.register.view') }}">Partner werden</a>
                     </li>
                 @else
                     @if(auth()->user()->isClient())
@@ -124,7 +124,7 @@
                         </li>
                     @elseif(auth()->user()->isPartner())
                         <li class="header__item">
-                            <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                            <a class="header__link" href="{{ route('partner.cabinet','personliche-daten/info') }}">{{auth()->user()->name}}</a>
                         </li>
                     @else
                         <li class="header__item">

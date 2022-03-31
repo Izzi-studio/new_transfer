@@ -29,7 +29,7 @@
                                 <option value="" selected disabled hidden>Bitte wahlen Sie einen Dienst</option>
                                 <option value="{{route('client.form.umzug.view')}}">Umzug</option>
                                 <option value="{{route('client.form.reinigung.view')}}">Reinigung</option>
-                                <option value="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</option>
+                                <option value="{{route('client.form.umzug_und_reinigung.view')}}">Umzug + Reinigung</option>
                                 <option value="{{route('client.form.malar.view')}}">Maler/Gipser</option>
                                 <option value="{{route('client.form.bodenleger.view')}}">Bodenleger</option>
                                 <option value="{{route('client.form.heizung.view')}}">Heizungsanbieter</option>
@@ -269,7 +269,7 @@
                 <h2 class="section-title">Jetzt Umzugs+Reinigungs Angebot einholen</h2>
                 @if(!(auth()->user() && auth()->user()->isPartner()))
                     <div class="d-flex justify-content-center banner-txt__wrap-btn">
-                        <a class="btn" href="{{route('client.form.umzugundreinigung.view')}}">Umzug + Reinigung</a>
+                        <a class="btn" href="{{route('client.form.umzug_und_reinigung.view')}}">Umzug + Reinigung</a>
                     </div>
                 @endif
             </div>

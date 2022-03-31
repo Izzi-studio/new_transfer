@@ -7,9 +7,9 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    Zurück
-                </button>            
-                <h5 class="mt-5">Wählen Sie Ihre Gebiete*:</h5>
+                    {{ trans('zurich') }}
+                </button>           
+                <h5 class="mt-5">{{ trans('form-labels.regions') }}*:</h5>
                 <div class="row">
                     <div 
                         v-for="region in regions"
@@ -23,7 +23,7 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
+                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
                 
                 <div class="d-flex mt-4">
                     <button 
@@ -31,9 +31,9 @@
                         type="button" 
                         @click="selectAll"
                     >
-                        Alle wählen!
+                        {{ trans('partner-select-all-btn') }}
                     </button>
-                    <button class="btn mx-4">Bereit!</button>
+                    <button class="btn mx-4">{{ trans('partner-regions-btn') }}</button>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@ export default {
             return this.fields['regions_ids[]'].length ? true : false
         },
         regions() {
-            return this.$store.state.stepsForms.regions
+            return this.$store.state.regions
         }
     },
     methods: {
