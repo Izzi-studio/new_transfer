@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Proposal extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['type','type_job_id','user_id','region_id','additional_info','description','date_start'];
+    protected $fillable = ['type','type_job_id','user_id','region_id','additional_info','description','date_start','resell','price','payed'];
     /**
      * The table associated with the model.
      *
@@ -39,6 +40,16 @@ class Proposal extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    public function scopeResellNoPay()
+    {
+        return $this->whereResell(1)->wherePayed(0);
+    }
+
 
     public function getRegion()
     {
@@ -49,7 +60,6 @@ class Proposal extends Model
     {
         return $this->hasMany('App\Models\Review', 'proposal_id', 'id');
     }
-
 
     public function getResponded()
     {

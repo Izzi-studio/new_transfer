@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -80,6 +81,30 @@ class User extends Authenticatable
     }
 
     /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getProposals(){
+
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->whereResell(0);
+    }
+
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getNewProposals(){
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->whereResell(0)
+            ->whereStatus('<>',0);
+    }
+
+    /**
      * Get Users Proposals by Type Job
      *
      * @param  int $typeJobId 1,2,3,4
@@ -88,11 +113,12 @@ class User extends Authenticatable
     public function getProposalsByTypeJob($typeJobId){
         return $this->hasMany('App\Models\Proposal','user_id','id')
             ->where('type_job_id',$typeJobId)
+            ->whereResell(0)
             ->orderBy('id','DESC');
     }
 
     /**
-     * Get Proposals to Partner
+     * Get Proposals to Client
      *
      * @return $query
      */
@@ -119,4 +145,120 @@ class User extends Authenticatable
 
     }
 
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getCountProposalsCabinet(){
+
+        $startDate = Carbon::now()->format('Y/m/d');
+
+        $new = $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->whereStatus(0)
+            ->whereResell(0)
+            ->where('date_start','>=',$startDate)
+            ->count();
+
+        $accepted = $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->whereResell(0)
+            ->whereStatus(1)
+            ->count();
+
+        return $new + $accepted;
+    }
+    /**
+     * Get Proposals to Partner  by status
+     *
+     * @param  int $status 0,1,2
+     * @return $query
+     */
+    public function getProposalsByStatusCabinet($status, $year = null, $month = null){
+        if($year != null && $month != null){
+            $datastart = Carbon::create()->startOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+            $dataend = Carbon::create()->endOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+
+            return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+                'user_id','id','id','proposal_id')
+                ->where('proposals_to_partner.status',$status)
+                ->whereResell(0)
+                ->whereBetween('proposals_to_partner.created_at',[$datastart, $dataend])
+                ->orderBy('id','DESC');
+        }
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->where('proposals_to_partner.status',$status)
+            ->whereResell(0)
+            ->orderBy('id','DESC');
+    }
+
+
+    /**
+     * Get Proposals to Partner  by status
+     *
+     * @param  int $status 0,1,2
+     * @return $query
+     */
+    public function getResellProposalsAccept($status, $year = null, $month = null){
+        if($year != null && $month != null){
+            $datastart = Carbon::create()->startOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+            $dataend = Carbon::create()->endOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+
+            return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+                'user_id','id','id','proposal_id')
+                ->where('proposals_to_partner.status',$status)
+                ->whereResell(1)
+                ->whereBetween('proposals_to_partner.created_at',[$datastart, $dataend])
+                ->orderBy('id','DESC');
+        }
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->where('proposals_to_partner.status',$status)
+            ->whereResell(1)
+            ->orderBy('id','DESC');
+    }
+
+    /**
+     * Get resell Proposals Partner
+     *
+     * @return $query
+     */
+    public function getResellProposals($year = null, $month = null){
+        if($year != null && $month != null){
+            $datastart = Carbon::create()->startOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+            $dataend = Carbon::create()->endOfMonth()->month($month)->year($year)->startOfMonth()->format('Y-m-d 00:00:00');
+
+            return $this->hasMany('App\Models\Proposal')
+                ->whereResell(1)
+                ->whereBetween('proposals_to_partner.created_at',[$datastart, $dataend])
+                ->orderBy('id','DESC');
+        }
+        return $this->hasMany('App\Models\Proposal')
+            ->whereResell(01)
+            ->orderBy('id','DESC');
+    }
+    /**
+     * Get Reviews
+
+     * @return $query
+     */
+    public function getReviews(){
+        return $this->hasOne('App\Models\Review','user_id_to','id')
+            ->orderBy('id','DESC')
+            ->withDefault(['*' => null]);
+    }
+    public function getRatingAVG(){
+        return $this->hasMany('App\Models\Review','user_id_to','id')->avg('rating');
+    }
+
+    /**
+     * Get Companies
+
+     * @return $query
+     */
+    public function scopeCompanies(){
+        return $this->whereRoleId(2);
+    }
 }
