@@ -40,6 +40,7 @@ return [
     'valais' => 'Valais',
     'zug' => 'Zug',
     'zurich' => 'Zürich',
+
     'weiter' => 'Weiter',
     'old_password_err' => 'Old pwd wrong',
     'confirm_password_err' => 'Das Passwort ist zu kurz',
@@ -97,5 +98,7 @@ return [
     'form-labels.password-confirmation' => 'Passwort bestätigen',
     'form-labels.regions' => 'Wählen Sie Ihre Gebiete',
     'form-labels.jobs' => 'Ich wünsche Anfragen für folgende Arbeiten',
+    'old_password_err' => 'Old pwd wrong'
+
 ];
 
