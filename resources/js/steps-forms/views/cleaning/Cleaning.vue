@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Reinigungstyp*</p>
+                            <p class="form-field__label">{{ trans('form-labels.cleaning-type') }}*</p>
                             <select v-model="fields['additional_info[cleaning]']" required>
                                 <option value="Umzugsreinigung">Umzugsreinigung</option>
                                 <option value="Fensterreinigung">Fensterreinigung</option>
@@ -18,7 +18,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Region*</p>
+                            <p class="form-field__label">{{ trans('form-labels.region') }}*</p>
                             <select v-model="fields['proposal[region_id]']" required>
                                 <option
                                     v-for="region in regions"
@@ -32,52 +32,61 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="PLZ*"
+                            :label="trans('form-labels.postcode') + '*'"
                             type="number"
                             required
-                            placeholder="PLZ*"
+                            :placeholder="trans('form-labels.postcode') + '*'"
                             v-model="fields['additional_info[zip]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Ort*"
+                            :label="trans('form-labels.city') + '*'"
                             type="text"
                             required
-                            placeholder="Ort*"
+                            :placeholder="trans('form-labels.city') + '*'"
                             v-model="fields['additional_info[city]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Strasse*"
+                            :label="trans('form-labels.street') + '*'"
                             type="text"
                             required
-                            placeholder="Strasse*"
+                            :placeholder="trans('form-labels.street') + '*'"
                             v-model="fields['additional_info[street]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Nr"
+                            :label="trans('form-labels.number')"
                             type="text"
-                            placeholder="Nr"
+                            :placeholder="trans('form-labels.number')"
                             v-model="fields['additional_info[number]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Auftragsdatum*</p>
+                            <p class="form-field__label">{{ trans('form-labels.date_start') }}*</p>
                             <date-picker
                                 ref="datePicker"
                                 :clearable="false"
-                                format="DD.MM.YYYY"
+                                format="YYYY-MM-DD"
                                 v-model="date"
                             />
                         </div>
                     </div>
+                    <div v-if="isPartner" class="col-md-6 mt-4">
+                        <form-field
+                            :label="trans('form-labels.price') + '*'"
+                            type="number"
+                            required
+                            :placeholder="trans('form-labels.price') + '*'"
+                            v-model="fields['proposal[price]']"
+                        />
+                    </div>
                 </div>
-                <h5 class="mt-5">Ich wünsche Anfragen für folgende Arbeiten:</h5>
+                <h5 class="mt-5">{{ trans('form-labels.dayrange') }}:</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -108,7 +117,7 @@
                         />
                     </div>
                 </div>
-                <h5 class="mt-5">Haustyp</h5>
+                <h5 class="mt-5">{{ trans('form-labels.house_type') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -125,7 +134,7 @@
                         />
                     </div>
                 </div>
-                <h5 class="mt-5">Lift</h5>
+                <h5 class="mt-5">{{ trans('form-labels.lift') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -145,33 +154,33 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Stock*"
+                            :label="trans('form-labels.floor') + '*'"
                             type="text"
                             required
-                            placeholder="Stock*"
+                            :placeholder="trans('form-labels.floor') + '*'"
                             v-model="fields['additional_info[floor]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Anzahl der Zimmer*"
+                            :label="trans('form-labels.rooms') + '*'"
                             type="text"
                             required
-                            placeholder="Anzahl der Zimmer*"
+                            :placeholder="trans('form-labels.rooms') + '*'"
                             v-model="fields['additional_info[rooms]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Fläche in m2*"
+                            :label="trans('form-labels.square') + '*'"
                             type="text"
                             required
-                            placeholder="Fläche in m2*"
+                            :placeholder="trans('form-labels.square') + '*'"
                             v-model="fields['additional_info[square]']"
                         />
                     </div>
                 </div>
-                <h5 class="mt-5">Andere Info</h5>
+                <h5 class="mt-5">{{ trans('form-labels.other') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
@@ -226,12 +235,12 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Bemerkungen</p>
-                            <textarea v-model="fields['proposal[description]']" placeholder="Bemerkungen"></textarea>
+                            <p class="form-field__label">{{ trans('form-labels.description') }}</p>
+                            <textarea v-model="fields['proposal[description]']" :placeholder="trans('form-labels.description')"></textarea>
                         </div>
                     </div>
                 </div>
-                <button class="btn mt-5">Weiter</button>
+                <button class="btn mt-5">{{ trans('weiter') }}</button>
             </div>
         </div>
     </form>
@@ -266,7 +275,17 @@ export default {
         },
         initialData() {
             return this.$store.state.stepsForms.initialData
-        }
+        },
+        isAuth() {
+            return document.querySelector('body').dataset.isAuth == 'true'
+        },
+        isPartner() {
+            if(this.isAuth) {
+                return document.querySelector('body').dataset.userAuth == 'partner'
+            } else {
+                return false
+            }
+        },
     },
     watch: {
         date() {
@@ -296,7 +315,11 @@ export default {
         this.updateDate()
         if(this.$route.query.zip) {
             this.fields['additional_info[zip]'] = this.$route.query.zip
-        } 
+        }
+
+        if(this.isPartner) {
+            this.$set(this.fields, 'proposal[price]', '')
+        }
     },
     methods: {
         updateDate() {

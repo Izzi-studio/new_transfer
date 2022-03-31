@@ -39,7 +39,7 @@
             <p v-if="isPartner" class="offer__desc">{{ offerDesc }}</p>
             <div class="offer__actions">
                 <button 
-                    v-if="requestsStatus === 'new'" 
+                    v-if="isShowBtnAdd" 
                     class="offer__accept" 
                     type="button"
                     @click="$emit('addOffer', data.id)"
@@ -47,10 +47,7 @@
                     Akzeptieren
                 </button>
                 <a 
-                    v-if="
-                        requestsStatus === 'accepted' ||
-                        requestsStatus === 'review'
-                    " 
+                    v-if="isShowBtnDownload" 
                     class="offer__download"
                     :href="'/proposals/download/' + data.id"
                     download 
@@ -68,11 +65,7 @@
                 <button 
                     class="offer__cancel" 
                     type="button"
-                    v-if="
-                        requestsStatus != 'rejected' && 
-                        requestsStatus != 'accepted' &&
-                        requestsStatus != 'review'
-                    "
+                    v-if="isShowBtnCancel"
                     @click="$emit('deleteOffer', data.id)"
                 >
                     Ablehnen
@@ -98,6 +91,13 @@
             :data="data.responded_partners"
             :offer-id="data.id"
         />
+        <p 
+            class="mt-2"
+            style="color: #1072D8;" 
+            v-if="data.price"
+        >
+            <strong>Preise {{ data.price }} €</strong>
+        </p>
     </div>
 </template>
 
@@ -110,7 +110,7 @@ import OfferDetailsTransferCleaning from './OfferDetailsTransferCleaning'
 import OfferDetailsFlexble from './OfferDetailsFlexble'
 
 export default {
-    props: ['data', 'typeJobId', 'requestsStatus'],
+    props: ['data', 'typeJobId', 'isShowBtnDownload', 'isShowBtnCancel', 'isShowBtnAdd'],
     data: function() {
         return {
             isShowDetails: false,

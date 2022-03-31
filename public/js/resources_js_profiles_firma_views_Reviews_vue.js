@@ -125,7 +125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['data', 'typeJobId', 'requestsStatus'],
+  props: ['data', 'typeJobId', 'isShowBtnDownload', 'isShowBtnCancel', 'isShowBtnAdd'],
   data: function data() {
     return {
       isShowDetails: false,
@@ -1252,7 +1252,7 @@ var render = function () {
           : _vm._e(),
         _vm._v(" "),
         _c("div", { staticClass: "offer__actions" }, [
-          _vm.requestsStatus === "new"
+          _vm.isShowBtnAdd
             ? _c(
                 "button",
                 {
@@ -1268,7 +1268,7 @@ var render = function () {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.requestsStatus === "accepted" || _vm.requestsStatus === "review"
+          _vm.isShowBtnDownload
             ? _c(
                 "a",
                 {
@@ -1296,9 +1296,7 @@ var render = function () {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.requestsStatus != "rejected" &&
-          _vm.requestsStatus != "accepted" &&
-          _vm.requestsStatus != "review"
+          _vm.isShowBtnCancel
             ? _c(
                 "button",
                 {
@@ -1344,6 +1342,12 @@ var render = function () {
               "offer-id": _vm.data.id,
             },
           })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.data.price
+        ? _c("p", { staticClass: "mt-2", staticStyle: { color: "#1072D8" } }, [
+            _c("strong", [_vm._v("Preise " + _vm._s(_vm.data.price) + " €")]),
+          ])
         : _vm._e(),
     ],
     1
@@ -2113,7 +2117,7 @@ var render = function () {
               attrs: {
                 data: card.proposal,
                 "type-job-id": card.proposal.type_job_id,
-                "requests-status": "review",
+                "is-show-btn-download": true,
               },
             }),
             _vm._v(" "),

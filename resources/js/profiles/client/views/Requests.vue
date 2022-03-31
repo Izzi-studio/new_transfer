@@ -8,6 +8,7 @@
                 :key="card.id"
                 :data="card"
                 :type-job-id="card.type_job_id"
+                :is-show-btn-cancel="true"
                 class="mt-4"
                 @deleteOffer="deleteOffer"
             />

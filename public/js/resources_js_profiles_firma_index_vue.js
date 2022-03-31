@@ -70,51 +70,112 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      prefix: '/firmenkonto',
-      menu: [{
+  computed: {
+    menu: function menu() {
+      return [{
         text: 'Persönliche Daten',
-        to: '/personliche-daten',
         submenu: [{
           text: 'Info',
-          to: '/info'
+          to: {
+            name: 'personalData_firma'
+          }
         }, {
           text: 'Passwort ändern',
-          to: '/passwort-andern'
+          to: {
+            name: 'changePassword_firma'
+          }
         }]
       }, {
         text: 'Anfragen',
-        to: '/anfragen',
         submenu: [{
           text: 'Offene',
-          to: '/offene'
+          to: {
+            params: {
+              requests: 'offene'
+            },
+            name: 'requests_firma'
+          }
         }, {
           text: 'Angenommene',
-          to: '/angenommene'
+          to: {
+            params: {
+              requests: 'angenommene'
+            },
+            name: 'requests_firma'
+          }
         }, {
           text: 'Abgesagte',
-          to: '/abgesagte'
+          to: {
+            params: {
+              requests: 'abgesagte'
+            },
+            name: 'requests_firma'
+          }
+        }]
+      }, {
+        text: 'Anträge von Firmen',
+        submenu: [{
+          text: 'Ich verkaufe',
+          to: {
+            params: {
+              requests: 'verkaufe'
+            },
+            name: 'sellRequests_firma'
+          }
+        }, {
+          text: 'Ich kaufe',
+          to: {
+            params: {
+              requests: 'kaufe'
+            },
+            name: 'sellRequests_firma'
+          }
+        }, {
+          text: 'Anfrage verkaufen',
+          to: {
+            name: 'sellList_firma'
+          }
+        }, {
+          text: 'Wiederverkauf',
+          href: this.$store.state.additionalInfo.resellUrl
         }]
       }, {
         text: 'Abgeschlossene Bewerbungen',
-        to: '/reviews'
+        to: {
+          name: 'reviews_firma'
+        }
       }, {
         text: 'Guthaben Aufladen',
-        to: '/payment'
+        to: {
+          name: 'payment_firma'
+        }
       }, {
         text: 'Preise',
-        to: '/preise'
-      }]
-    };
-  },
-  computed: {
+        to: {
+          name: 'prices_firma'
+        }
+      }];
+    },
     allProposals: function allProposals() {
       return this.$store.state.profile.allProposals;
     },
     newProposals: function newProposals() {
       return this.$store.state.profile.newProposals;
+    },
+    currentComponentName: function currentComponentName() {
+      return this.$route.name;
     }
   }
 });
@@ -157,8 +218,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['additionalInfo'],
   data: function data() {
     return {
       isShowSidebarMob: false
@@ -166,6 +234,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.$store.dispatch('profile/getProposalsCounts');
+    this.$store.commit('setAdditionalInfo', JSON.parse(this.additionalInfo));
   },
   components: {
     Sidebar: _Sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -334,13 +403,17 @@ var render = function () {
       return _c(
         "div",
         {
-          key: menuItem.to,
+          key: menuItem.text,
           staticClass: "profile-sidebar__item",
           class: {
             "profile-sidebar__item_has-sublist": menuItem.submenu,
-            "profile-sidebar__item_active": _vm.$route.path.includes(
-              menuItem.to
-            ),
+            "profile-sidebar__item_active":
+              menuItem.submenu &&
+              menuItem.submenu
+                .map(function (i) {
+                  return i.to && i.to.name
+                })
+                .includes(_vm.currentComponentName),
           },
         },
         [
@@ -362,14 +435,12 @@ var render = function () {
                       ? [
                           _vm._v(
                             "\n                    " +
-                              _vm._s(
-                                _vm.allProposals && "(" + _vm.allProposals + ")"
-                              ) +
+                              _vm._s("(" + _vm.allProposals + ")") +
                               "\n                    "
                           ),
                           _vm.newProposals
                             ? _c("span", { staticClass: "ms-auto me-3" }, [
-                                _vm._v(_vm._s(_vm.newProposals)),
+                                _vm._v("+" + _vm._s(_vm.newProposals)),
                               ])
                             : _vm._e(),
                         ]
@@ -395,7 +466,7 @@ var render = function () {
                         staticClass: "profile-sidebar__link",
                         attrs: {
                           "active-class": "profile-sidebar__link_active",
-                          to: _vm.prefix + menuItem.to,
+                          to: menuItem.to,
                         },
                       },
                       [
@@ -419,7 +490,7 @@ var render = function () {
                   return _c(
                     "li",
                     {
-                      key: subItem.to,
+                      key: subItem.text,
                       staticClass: "profile-sidebar__subitem",
                       on: {
                         click: function ($event) {
@@ -428,23 +499,40 @@ var render = function () {
                       },
                     },
                     [
-                      _c(
-                        "router-link",
-                        {
-                          staticClass: "profile-sidebar__sublink",
-                          attrs: {
-                            "active-class": "profile-sidebar__sublink_active",
-                            to: _vm.prefix + menuItem.to + subItem.to,
-                          },
-                        },
-                        [
-                          _vm._v(
-                            "\n                    " +
-                              _vm._s(subItem.text) +
-                              "\n                "
+                      subItem.to
+                        ? _c(
+                            "router-link",
+                            {
+                              staticClass: "profile-sidebar__sublink",
+                              attrs: {
+                                "active-class":
+                                  "profile-sidebar__sublink_active",
+                                to: subItem.to,
+                                exact: "",
+                              },
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(subItem.text) +
+                                  "\n                "
+                              ),
+                            ]
+                          )
+                        : _c(
+                            "a",
+                            {
+                              staticClass: "profile-sidebar__sublink",
+                              attrs: { href: subItem.href },
+                            },
+                            [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(subItem.text) +
+                                  "\n                "
+                              ),
+                            ]
                           ),
-                        ]
-                      ),
                     ],
                     1
                   )
@@ -481,52 +569,67 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row" }, [
-    _c(
-      "div",
-      { staticClass: "col-lg-4 mt-2 mt-lg-4" },
-      [
-        _c("sidebar", {
-          class: { "d-none d-lg-block": !_vm.isShowSidebarMob },
-          on: {
-            clickToLink: function ($event) {
-              _vm.isShowSidebarMob = false
-            },
-          },
-        }),
-      ],
-      1
-    ),
+  return _c("div", [
+    _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "col-lg-8 mt-2 mt-lg-4" }, [
+    _c("div", { staticClass: "row mt-4" }, [
       _c(
         "div",
-        {
-          staticClass: "profile-info",
-          class: { "d-none d-lg-block": _vm.isShowSidebarMob },
-        },
+        { staticClass: "col-lg-4 mt-2 mt-lg-4" },
         [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn_theme_gray mb-4 d-block d-lg-none mb-4",
-              on: {
-                click: function ($event) {
-                  _vm.isShowSidebarMob = true
-                },
+          _c("sidebar", {
+            class: { "d-none d-lg-block": !_vm.isShowSidebarMob },
+            on: {
+              clickToLink: function ($event) {
+                _vm.isShowSidebarMob = false
               },
             },
-            [_vm._v("\n                Zurück\n            ")]
-          ),
-          _vm._v(" "),
-          _c("router-view", { key: _vm.$route.path }),
+          }),
         ],
         1
       ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-lg-8 mt-2 mt-lg-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "profile-info",
+            class: { "d-none d-lg-block": _vm.isShowSidebarMob },
+          },
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn_theme_gray mb-4 d-block d-lg-none mb-4",
+                on: {
+                  click: function ($event) {
+                    _vm.isShowSidebarMob = true
+                  },
+                },
+              },
+              [_vm._v("\n                    Zurück\n                ")]
+            ),
+            _vm._v(" "),
+            _c("router-view", { key: _vm.$route.path }),
+          ],
+          1
+        ),
+      ]),
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "profile__header" }, [
+      _c("h1", { staticClass: "section-title" }, [_vm._v("Mein Konto")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "profile__bill" }, [_vm._v("CHF: 00.00")]),
+    ])
+  },
+]
 render._withStripped = true
 
 

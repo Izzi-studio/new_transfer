@@ -9,7 +9,7 @@
             <card
                 :data="card.proposal"
                 :type-job-id="card.proposal.type_job_id"
-                requests-status="review"
+                :is-show-btn-download="true"
             />
             <div class="review mt-4">
                 <img class="review__img" :src="card.avatar" alt="">

@@ -2231,6 +2231,10 @@ vue__WEBPACK_IMPORTED_MODULE_13__["default"].prototype.globalGetDate = function 
   return new Date(+dateParts[2], dateParts[1] - 1, +dateParts[0]);
 };
 
+vue__WEBPACK_IMPORTED_MODULE_13__["default"].prototype.trans = function (key) {
+  return _store__WEBPACK_IMPORTED_MODULE_1__["default"].state.localize[key] ? _store__WEBPACK_IMPORTED_MODULE_1__["default"].state.localize[key] : key;
+};
+
 if (document.getElementById('app')) {
   new vue__WEBPACK_IMPORTED_MODULE_13__["default"]({
     el: '#app',
@@ -2272,6 +2276,12 @@ if (document.getElementById('app')) {
       },
       ProfileFirma: function ProfileFirma() {
         return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./profiles/firma/index */ "./resources/js/profiles/firma/index.vue"));
+      },
+      ResellFirma: function ResellFirma() {
+        return __webpack_require__.e(/*! import() */ "resources_js_resell-firma_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./resell-firma/index */ "./resources/js/resell-firma/index.vue"));
+      },
+      SearchCompanies: function SearchCompanies() {
+        return __webpack_require__.e(/*! import() */ "resources_js_search-companies_index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./search-companies/index */ "./resources/js/search-companies/index.vue"));
       }
     }
   });
@@ -2527,57 +2537,80 @@ __webpack_require__.r(__webpack_exports__);
 
 
 vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var lang = document.querySelector('html').lang === 'de' ? '' : '/en';
+var routes = [{
+  path: '/benutzerkonto/personliche-daten/info',
+  name: 'personalData_client',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_PersonalData_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/PersonalData.vue */ "./resources/js/profiles/client/views/PersonalData.vue"));
+  }
+}, {
+  path: '/benutzerkonto/personliche-daten/passwort-andern',
+  name: 'changePassword_client',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_ChangePassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/ChangePassword.vue */ "./resources/js/profiles/client/views/ChangePassword.vue"));
+  }
+}, {
+  path: '/benutzerkonto/:typeJob',
+  name: 'requests_client',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_Requests_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/Requests.vue */ "./resources/js/profiles/client/views/Requests.vue"));
+  }
+}, {
+  path: '/firmenkonto/personliche-daten/info',
+  name: 'personalData_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_PersonalData_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/PersonalData.vue */ "./resources/js/profiles/firma/views/PersonalData.vue"));
+  }
+}, {
+  path: '/firmenkonto/personliche-daten/passwort-andern',
+  name: 'changePassword_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_ChangePassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/ChangePassword.vue */ "./resources/js/profiles/firma/views/ChangePassword.vue"));
+  }
+}, {
+  path: '/firmenkonto/anfragen/:requests',
+  name: 'requests_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Requests_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Requests.vue */ "./resources/js/profiles/firma/views/Requests.vue"));
+  }
+}, {
+  path: '/firmenkonto/guthaben-aufladen',
+  name: 'payment_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Payment_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Payment.vue */ "./resources/js/profiles/firma/views/Payment.vue"));
+  }
+}, {
+  path: '/firmenkonto/reviews',
+  name: 'reviews_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Reviews_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Reviews.vue */ "./resources/js/profiles/firma/views/Reviews.vue"));
+  }
+}, {
+  path: '/firmenkonto/preise',
+  name: 'prices_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Prices_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Prices.vue */ "./resources/js/profiles/firma/views/Prices.vue"));
+  }
+}, {
+  path: '/firmenkonto/antrag-von-firma/anfrage-verkaufen',
+  name: 'sellList_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_SellList_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/SellList.vue */ "./resources/js/profiles/firma/views/SellList.vue"));
+  }
+}, {
+  path: '/firmenkonto/antrag-von-firma/:requests',
+  name: 'sellRequests_firma',
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_SellRequests_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/SellRequests.vue */ "./resources/js/profiles/firma/views/SellRequests.vue"));
+  }
+}].map(function (i) {
+  i.path = lang + i.path;
+  return i;
+});
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  routes: [{
-    path: '/benutzerkonto/personliche-daten/info',
-    name: 'personalData_client',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_PersonalData_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/PersonalData.vue */ "./resources/js/profiles/client/views/PersonalData.vue"));
-    }
-  }, {
-    path: '/benutzerkonto/personliche-daten/passwort-andern',
-    name: 'changePassword_client',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_ChangePassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/ChangePassword.vue */ "./resources/js/profiles/client/views/ChangePassword.vue"));
-    }
-  }, {
-    path: '/benutzerkonto/:typeJob',
-    name: 'requests_client',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_client_views_Requests_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/client/views/Requests.vue */ "./resources/js/profiles/client/views/Requests.vue"));
-    }
-  }, {
-    path: '/firmenkonto/personliche-daten/info',
-    name: 'personalData_firma',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_PersonalData_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/PersonalData.vue */ "./resources/js/profiles/firma/views/PersonalData.vue"));
-    }
-  }, {
-    path: '/firmenkonto/personliche-daten/passwort-andern',
-    name: 'changePassword_firma',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_ChangePassword_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/ChangePassword.vue */ "./resources/js/profiles/firma/views/ChangePassword.vue"));
-    }
-  }, {
-    path: '/firmenkonto/anfragen/:requests',
-    name: 'requests_firma',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Requests_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Requests.vue */ "./resources/js/profiles/firma/views/Requests.vue"));
-    }
-  }, {
-    path: '/firmenkonto/reviews',
-    name: 'reviews_firma',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Reviews_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Reviews.vue */ "./resources/js/profiles/firma/views/Reviews.vue"));
-    }
-  }, {
-    path: '/firmenkonto/preise',
-    name: 'prices_firma',
-    component: function component() {
-      return __webpack_require__.e(/*! import() */ "resources_js_profiles_firma_views_Prices_vue").then(__webpack_require__.bind(__webpack_require__, /*! ../profiles/firma/views/Prices.vue */ "./resources/js/profiles/firma/views/Prices.vue"));
-    }
-  }]
+  routes: routes
 });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
 
@@ -2606,10 +2639,18 @@ vue__WEBPACK_IMPORTED_MODULE_2__["default"].use(vuex__WEBPACK_IMPORTED_MODULE_3_
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (new vuex__WEBPACK_IMPORTED_MODULE_3__["default"].Store({
   state: {
     typesJobs: [],
-    regions: []
+    regions: [],
+    localize: {},
+    additionalInfo: {}
   },
-  getters: {},
-  mutations: {},
+  mutations: {
+    setLocalize: function setLocalize(state, payload) {
+      state.localize = payload;
+    },
+    setAdditionalInfo: function setAdditionalInfo(state, payload) {
+      state.additionalInfo = payload;
+    }
+  },
   actions: {
     getTypeJobs: function getTypeJobs(context) {
       axios.get('/api/front/types-jobs').then(function (_ref) {
@@ -48974,7 +49015,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_steps-forms_views_register-partner_index_vue":1,"resources_js_steps-forms_views_transfer_index_vue":1,"resources_js_steps-forms_views_cleaning_index_vue":1,"resources_js_steps-forms_views_transfer-cleaning_index_vue":1,"resources_js_steps-forms_views_painting_index_vue":1,"resources_js_steps-forms_views_floorer_index_vue":1,"resources_js_steps-forms_views_heating_index_vue":1,"resources_js_steps-forms_views_electrician_index_vue":1,"resources_js_steps-forms_views_gartner_index_vue":1,"resources_js_steps-forms_views_carpenter_index_vue":1,"resources_js_profiles_client_index_vue":1,"resources_js_profiles_firma_index_vue":1,"resources_js_profiles_client_views_PersonalData_vue":1,"resources_js_profiles_client_views_ChangePassword_vue":1,"resources_js_profiles_client_views_Requests_vue":1,"resources_js_profiles_firma_views_PersonalData_vue":1,"resources_js_profiles_firma_views_ChangePassword_vue":1,"resources_js_profiles_firma_views_Requests_vue":1,"resources_js_profiles_firma_views_Reviews_vue":1,"resources_js_profiles_firma_views_Prices_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_steps-forms_views_register-partner_index_vue":1,"resources_js_steps-forms_views_transfer_index_vue":1,"resources_js_steps-forms_views_cleaning_index_vue":1,"resources_js_steps-forms_views_transfer-cleaning_index_vue":1,"resources_js_steps-forms_views_painting_index_vue":1,"resources_js_steps-forms_views_floorer_index_vue":1,"resources_js_steps-forms_views_heating_index_vue":1,"resources_js_steps-forms_views_electrician_index_vue":1,"resources_js_steps-forms_views_gartner_index_vue":1,"resources_js_steps-forms_views_carpenter_index_vue":1,"resources_js_profiles_client_index_vue":1,"resources_js_profiles_firma_index_vue":1,"resources_js_resell-firma_index_vue":1,"resources_js_search-companies_index_vue":1,"resources_js_profiles_client_views_PersonalData_vue":1,"resources_js_profiles_client_views_ChangePassword_vue":1,"resources_js_profiles_client_views_Requests_vue":1,"resources_js_profiles_firma_views_PersonalData_vue":1,"resources_js_profiles_firma_views_ChangePassword_vue":1,"resources_js_profiles_firma_views_Requests_vue":1,"resources_js_profiles_firma_views_Payment_vue":1,"resources_js_profiles_firma_views_Reviews_vue":1,"resources_js_profiles_firma_views_Prices_vue":1,"resources_js_profiles_firma_views_SellList_vue":1,"resources_js_profiles_firma_views_SellRequests_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

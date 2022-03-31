@@ -7,12 +7,12 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    Zurück
-                </button> 
+                    {{ trans('zurich') }}
+                </button>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Fenster</p>
+                            <p class="form-field__label">{{ trans('form-labels.windows') }}</p>
                             <select v-model="fields['additional_info[windows]']">
                                 <option value="">-</option>
                                 <option value="1">1</option>
@@ -31,7 +31,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Dusche /WC </p>
+                            <p class="form-field__label">{{ trans('form-labels.shower_wc') }}</p>
                             <select v-model="fields['additional_info[shower_wc]']">
                                 <option value="">-</option>
                                 <option value="1">1</option>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">BAD / WC *</p>
+                            <p class="form-field__label">{{ trans('form-labels.bath_wc') }}</p>
                             <select v-model="fields['additional_info[bath_wc]']">
                                 <option value="">-</option>
                                 <option value="1">1</option>
@@ -59,7 +59,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">WC * </p>
+                            <p class="form-field__label">{{ trans('form-labels.wc') }}</p>
                             <select v-model="fields['additional_info[wc]']">
                                 <option value="">-</option>
                                 <option value="1">1</option>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Bodentyp*</p>
+                            <p class="form-field__label">{{ trans('form-labels.soil_type') }}</p>
                             <select v-model="fields['additional_info[soil_type]']">
                                 <option value="">-</option>
                                 <option value="Parkett">Parkett</option>
@@ -87,7 +87,7 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Fenstergrösse *</p>
+                            <p class="form-field__label">{{ trans('form-labels.window_size') }}</p>
                             <select v-model="fields['additional_info[window_size]']">
                                 <option value="">-</option>
                                 <option value="Höhe 120cm Breite 60cm">Höhe 120cm Breite 60cm</option>
@@ -99,7 +99,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="btn mt-5">Weiter</button>
+                <button class="btn mt-5">{{ trans('weiter') }}</button>
             </div>
         </div>
     </form>

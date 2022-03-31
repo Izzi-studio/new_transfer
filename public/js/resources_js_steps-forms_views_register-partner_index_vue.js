@@ -176,7 +176,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     fileName: function fileName() {
-      return this.fields.upload_file && this.fields.upload_file.name || 'UPLOAD FILE';
+      return this.fields.upload_file && this.fields.upload_file.name || this.trans('form-labels.upload-file');
     }
   },
   methods: {
@@ -424,12 +424,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      progressText: ['Allgemeine Daten', 'Profil', 'Region']
-    };
-  },
+  props: ['localize'],
   computed: {
+    progressText: function progressText() {
+      var arr = [];
+      arr.push(this.trans('label-step.general-data'));
+      arr.push(this.trans('label-step.profile'));
+      arr.push(this.trans('label-step.regions'));
+      return arr;
+    },
     currentStep: function currentStep() {
       return this.$store.state.stepsForms.currentStep;
     }
@@ -438,6 +441,7 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch('getTypeJobs');
     this.$store.dispatch('getRegions');
     this.$store.commit('stepsForms/setUrlHandler', '/partner-werden');
+    this.$store.commit('setLocalize', JSON.parse(this.localize));
   },
   components: {
     FormProgress: _FormProgress__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -869,10 +873,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Vorname*",
+                    label: _vm.trans("form-labels.name") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Vorname*",
+                    placeholder: _vm.trans("form-labels.name") + "*",
                   },
                   model: {
                     value: _vm.fields.name,
@@ -892,10 +896,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Nachname*",
+                    label: _vm.trans("form-labels.lastname") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Nachname*",
+                    placeholder: _vm.trans("form-labels.lastname") + "*",
                   },
                   model: {
                     value: _vm.fields.lastname,
@@ -915,10 +919,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "PLZ*",
+                    label: _vm.trans("form-labels.postcode") + "*",
                     type: "number",
                     required: "",
-                    placeholder: "PLZ*",
+                    placeholder: _vm.trans("form-labels.postcode") + "*",
                   },
                   model: {
                     value: _vm.fields.postcode,
@@ -938,10 +942,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Ort*",
+                    label: _vm.trans("form-labels.city") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Ort*",
+                    placeholder: _vm.trans("form-labels.city") + "*",
                   },
                   model: {
                     value: _vm.fields.city,
@@ -961,10 +965,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Strasse*",
+                    label: _vm.trans("form-labels.street") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Strasse*",
+                    placeholder: _vm.trans("form-labels.street") + "*",
                   },
                   model: {
                     value: _vm.fields.street,
@@ -984,10 +988,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Hausnummer*",
+                    label: _vm.trans("form-labels.house") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Hausnummer*",
+                    placeholder: _vm.trans("form-labels.house") + "*",
                   },
                   model: {
                     value: _vm.fields.house,
@@ -1007,10 +1011,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "E-Mail*",
+                    label: _vm.trans("form-labels.email") + "*",
                     type: "email",
                     required: "",
-                    placeholder: "E-Mail*",
+                    placeholder: _vm.trans("form-labels.email") + "*",
                   },
                   model: {
                     value: _vm.fields.email,
@@ -1030,10 +1034,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Telefon*",
+                    label: _vm.trans("form-labels.phone") + "*",
                     type: "tel",
                     required: "",
-                    placeholder: "Telefon*",
+                    placeholder: _vm.trans("form-labels.phone") + "*",
                   },
                   model: {
                     value: _vm.fields.phone,
@@ -1053,10 +1057,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Unternehmen*",
+                    label: _vm.trans("form-labels.company") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Unternehmen*",
+                    placeholder: _vm.trans("form-labels.company") + "*",
                   },
                   model: {
                     value: _vm.fields.company,
@@ -1087,25 +1091,18 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "col-md-6 mt-4" }, [
+              _c("button", { staticClass: "btn btn_width_max" }, [
+                _vm._v(_vm._s(_vm.trans("partner-general-data-btn"))),
+              ]),
+            ]),
           ]),
         ]),
       ]),
     ]
   )
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-6 mt-4" }, [
-      _c("button", { staticClass: "btn btn_width_max" }, [
-        _vm._v("Starten Sie Ihre Problemitgliedschaft"),
-      ]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -1155,7 +1152,13 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("\n                Zurück\n            ")]
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("zurich")) +
+                  "\n            "
+              ),
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "row mt-2" }, [
@@ -1221,11 +1224,11 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Das Passwort ist zu kurz")]
+            [_vm._v(_vm._s(_vm.trans("confirm_password_err")))]
           ),
           _vm._v(" "),
           _c("h5", { staticClass: "mt-5" }, [
-            _vm._v("Ich wünsche Anfragen für folgende Arbeiten*:"),
+            _vm._v(_vm._s(_vm.trans("form-labels.jobs")) + "*:"),
           ]),
           _vm._v(" "),
           _c(
@@ -1266,10 +1269,12 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Bitte wählen Sie etwas aus der Liste aus!")]
+            [_vm._v(_vm._s(_vm.trans("err-empty-list")))]
           ),
           _vm._v(" "),
-          _c("button", { staticClass: "btn mt-4" }, [_vm._v("Ausgefullt")]),
+          _c("button", { staticClass: "btn mt-4" }, [
+            _vm._v(_vm._s(_vm.trans("partner-profile-btn"))),
+          ]),
         ]),
       ]),
     ]
@@ -1325,11 +1330,17 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("\n                Zurück\n            ")]
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("zurich")) +
+                  "\n            "
+              ),
+            ]
           ),
           _vm._v(" "),
           _c("h5", { staticClass: "mt-5" }, [
-            _vm._v("Wählen Sie Ihre Gebiete*:"),
+            _vm._v(_vm._s(_vm.trans("form-labels.regions")) + "*:"),
           ]),
           _vm._v(" "),
           _c(
@@ -1370,7 +1381,7 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Bitte wählen Sie etwas aus der Liste aus!")]
+            [_vm._v(_vm._s(_vm.trans("err-empty-list")))]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "d-flex mt-4" }, [
@@ -1381,10 +1392,18 @@ var render = function () {
                 attrs: { type: "button" },
                 on: { click: _vm.selectAll },
               },
-              [_vm._v("\n                    Alle wählen!\n                ")]
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("partner-select-all-btn")) +
+                    "\n                "
+                ),
+              ]
             ),
             _vm._v(" "),
-            _c("button", { staticClass: "btn mx-4" }, [_vm._v("Bereit!")]),
+            _c("button", { staticClass: "btn mx-4" }, [
+              _vm._v(_vm._s(_vm.trans("partner-regions-btn"))),
+            ]),
           ]),
         ]),
       ]),

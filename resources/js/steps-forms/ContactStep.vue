@@ -7,12 +7,12 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    Zurück
-                </button> 
+                    {{ trans('zurich') }}
+                </button>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Anrede*</p>
+                            <p class="form-field__label">{{ trans('form-labels.gender') }}*</p>
                             <select v-model="fields['client[gender]']" required>
                                 <option value="Herr">Herr</option>
                                 <option value="Frau">Frau</option>
@@ -21,51 +21,51 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Vorname*"
+                            :label="trans('form-labels.name') + '*'"
                             type="text"
                             required
-                            placeholder="Vorname*"
+                            :placeholder="trans('form-labels.name') + '*'"
                             v-model="fields['client[name]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Nachname*"
+                            :label="trans('form-labels.lastname') + '*'"
                             type="text"
                             required
-                            placeholder="Nachname*"
+                            :placeholder="trans('form-labels.lastname') + '*'"
                             v-model="fields['client[lastname]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Telefon*"
+                            :label="trans('form-labels.phone') + '*'"
                             type="tel"
-                            placeholder="Telefon*"
+                            :placeholder="trans('form-labels.phone') + '*'"
                             v-model="fields['client[phone]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="E-Mail*"
+                            :label="trans('form-labels.email') + '*'"
                             type="email"
                             required
-                            placeholder="E-Mail*"
+                            :placeholder="trans('form-labels.email') + '*'"
                             v-model="fields['client[email]']"
                         />
-                        <p v-show="isHasEmail && isSended" class="text-danger mt-3">E-Mail existiert bereits!</p>
+                        <p v-show="isHasEmail && isSended" class="text-danger mt-3">{{ trans('err-has-email') }}</p>
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Erreichbarkeit*"
+                            :label="trans('form-labels.availability') + '*'"
                             type="text"
                             required
-                            placeholder="Erreichbarkeit*"
+                            :placeholder="trans('form-labels.availability') + '*'"
                             v-model="fields['client[availability]']"
                         />
                     </div>
                 </div>
-                <button class="btn mt-5">Weiter</button>
+                <button class="btn mt-5">{{ trans('weiter') }}</button>
             </div>
         </div>
     </form>

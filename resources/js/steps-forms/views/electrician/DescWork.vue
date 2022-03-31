@@ -5,7 +5,7 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Region*</p>
+                            <p class="form-field__label">{{ trans('form-labels.region') }}*</p>
                             <select v-model="fields['proposal[region_id]']" required>
                                 <option
                                     v-for="region in regions"
@@ -19,52 +19,61 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="PLZ*"
+                            :label="trans('form-labels.postcode') + '*'"
                             type="number"
                             required
-                            placeholder="PLZ*"
+                            :placeholder="trans('form-labels.postcode') + '*'"
                             v-model="fields['additional_info[zip]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Ort*"
+                            :label="trans('form-labels.city') + '*'"
                             type="text"
                             required
-                            placeholder="Ort*"
+                            :placeholder="trans('form-labels.city') + '*'"
                             v-model="fields['additional_info[city]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Strasse*"
+                            :label="trans('form-labels.street') + '*'"
                             type="text"
                             required
-                            placeholder="Strasse*"
+                            :placeholder="trans('form-labels.street') + '*'"
                             v-model="fields['additional_info[street]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Nr"
+                            :label="trans('form-labels.number')"
                             type="text"
-                            placeholder="Nr"
+                            :placeholder="trans('form-labels.number')"
                             v-model="fields['additional_info[number]']"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Auftragsdatum*</p>
+                            <p class="form-field__label">{{ trans('form-labels.date_start') }}*</p>
                             <date-picker
                                 ref="datePicker"
                                 :clearable="false"
-                                format="DD.MM.YYYY"
+                                format="YYYY-MM-DD"
                                 v-model="date"
                             />
                         </div>
                     </div>
+                    <div v-if="isPartner" class="col-md-6 mt-4">
+                        <form-field
+                            :label="trans('form-labels.price') + '*'"
+                            type="number"
+                            required
+                            :placeholder="trans('form-labels.price') + '*'"
+                            v-model="fields['proposal[price]']"
+                        />
+                    </div>
                 </div>
-                <h5 class="mt-5">In welchen Bereichen sollen Arbeiten durchgeführt werden?</h5>
+                <h5 class="mt-5">{{ trans('form-labels.work_should_be_done') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-checkbox
@@ -116,8 +125,8 @@
                         />
                     </div>
                 </div>
-                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
-                <h5 class="mt-5">Flexibilität</h5>
+                <p v-show="!isSelectedCheckboxes && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
+                <h5 class="mt-5">{{ trans('form-labels.dayrange') }}</h5>
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-radio
@@ -151,12 +160,12 @@
                 <div class="row">
                     <div class="col-12 mt-4">
                         <div class="form-field">
-                            <p class="form-field__label">Bemerkungen</p>
-                            <textarea v-model="fields['proposal[description]']" placeholder="Bemerkungen"></textarea>
+                            <p class="form-field__label">{{ trans('form-labels.description') }}</p>
+                            <textarea v-model="fields['proposal[description]']" :placeholder="trans('form-labels.description')"></textarea>
                         </div>
                     </div>
                 </div>
-                <button class="btn mt-5">Weiter</button>
+                <button class="btn mt-5">{{ trans('weiter') }}</button>
             </div>
         </div>
     </form>
@@ -192,7 +201,14 @@ export default {
         },
         initialData() {
             return this.$store.state.stepsForms.initialData
-        }
+        },
+        isPartner() {
+            if(this.isAuth) {
+                return document.querySelector('body').dataset.userAuth == 'partner'
+            } else {
+                return false
+            }
+        },
     },
     watch: {
         date() {
@@ -215,7 +231,11 @@ export default {
     mounted() {
         this.updateDate()
         if(this.$route.query.zip) {
-            this.fields['additional_info[zip]'] = this.$route.query.zip
+            this.fields['additional_info[from][zip]'] = this.$route.query.zip
+        }
+
+        if(this.isPartner) {
+            this.$set(this.fields, 'proposal[price]', '')
         }
     },
     methods: {

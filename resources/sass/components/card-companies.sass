@@ -1,0 +1,88 @@
+.card-companies
+    background: #FFFFFF
+    border: 1px solid #F9F9F9
+    box-shadow: 7px 7px 20px rgb(177 177 177 / 20%)
+    border-radius: 12px
+    display: block
+    text-decoration: none
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    padding: 20px
+    position: relative
+    min-height: 200px
+.card-companies__img
+    width: 200px
+    height: 120px
+    display: block
+    object-fit: contain
+    object-position: left
+    +r($mobile)
+        width: 140px
+.card-companies__title, .card-companies__location
+    font-style: normal
+    font-weight: 400
+    font-size: 17px
+.card-companies__title
+    margin-top: 15px
+    color: $headerColor
+.card-companies__location
+    color: #686868
+.card-companies__rating
+    display: flex
+    flex-direction: column
+    top: 60px
+    right: 40px
+    position: absolute
+    .rating
+        filter: url(#solid)
+.card-companies__btn-profile
+    font-weight: bold
+    font-size: 17px
+    color: $blueColor
+    text-decoration: none
+    position: absolute
+    padding-right: 30px
+    top: 21px
+    right: 15px
+    &::after
+        content: ''
+        display: block
+        position: absolute
+        top: 1px
+        right: 0
+        height: 100%
+        width: 16px
+        background: url(/images/arrow_blue_slider.svg) no-repeat center / 100% auto
+.card-companies__contact
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    margin-top: 8px
+    p + p
+        margin-top: 5px
+    a
+        color: $headerColor
+        padding-left: 35px
+        position: relative
+        text-decoration: none
+        &::before
+            content: ''
+            display: block
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            left: 0
+            width: 20px
+            height: 20px
+            background-repeat: no-repeat
+            background-position: center
+            background-size: 100% auto
+.card-companies__email
+    a
+        &::before
+            background-image: url(/images/message-ic.svg)
+.card-companies__phone
+    a
+        &::before
+            background-image: url(/images/phone-ic.svg)

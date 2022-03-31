@@ -10,9 +10,17 @@ export default new Vuex.Store({
     state: {
         typesJobs: [],
         regions: [],
+        localize: {},
+        additionalInfo: {},
     },
-    getters: {},
-    mutations: {},
+    mutations: {
+        setLocalize(state, payload) {
+            state.localize = payload
+        },
+        setAdditionalInfo(state, payload) {
+            state.additionalInfo = payload
+        },
+    },
     actions: {
         getTypeJobs(context) {
             axios.get('/api/front/types-jobs')

@@ -14,7 +14,7 @@
         </div>
         <div class="steps-form__inner">
             <div id="app">
-                <register-partner />
+                <register-partner localize="{{ json_encode(__('front')) }}" />
             </div>
         </div>
     </div>

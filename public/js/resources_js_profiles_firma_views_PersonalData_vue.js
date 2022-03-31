@@ -445,10 +445,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "PLZ*",
+                    label: _vm.trans("form-labels.postcode") + "*",
                     type: "number",
                     required: "",
-                    placeholder: "PLZ*",
+                    placeholder: _vm.trans("form-labels.postcode") + "*",
                   },
                   model: {
                     value: _vm.fields.postcode,
@@ -572,7 +572,7 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Bitte wählen Sie etwas aus der Liste aus!")]
+            [_vm._v(_vm._s(_vm.trans("err-empty-list")))]
           ),
           _vm._v(" "),
           _c("h5", { staticClass: "mt-5" }, [
@@ -619,7 +619,7 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Bitte wählen Sie etwas aus der Liste aus!")]
+            [_vm._v(_vm._s(_vm.trans("err-empty-list")))]
           ),
           _vm._v(" "),
           _c("input", {

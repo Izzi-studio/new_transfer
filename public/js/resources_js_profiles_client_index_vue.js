@@ -66,49 +66,104 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      prefix: '/benutzerkonto',
       menu: [{
         text: 'Persönliche Daten',
-        to: '/personliche-daten',
         submenu: [{
           text: 'Info',
-          to: '/info'
+          to: {
+            name: 'personalData_client'
+          }
         }, {
           text: 'Passwort ändern',
-          to: '/passwort-andern'
+          to: {
+            name: 'changePassword_client'
+          }
         }]
       }, {
         text: 'Umzug',
-        to: '/umzug'
+        to: {
+          params: {
+            typeJob: 'umzug'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Reinigung',
-        to: '/reinigung'
+        to: {
+          params: {
+            typeJob: 'reinigung'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Umzug + Reinigung',
-        to: '/umzug-und-reinigung'
+        to: {
+          params: {
+            typeJob: 'umzug-und-reinigung'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Maler/Gipser',
-        to: '/maler'
+        to: {
+          params: {
+            typeJob: 'maler'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Bodenleger',
-        to: '/bodenleger'
+        to: {
+          params: {
+            typeJob: 'bodenleger'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Heizungsanbieter',
-        to: '/heizung'
+        to: {
+          params: {
+            typeJob: 'heizung'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Elektriker',
-        to: '/elektriker'
+        to: {
+          params: {
+            typeJob: 'elektriker'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Gärtner',
-        to: '/gartner'
+        to: {
+          params: {
+            typeJob: 'gartner'
+          },
+          name: 'requests_client'
+        }
       }, {
         text: 'Schreiner',
-        to: '/schreiner'
+        to: {
+          params: {
+            typeJob: 'schreiner'
+          },
+          name: 'requests_client'
+        }
       }]
     };
+  },
+  computed: {
+    currentComponentName: function currentComponentName() {
+      return this.$route.name;
+    }
   }
 });
 
@@ -324,13 +379,17 @@ var render = function () {
       return _c(
         "div",
         {
-          key: menuItem.to,
+          key: menuItem.text,
           staticClass: "profile-sidebar__item",
           class: {
             "profile-sidebar__item_has-sublist": menuItem.submenu,
-            "profile-sidebar__item_active": _vm.$route.path.includes(
-              menuItem.to
-            ),
+            "profile-sidebar__item_active":
+              menuItem.submenu &&
+              menuItem.submenu
+                .map(function (i) {
+                  return i.to.name
+                })
+                .includes(_vm.currentComponentName),
           },
         },
         [
@@ -368,7 +427,7 @@ var render = function () {
                         staticClass: "profile-sidebar__link",
                         attrs: {
                           "active-class": "profile-sidebar__link_active",
-                          to: _vm.prefix + menuItem.to,
+                          to: menuItem.to,
                         },
                       },
                       [
@@ -392,7 +451,7 @@ var render = function () {
                   return _c(
                     "li",
                     {
-                      key: subItem.to,
+                      key: subItem.text,
                       staticClass: "profile-sidebar__subitem",
                       on: {
                         click: function ($event) {
@@ -407,7 +466,8 @@ var render = function () {
                           staticClass: "profile-sidebar__sublink",
                           attrs: {
                             "active-class": "profile-sidebar__sublink_active",
-                            to: _vm.prefix + menuItem.to + subItem.to,
+                            to: subItem.to,
+                            exact: "",
                           },
                         },
                         [

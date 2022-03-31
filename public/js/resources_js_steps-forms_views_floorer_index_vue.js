@@ -393,6 +393,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -426,6 +435,13 @@ __webpack_require__.r(__webpack_exports__);
     },
     initialData: function initialData() {
       return this.$store.state.stepsForms.initialData;
+    },
+    isPartner: function isPartner() {
+      if (this.isAuth) {
+        return document.querySelector('body').dataset.userAuth == 'partner';
+      } else {
+        return false;
+      }
     }
   },
   watch: {
@@ -450,7 +466,11 @@ __webpack_require__.r(__webpack_exports__);
     this.updateDate();
 
     if (this.$route.query.zip) {
-      this.fields['additional_info[zip]'] = this.$route.query.zip;
+      this.fields['additional_info[from][zip]'] = this.$route.query.zip;
+    }
+
+    if (this.isPartner) {
+      this.$set(this.fields, 'proposal[price]', '');
     }
   },
   methods: {
@@ -510,7 +530,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['urlHandler'],
+  props: ['urlHandler', 'localize'],
   data: function data() {
     return {};
   },
@@ -519,7 +539,14 @@ __webpack_require__.r(__webpack_exports__);
       return this.$store.state.stepsForms.currentStep;
     },
     progressText: function progressText() {
-      return this.isAuth ? ['Beschreibung der Arbeit'] : ['Beschreibung der Arbeit', 'Kontakt'];
+      var arr = [];
+      arr.push(this.trans('label-step.description-work'));
+
+      if (!this.isAuth) {
+        arr.push(this.trans('label-step.contact'));
+      }
+
+      return arr;
     },
     isAuth: function isAuth() {
       return document.querySelector('body').dataset.isAuth == 'true';
@@ -528,6 +555,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.$store.dispatch('getRegions');
     this.$store.commit('stepsForms/setUrlHandler', this.urlHandler);
+    this.$store.commit('setLocalize', JSON.parse(this.localize));
     var id = this.$route.path.replace(/[^0-9]/g, "");
 
     if (this.isAuth && id) {
@@ -1639,14 +1667,20 @@ var render = function () {
                 },
               },
             },
-            [_vm._v("\n                Zurück\n            ")]
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("zurich")) +
+                  "\n            "
+              ),
+            ]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-6 mt-4" }, [
               _c("div", { staticClass: "form-field" }, [
                 _c("p", { staticClass: "form-field__label" }, [
-                  _vm._v("Anrede*"),
+                  _vm._v(_vm._s(_vm.trans("form-labels.gender")) + "*"),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -1700,10 +1734,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Vorname*",
+                    label: _vm.trans("form-labels.name") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Vorname*",
+                    placeholder: _vm.trans("form-labels.name") + "*",
                   },
                   model: {
                     value: _vm.fields["client[name]"],
@@ -1723,10 +1757,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Nachname*",
+                    label: _vm.trans("form-labels.lastname") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Nachname*",
+                    placeholder: _vm.trans("form-labels.lastname") + "*",
                   },
                   model: {
                     value: _vm.fields["client[lastname]"],
@@ -1746,9 +1780,9 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Telefon*",
+                    label: _vm.trans("form-labels.phone") + "*",
                     type: "tel",
-                    placeholder: "Telefon*",
+                    placeholder: _vm.trans("form-labels.phone") + "*",
                   },
                   model: {
                     value: _vm.fields["client[phone]"],
@@ -1768,10 +1802,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "E-Mail*",
+                    label: _vm.trans("form-labels.email") + "*",
                     type: "email",
                     required: "",
-                    placeholder: "E-Mail*",
+                    placeholder: _vm.trans("form-labels.email") + "*",
                   },
                   model: {
                     value: _vm.fields["client[email]"],
@@ -1795,7 +1829,7 @@ var render = function () {
                     ],
                     staticClass: "text-danger mt-3",
                   },
-                  [_vm._v("E-Mail existiert bereits!")]
+                  [_vm._v(_vm._s(_vm.trans("err-has-email")))]
                 ),
               ],
               1
@@ -1807,10 +1841,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Erreichbarkeit*",
+                    label: _vm.trans("form-labels.availability") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Erreichbarkeit*",
+                    placeholder: _vm.trans("form-labels.availability") + "*",
                   },
                   model: {
                     value: _vm.fields["client[availability]"],
@@ -1825,7 +1859,9 @@ var render = function () {
             ),
           ]),
           _vm._v(" "),
-          _c("button", { staticClass: "btn mt-5" }, [_vm._v("Weiter")]),
+          _c("button", { staticClass: "btn mt-5" }, [
+            _vm._v(_vm._s(_vm.trans("weiter"))),
+          ]),
         ]),
       ]),
     ]
@@ -1915,7 +1951,7 @@ var render = function () {
             _c("div", { staticClass: "col-md-6 mt-4" }, [
               _c("div", { staticClass: "form-field" }, [
                 _c("p", { staticClass: "form-field__label" }, [
-                  _vm._v("Region*"),
+                  _vm._v(_vm._s(_vm.trans("form-labels.region")) + "*"),
                 ]),
                 _vm._v(" "),
                 _c(
@@ -1974,10 +2010,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "PLZ*",
+                    label: _vm.trans("form-labels.postcode") + "*",
                     type: "number",
                     required: "",
-                    placeholder: "PLZ*",
+                    placeholder: _vm.trans("form-labels.postcode") + "*",
                   },
                   model: {
                     value: _vm.fields["additional_info[zip]"],
@@ -1997,10 +2033,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Ort*",
+                    label: _vm.trans("form-labels.city") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Ort*",
+                    placeholder: _vm.trans("form-labels.city") + "*",
                   },
                   model: {
                     value: _vm.fields["additional_info[city]"],
@@ -2020,10 +2056,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Strasse*",
+                    label: _vm.trans("form-labels.street") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Strasse*",
+                    placeholder: _vm.trans("form-labels.street") + "*",
                   },
                   model: {
                     value: _vm.fields["additional_info[street]"],
@@ -2042,7 +2078,11 @@ var render = function () {
               { staticClass: "col-md-6 mt-4" },
               [
                 _c("form-field", {
-                  attrs: { label: "Nr", type: "text", placeholder: "Nr" },
+                  attrs: {
+                    label: _vm.trans("form-labels.number"),
+                    type: "text",
+                    placeholder: _vm.trans("form-labels.number"),
+                  },
                   model: {
                     value: _vm.fields["additional_info[number]"],
                     callback: function ($$v) {
@@ -2061,12 +2101,12 @@ var render = function () {
                 { staticClass: "form-field" },
                 [
                   _c("p", { staticClass: "form-field__label" }, [
-                    _vm._v("Auftragsdatum*"),
+                    _vm._v(_vm._s(_vm.trans("form-labels.date_start")) + "*"),
                   ]),
                   _vm._v(" "),
                   _c("date-picker", {
                     ref: "datePicker",
-                    attrs: { clearable: false, format: "DD.MM.YYYY" },
+                    attrs: { clearable: false, format: "YYYY-MM-DD" },
                     model: {
                       value: _vm.date,
                       callback: function ($$v) {
@@ -2079,10 +2119,35 @@ var render = function () {
                 1
               ),
             ]),
+            _vm._v(" "),
+            _vm.isPartner
+              ? _c(
+                  "div",
+                  { staticClass: "col-md-6 mt-4" },
+                  [
+                    _c("form-field", {
+                      attrs: {
+                        label: _vm.trans("form-labels.price") + "*",
+                        type: "number",
+                        required: "",
+                        placeholder: _vm.trans("form-labels.price") + "*",
+                      },
+                      model: {
+                        value: _vm.fields["proposal[price]"],
+                        callback: function ($$v) {
+                          _vm.$set(_vm.fields, "proposal[price]", $$v)
+                        },
+                        expression: "fields['proposal[price]']",
+                      },
+                    }),
+                  ],
+                  1
+                )
+              : _vm._e(),
           ]),
           _vm._v(" "),
           _c("h5", { staticClass: "mt-5" }, [
-            _vm._v("Was soll verlegt werden?"),
+            _vm._v(_vm._s(_vm.trans("form-labels.work_should_be_done"))),
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -2238,7 +2303,7 @@ var render = function () {
               ],
               staticClass: "text-danger mt-3",
             },
-            [_vm._v("Bitte wählen Sie etwas aus der Liste aus!")]
+            [_vm._v(_vm._s(_vm.trans("err-empty-list")))]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
@@ -2314,7 +2379,9 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _c("h5", { staticClass: "mt-5" }, [_vm._v("Flexibilität")]),
+          _c("h5", { staticClass: "mt-5" }, [
+            _vm._v(_vm._s(_vm.trans("form-labels.dayrange"))),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c(
@@ -2394,7 +2461,7 @@ var render = function () {
             _c("div", { staticClass: "col-12 mt-4" }, [
               _c("div", { staticClass: "form-field" }, [
                 _c("p", { staticClass: "form-field__label" }, [
-                  _vm._v("Bemerkungen"),
+                  _vm._v(_vm._s(_vm.trans("form-labels.description"))),
                 ]),
                 _vm._v(" "),
                 _c("textarea", {
@@ -2406,7 +2473,7 @@ var render = function () {
                       expression: "fields['proposal[description]']",
                     },
                   ],
-                  attrs: { placeholder: "Bemerkungen" },
+                  attrs: { placeholder: _vm.trans("form-labels.description") },
                   domProps: { value: _vm.fields["proposal[description]"] },
                   on: {
                     input: function ($event) {
@@ -2425,7 +2492,9 @@ var render = function () {
             ]),
           ]),
           _vm._v(" "),
-          _c("button", { staticClass: "btn mt-5" }, [_vm._v("Weiter")]),
+          _c("button", { staticClass: "btn mt-5" }, [
+            _vm._v(_vm._s(_vm.trans("weiter"))),
+          ]),
         ]),
       ]),
     ]

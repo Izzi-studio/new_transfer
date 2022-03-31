@@ -54,10 +54,10 @@
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="PLZ*"
+                    :label="trans('form-labels.postcode') + '*'"
                     type="number"
                     required
-                    placeholder="PLZ*"
+                    :placeholder="trans('form-labels.postcode') + '*'"
                     v-model="fields.postcode"
                 />
             </div>
@@ -103,7 +103,7 @@
                 />
             </div>
         </div>
-        <p v-show="!fields['type_jobs_partners[]'].length && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
+        <p v-show="!fields['type_jobs_partners[]'].length && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
         <h5 class="mt-5">Wählen Sie Ihre Gebiete</h5>
         <div class="row">
             <div 
@@ -118,7 +118,7 @@
                 />
             </div>
         </div>
-        <p v-show="!fields['regions_partners[]'].length && isSended" class="text-danger mt-3">Bitte wählen Sie etwas aus der Liste aus!</p>
+        <p v-show="!fields['regions_partners[]'].length && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
         <!--  -->
         <input class="mt-4" type="submit" value="Speichern">
     </form>

@@ -21,6 +21,11 @@
                 <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4">
                     <a class="footer__header-link" href="{{ route('staticpage.view','impressum') }}">Impressum</a>
                 </div>
+                @guest
+                <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4">
+                    <a class="footer__header-link" href="{{ route('partner.register.view') }}">Firma registrieren</a>
+                </div>
+                @endguest
                 <div class="col-12 col-lg-auto mt-lg-0 mt-4 order-5">
                     <p class="footer__soc-title">Social networks</p>
                     <div class="footer__soc-wrap">

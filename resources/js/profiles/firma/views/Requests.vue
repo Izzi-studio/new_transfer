@@ -9,7 +9,9 @@
                 :key="card.id"
                 :data="card"
                 :type-job-id="card.type_job_id"
-                :requests-status="requestsStatus"
+                :is-show-btn-download="isShowBtnDownload"
+                :is-show-btn-cancel="isShowBtnCancel"
+                :is-show-btn-add="isShowBtnAdd"
                 @deleteOffer="deleteOffer"
                 @addOffer="addOffer"
             />
@@ -33,6 +35,8 @@ export default {
                 case 'offene': return 'Offene'
                 case 'angenommene': return 'Angenommene'
                 case 'abgesagte': return 'Abgesagte'
+                case 'verkaufe': return 'Ich verkaufe'
+                case 'kaufe': return 'Ich kaufe'
             }
         },
         requestsStatus() {
@@ -40,7 +44,17 @@ export default {
                 case 'offene': return 'new'
                 case 'angenommene': return 'accepted'
                 case 'abgesagte': return 'rejected'
+                case 'verkaufe': return 'resell'
             }
+        },
+        isShowBtnDownload() {
+            return this.requestsStatus === 'accepted'
+        },
+        isShowBtnCancel() {
+            return this.requestsStatus === 'new'
+        },
+        isShowBtnAdd() {
+            return this.requestsStatus === 'new'
         },
         formattedCards() {
             if(!this.searchFields) return this.cards

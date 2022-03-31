@@ -2,11 +2,13 @@
     <div class="profile-sidebar">
         <div
             v-for="menuItem in menu"
-            :key="menuItem.to"
+            :key="menuItem.text"
             class="profile-sidebar__item"
             :class="{
                 'profile-sidebar__item_has-sublist': menuItem.submenu, 
-                'profile-sidebar__item_active': $route.path.includes(menuItem.to)
+                'profile-sidebar__item_active': menuItem.submenu && menuItem.submenu
+                    .map(i => i.to && i.to.name)
+                    .includes(currentComponentName) 
             }"
         >
             <template v-if="menuItem.submenu">
@@ -16,8 +18,8 @@
                 >
                     {{ menuItem.text }}
                     <template v-if="menuItem.text == 'Anfragen' && allProposals">
-                        {{ allProposals && `(${allProposals})` }}
-                        <span v-if="newProposals" class="ms-auto me-3">{{ newProposals }}</span>
+                        {{ `(${allProposals})` }}
+                        <span v-if="newProposals" class="ms-auto me-3">+{{ newProposals }}</span>
                     </template>
                 </a>
             </template>
@@ -28,7 +30,7 @@
                     <router-link 
                         class="profile-sidebar__link"
                         active-class="profile-sidebar__link_active"
-                        :to="prefix+menuItem.to"
+                        :to="menuItem.to"
                     >
                         {{ menuItem.text }}
                     </router-link>
@@ -41,16 +43,25 @@
                 <li
                     class="profile-sidebar__subitem"
                     v-for="subItem in menuItem.submenu"
-                    :key="subItem.to"
+                    :key="subItem.text"
                     @click="$emit('clickToLink')"
                 >
-                    <router-link 
+                    <router-link
+                        v-if="subItem.to"
                         class="profile-sidebar__sublink"
                         active-class="profile-sidebar__sublink_active"
-                        :to="prefix+menuItem.to+subItem.to"
+                        :to="subItem.to"
+                        exact
                     >
                         {{ subItem.text }}
                     </router-link>
+                    <a 
+                        v-else
+                        :href="subItem.href"
+                        class="profile-sidebar__sublink"
+                    >
+                        {{ subItem.text }}
+                    </a>
                 </li>
             </ul>
         </div>
@@ -59,64 +70,120 @@
 
 <script>
 export default {
-    data: function() {
-        return {
-            prefix: '/firmenkonto',
-            menu: [
+    computed: {
+        menu() {
+            return [
                 {
                     text: 'Persönliche Daten',
-                    to: '/personliche-daten',
                     submenu: [
                         {
                             text: 'Info',
-                            to: '/info',
+                            to: {
+                                name: 'personalData_firma',
+                            }
                         },
                         {
                             text: 'Passwort ändern',
-                            to: '/passwort-andern',
+                            to: {
+                                name: 'changePassword_firma',
+                            }
                         },
                     ]
                 },
                 {
                     text: 'Anfragen',
-                    to: '/anfragen',
                     submenu: [
                         {
                             text: 'Offene',
-                            to: '/offene',
+                            to: {
+                                params: {
+                                    requests: 'offene',
+                                },
+                                name: 'requests_firma'
+                            }
                         },
                         {
                             text: 'Angenommene',
-                            to: '/angenommene',
+                            to: {
+                                params: {
+                                    requests: 'angenommene',
+                                },
+                                name: 'requests_firma'
+                            }
                         },
                         {
                             text: 'Abgesagte',
-                            to: '/abgesagte',
+                            to: {
+                                params: {
+                                    requests: 'abgesagte',
+                                },
+                                name: 'requests_firma'
+                            }
                         }
                     ]
                 },
                 {
+                    text: 'Anträge von Firmen',
+                    submenu: [
+                        {
+                            text: 'Ich verkaufe',
+                            to: {
+                                params: {
+                                    requests: 'verkaufe',
+                                },
+                                name: 'sellRequests_firma'
+                            }
+                        },
+                        {
+                            text: 'Ich kaufe',
+                            to: {
+                                params: {
+                                    requests: 'kaufe',
+                                },
+                                name: 'sellRequests_firma'
+                            }
+                        },
+                        {
+                            text: 'Anfrage verkaufen',
+                            to: {
+                                name: 'sellList_firma'
+                            }
+                        },
+                        {
+                            text: 'Wiederverkauf',
+                            href: this.$store.state.additionalInfo.resellUrl
+                        },
+                    ]
+                },
+                {
                     text: 'Abgeschlossene Bewerbungen',
-                    to: '/reviews',
+                    to: {
+                        name: 'reviews_firma',
+                    }
                 },
                 {
                     text: 'Guthaben Aufladen',
-                    to: '/payment',
+                    to: {
+                        name: 'payment_firma',
+                    }
                 },
                 {
                     text: 'Preise',
-                    to: '/preise',
+                    to: {
+                        name: 'prices_firma',
+                    }
                 }
-            ],
-        }
-    },
-    computed: {
+            ]            
+        },
         allProposals() {
             return this.$store.state.profile.allProposals
         },
         newProposals() {
             return this.$store.state.profile.newProposals
         },
+        currentComponentName() {
+            return this.$route.name
+        }
     },
 }
 </script>

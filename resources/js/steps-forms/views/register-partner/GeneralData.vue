@@ -5,82 +5,82 @@
                 <div class="row">
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Vorname*"
+                            :label="trans('form-labels.name') + '*'"
                             type="text"
                             required
-                            placeholder="Vorname*"
+                            :placeholder="trans('form-labels.name') + '*'"
                             v-model="fields.name"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Nachname*"
+                            :label="trans('form-labels.lastname') + '*'"
                             type="text"
                             required
-                            placeholder="Nachname*"
+                            :placeholder="trans('form-labels.lastname') + '*'"
                             v-model="fields.lastname"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="PLZ*"
+                            :label="trans('form-labels.postcode') + '*'"
                             type="number"
                             required
-                            placeholder="PLZ*"
+                            :placeholder="trans('form-labels.postcode') + '*'"
                             v-model="fields.postcode"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Ort*"
+                            :label="trans('form-labels.city') + '*'"
                             type="text"
                             required
-                            placeholder="Ort*"
+                            :placeholder="trans('form-labels.city') + '*'"
                             v-model="fields.city"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Strasse*"
+                            :label="trans('form-labels.street') + '*'"
                             type="text"
                             required
-                            placeholder="Strasse*"
+                            :placeholder="trans('form-labels.street') + '*'"
                             v-model="fields.street"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Hausnummer*"
+                            :label="trans('form-labels.house') + '*'"
                             type="text"
                             required
-                            placeholder="Hausnummer*"
+                            :placeholder="trans('form-labels.house') + '*'"
                             v-model="fields.house"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="E-Mail*"
+                            :label="trans('form-labels.email') + '*'"
                             type="email"
                             required
-                            placeholder="E-Mail*"
+                            :placeholder="trans('form-labels.email') + '*'"
                             v-model="fields.email"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Telefon*"
+                            :label="trans('form-labels.phone') + '*'"
                             type="tel"
                             required
-                            placeholder="Telefon*"
+                            :placeholder="trans('form-labels.phone') + '*'"
                             v-model="fields.phone"
                         />
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            label="Unternehmen*"
+                            :label="trans('form-labels.company') + '*'"
                             type="text"
                             required
-                            placeholder="Unternehmen*"
+                            :placeholder="trans('form-labels.company') + '*'"
                             v-model="fields.company"
                         />
                     </div>
@@ -94,7 +94,7 @@
                         </label>
                     </div>
                     <div class="col-md-6 mt-4">
-                        <button class="btn btn_width_max">Starten Sie Ihre Problemitgliedschaft</button>
+                        <button class="btn btn_width_max">{{ trans('partner-general-data-btn') }}</button>
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@ export default {
     }),
     computed: {
         fileName() {
-            return (this.fields.upload_file && this.fields.upload_file.name) || 'UPLOAD FILE'
+            return (this.fields.upload_file && this.fields.upload_file.name) || this.trans('form-labels.upload-file')
         }
     },
     methods: {
