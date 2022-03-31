@@ -47,6 +47,9 @@ Route::group([
     //search page
     Route::get('/firmen', [App\Http\Controllers\PageController::class,'search'])->name('page.search.view');
 
+    //resell
+    Route::get('/resell', [App\Http\Controllers\PageController::class,'resell'])->name('partner.resell.view');
+
     //forms
     Route::get('/umzug', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('client.form.umzug.view');
     Route::get('/reinigung', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('client.form.reinigung.view');
@@ -57,6 +60,17 @@ Route::group([
     Route::get('/elektriker', [App\Http\Controllers\Auth\RegisterController::class, 'showElektrikerFormClientView'])->name('client.form.elektriker.view');
     Route::get('/gartner', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('client.form.gartner.view');
     Route::get('/schreiner', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('client.form.schreiner.view');
+
+    //forms resell
+    Route::get('/umzug-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugFormClientView'])->name('partner.form.umzug.view');
+    Route::get('/reinigung-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showReinigungFormClientView'])->name('partner.form.reinigung.view');
+    Route::get('/umzug-und-reinigung-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showUmzugUndReinigungFormClientView'])->name('partner.form.umzug_und_reinigung.view');
+    Route::get('/maler-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showMalarFormClientView'])->name('partner.form.malar.view');
+    Route::get('/bodenleger-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showBodenlegerFormClientView'])->name('partner.form.bodenleger.view');
+    Route::get('/heizung-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showHeizungFormClientView'])->name('partner.form.heizung.view');
+    Route::get('/elektriker-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showElektrikerFormClientView'])->name('partner.form.elektriker.view');
+    Route::get('/gartner-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showGartnerFormClientView'])->name('partner.form.gartner.view');
+    Route::get('/schreiner-anfrage-verkaufen', [App\Http\Controllers\Auth\RegisterController::class, 'showSchreinerFormClientView'])->name('partner.form.schreiner.view');
 
     Route::get('/proposal/edit/{proposal}',[App\Http\Controllers\Auth\RegisterController::class, 'showEditFormClientView']);
 
@@ -89,5 +103,5 @@ Route::group([
 Route::post('register-client', [App\Http\Controllers\Auth\RegisterController::class,'newClientAndSaveProposal'])->name('client.register.post');
 Route::post('check-email', [App\Http\Controllers\Auth\RegisterController::class,'checkEmail'])->name('client.check.email');
 
-Route::post('add-request', [App\Http\Controllers\ProposalController::class, 'store'])->name('proposal.add');
+//Route::post('add-request', [App\Http\Controllers\ProposalController::class, 'store'])->name('proposal.add');
 

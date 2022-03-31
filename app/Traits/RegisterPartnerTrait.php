@@ -54,9 +54,6 @@ trait RegisterPartnerTrait {
 
 		$data = $request->all();
 
-		//$data['types_of_jobs'] = json_decode($data['types_of_jobs']);
-		//$data['regions_ids'] = json_decode($data['regions_ids']);
-
         Log::info('create partner');
         $this->password = $data['password'];
         $user = User::create([
@@ -98,6 +95,7 @@ trait RegisterPartnerTrait {
 			$startDate = Carbon::now()->addDays(1)->format('Y/m/d');
             $proposals = Proposal::whereIn('region_id', $data['regions_ids'])
 				->where('date_start','>=',$startDate)
+				->whereResell(0)
                 ->whereIn('type_job_id', $data['types_of_jobs'])
                 ->inRandomOrder()
                 ->limit(Setting::getByKey('system.setting.limit_proposal_to_partner_after_register'))

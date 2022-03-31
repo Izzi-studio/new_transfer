@@ -57,7 +57,7 @@ class ApiFrontController extends Controller
 
         }
 
-        return new CompaniesCollection($result->paginate(9));
+        return new CompaniesCollection($result->paginate(12));
     }
 
 

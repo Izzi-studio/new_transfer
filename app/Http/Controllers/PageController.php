@@ -39,4 +39,15 @@ class PageController extends Controller
         app()->make(SeoMetaTags::class)->setMeta('system.search');
         return view('front.search_companies');
     }
+
+    /**
+     * Show contacts.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function resell()
+    {
+        app()->make(SeoMetaTags::class)->setMeta('system.resell');
+        return view('front.partner.resell');
+    }
 }

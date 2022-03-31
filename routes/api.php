@@ -39,14 +39,19 @@ Route::prefix('front')->middleware('auth:api')->group(function () {
         Route::get('/proposals', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposals'])->name('api.partner.proposals');
         Route::get('/proposals-counts', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposalsCounts'])->name('api.partner.proposals.counts');
         Route::put('/proposals/process/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'processProposals'])->name('api.partner.proposals.process');
-      //  Route::get('/proposals/download/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'download'])->name('api.partner.proposals.download');
         Route::get('/proposals/prices', [App\Http\Controllers\ApiFront\ApiProposalController::class,'prices'])->name('api.partner.prices');
         Route::put('/password/update', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'updatePassword'])->name('api.partner.password.update');
         Route::get('/reviews', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'partnerReviews'])->name('api.partner.reviews');
+
+        //resell
+        Route::get('/proposals-resell', [App\Http\Controllers\ApiFront\ApiProposalController::class,'resellList'])->name('api.partner.proposals.resell.list');
+        Route::get('/proposals/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'show'])->name('api.partner.proposals.show');
+        Route::put('/proposals/update/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'update'])->name('api.partner.proposals.update');
+        Route::delete('/proposals/delete/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'destroy'])->name('api.partner.proposals.delete');
     });
 
 
-
+    Route::post('add-request', [App\Http\Controllers\ApiFront\ApiProposalController::class, 'store'])->name('proposal.add');
 
 });
 

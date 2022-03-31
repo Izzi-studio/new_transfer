@@ -43,6 +43,10 @@ class ProposalResource extends JsonResource
         $return['id'] = $this->id;
         $return['type_job_id'] = $this->type_job_id;
 
+        if(auth()->user()->isPartner()) {
+            $return['price'] =  $this->price;
+        }
+
         $return['region_from'] =  __('front.'.$this->getRegion->name);
         $return['description'] =  $this->description;
         $return['region_id'] =  $this->region_id;

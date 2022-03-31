@@ -23,13 +23,16 @@ class ProposalController extends Controller
 
         $proposal = $request->only('proposal')['proposal'];
 
+        if(auth()->user()->isPartner()){
+            $proposal['resell'] = 1;
+        }
 
         $proposal['user_id'] = auth()->user()->id;
         $proposal['additional_info'] = $request->only('additional_info')['additional_info'];
 
         event(new NewProposal(Proposal::create($proposal)));
 
-        return response()->json(['redirect_url'=> config('services.redirects_params.'.$proposal['type_job_id'])]);
+        return response()->json(['redirect_url'=>route('client.cabinet',config('services.redirects_params.'.$proposal['type_job_id']))]);
     }
     /**
      * Process Proposal.
