@@ -4,7 +4,7 @@
         :class="{'opacity-50 pe-none': isUpdate}" 
         @submit.prevent="formHandler"
     >   
-        <h4 class="d-block d-lg-none mb-3">Info</h4>
+        <h4 class="d-block d-lg-none mb-3">{{trans('info')}}</h4>
         <label class="form-photo">
             <input 
                 @change="updateAvatar" 
@@ -12,47 +12,47 @@
                 accept="image/*"
             >
             <img class="form-photo__img" :src="avatarUrl" alt="">
-            <p class="form-photo__label">FOTO ÄNDERN</p>
+            <p class="form-photo__label">{{trans('change-photo')}}</p>
         </label>
         <div class="row">
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Vorname*"
+                    :label="trans('form-labels.name') + '*'"
                     type="text"
                     required
-                    placeholder="Ort*"
+                    :placeholder="trans('form-labels.name') + '*'"
                     v-model="fields.name"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Nachname*"
+                    :label="trans('form-labels.lastname') + '*'"
                     type="text"
                     required
-                    placeholder="Nachname*"
+                    :placeholder="trans('form-labels.lastname') + '*'"
                     v-model="fields.lastname"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Telefon*"
+                    :label="trans('form-labels.phone') + '*'"
                     type="text"
                     required
-                    placeholder="Telefon*"
+                    :placeholder="trans('form-labels.phone') + '*'"
                     v-model="fields.phone"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Erreichbarkeit*"
+                    :label="trans('form-labels.availability') + '*'"
                     type="text"
                     required
-                    placeholder="Erreichbarkeit*"
+                    :placeholder="trans('form-labels.availability') + '*'"
                     v-model="fields.availability"
                 />
             </div>
         </div>
-        <input class="mt-4" type="submit" value="Speichern">
+        <input class="mt-4" type="submit" :value="trans('save')">
     </form>
 </template>
 <script>
@@ -86,7 +86,6 @@ export default {
             })
                 .then(() => {
                     this.isUpdate = false
-                    toastr.success("Informationen aktualisiert");
                 })
         },
         updateAvatar(e) {
@@ -105,8 +104,6 @@ export default {
                     this.avatarUrl = '/images/default-avatar.png'
                 }
                 this.fields.avatar = ""
-
-                toastr.success("Informationen geladen");
             })
     }
 }

@@ -85,22 +85,22 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     menu: function menu() {
       return [{
-        text: 'Persönliche Daten',
+        text: this.trans('personal-data'),
         submenu: [{
-          text: 'Info',
+          text: this.trans('info'),
           to: {
             name: 'personalData_firma'
           }
         }, {
-          text: 'Passwort ändern',
+          text: this.trans('change-password'),
           to: {
             name: 'changePassword_firma'
           }
         }]
       }, {
-        text: 'Anfragen',
+        text: this.trans('requests'),
         submenu: [{
-          text: 'Offene',
+          text: this.trans('request-new'),
           to: {
             params: {
               requests: 'offene'
@@ -108,7 +108,7 @@ __webpack_require__.r(__webpack_exports__);
             name: 'requests_firma'
           }
         }, {
-          text: 'Angenommene',
+          text: this.trans('request-accepted'),
           to: {
             params: {
               requests: 'angenommene'
@@ -116,7 +116,7 @@ __webpack_require__.r(__webpack_exports__);
             name: 'requests_firma'
           }
         }, {
-          text: 'Abgesagte',
+          text: this.trans('request-reject'),
           to: {
             params: {
               requests: 'abgesagte'
@@ -125,9 +125,9 @@ __webpack_require__.r(__webpack_exports__);
           }
         }]
       }, {
-        text: 'Anträge von Firmen',
+        text: this.trans('requests-from-companies'),
         submenu: [{
-          text: 'Ich verkaufe',
+          text: this.trans('requests-selling'),
           to: {
             params: {
               requests: 'verkaufe'
@@ -135,7 +135,7 @@ __webpack_require__.r(__webpack_exports__);
             name: 'sellRequests_firma'
           }
         }, {
-          text: 'Ich kaufe',
+          text: this.trans('requests-bought'),
           to: {
             params: {
               requests: 'kaufe'
@@ -143,26 +143,26 @@ __webpack_require__.r(__webpack_exports__);
             name: 'sellRequests_firma'
           }
         }, {
-          text: 'Anfrage verkaufen',
+          text: this.trans('request-sell'),
           to: {
             name: 'sellList_firma'
           }
         }, {
-          text: 'Wiederverkauf',
+          text: this.trans('requests-trade'),
           href: this.$store.state.additionalInfo.resellUrl
         }]
       }, {
-        text: 'Abgeschlossene Bewerbungen',
+        text: this.trans('requests-completed'),
         to: {
           name: 'reviews_firma'
         }
       }, {
-        text: 'Guthaben Aufladen',
+        text: this.trans('top-up-bill'),
         to: {
           name: 'payment_firma'
         }
       }, {
-        text: 'Preise',
+        text: this.trans('price'),
         to: {
           name: 'prices_firma'
         }
@@ -226,7 +226,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['additionalInfo'],
+  props: ['additionalInfo', 'localize'],
   data: function data() {
     return {
       isShowSidebarMob: false
@@ -235,6 +235,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.$store.dispatch('profile/getProposalsCounts');
     this.$store.commit('setAdditionalInfo', JSON.parse(this.additionalInfo));
+    this.$store.commit('setLocalize', JSON.parse(this.localize));
   },
   components: {
     Sidebar: _Sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]
@@ -570,7 +571,13 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm._m(0),
+    _c("div", { staticClass: "profile__header" }, [
+      _c("h1", { staticClass: "section-title" }, [
+        _vm._v(_vm._s(_vm.trans("my-bill"))),
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "profile__bill" }, [_vm._v("CHF: 00.00")]),
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-4" }, [
       _c(
@@ -618,18 +625,7 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "profile__header" }, [
-      _c("h1", { staticClass: "section-title" }, [_vm._v("Mein Konto")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "profile__bill" }, [_vm._v("CHF: 00.00")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

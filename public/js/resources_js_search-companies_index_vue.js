@@ -211,6 +211,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['localize'],
   data: function data() {
     return {
       cards: [],
@@ -249,6 +250,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   mounted: function mounted() {
     this.loadCompanies();
+    this.$store.commit('setLocalize', JSON.parse(this.localize));
   },
   components: {
     CardCompany: _CardCompany__WEBPACK_IMPORTED_MODULE_0__["default"],
@@ -512,7 +514,7 @@ var render = function () {
       ]),
       _vm._v(" "),
       _c("span", { staticClass: "card-companies__btn-profile" }, [
-        _vm._v("Profil anzeigen"),
+        _vm._v(_vm._s(_vm.trans("show-profile"))),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-companies__rating" }, [
@@ -522,7 +524,9 @@ var render = function () {
         }),
         _vm._v(" "),
         _c("p", { staticClass: "card-companies__reviews-count" }, [
-          _vm._v(_vm._s(_vm.data.review_count) + " Bewertungen"),
+          _vm._v(
+            _vm._s(_vm.data.review_count) + " " + _vm._s(_vm.trans("reviews"))
+          ),
         ]),
       ]),
       _vm._v(" "),
@@ -568,7 +572,9 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "filter-companies" }, [
-    _c("h4", { staticClass: "filter-companies__title" }, [_vm._v("Filtern")]),
+    _c("h4", { staticClass: "filter-companies__title" }, [
+      _vm._v(_vm._s(_vm.trans("filter"))),
+    ]),
     _vm._v(" "),
     _c(
       "form",
@@ -608,7 +614,9 @@ var render = function () {
                       return [
                         _c("span", { staticClass: "multiselect__single" }, [
                           _vm._v(
-                            "\n                            Art von Arbeit (" +
+                            "\n                            " +
+                              _vm._s(_vm.trans("type-jobs")) +
+                              " (" +
                               _vm._s(values.length) +
                               ")\n                        "
                           ),
@@ -654,7 +662,9 @@ var render = function () {
                       return [
                         _c("span", { staticClass: "multiselect__single" }, [
                           _vm._v(
-                            "\n                            Kanton (" +
+                            "\n                            " +
+                              _vm._s(_vm.trans("regions")) +
+                              " (" +
                               _vm._s(values.length) +
                               ")\n                        "
                           ),
@@ -675,22 +685,18 @@ var render = function () {
             1
           ),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "col-md-4 mt-3 mt-md-0" }, [
+            _c("input", {
+              attrs: { type: "submit" },
+              domProps: { value: _vm.trans("search") },
+            }),
+          ]),
         ]),
       ]
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-4 mt-3 mt-md-0" }, [
-      _c("input", { attrs: { type: "submit", value: "Senden" } }),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

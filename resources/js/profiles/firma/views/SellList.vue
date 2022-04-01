@@ -1,7 +1,6 @@
 <template>
     <div>
-        <h4 class="d-block d-lg-none mb-3">Anfrage verkaufen</h4>
-        <p class="mt-2">Erstellen Sie ein neues zum Verkauf:</p>
+        <h4 class="d-block d-lg-none mb-3">{{trans('request-sell')}}</h4>
         <ul>
             <li class="mt-2">
                 <a :href="additionalInfo.umzugUrl">

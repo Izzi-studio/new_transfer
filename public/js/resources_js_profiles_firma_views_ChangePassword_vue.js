@@ -90,11 +90,9 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         _this.isUpdate = false;
-        toastr.success("Informationen aktualisiert");
       })["catch"](function (_ref) {
         var response = _ref.response;
         _this.isUpdate = false;
-        toastr.error(response.data.old_password_err || 'Etwas ist schief gelaufen');
       });
     }
   }
@@ -202,7 +200,7 @@ var render = function () {
     },
     [
       _c("h4", { staticClass: "d-block d-lg-none mb-3" }, [
-        _vm._v("Passwort ändern"),
+        _vm._v(_vm._s(_vm.trans("change-password"))),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "row" }, [
@@ -212,11 +210,11 @@ var render = function () {
           [
             _c("form-field", {
               attrs: {
-                label: "Altes Password*",
+                label: _vm.trans("form-labels.old-password") + "*",
                 type: "password",
                 minlength: "8",
                 required: "",
-                placeholder: "Altes Password*",
+                placeholder: _vm.trans("form-labels.old-password") + "*",
               },
               model: {
                 value: _vm.fields.currentPassword,
@@ -230,11 +228,11 @@ var render = function () {
             _c("form-field", {
               staticClass: "mt-4",
               attrs: {
-                label: "Neues Password*",
+                label: _vm.trans("form-labels.new-password") + "*",
                 type: "password",
                 minlength: "8",
                 required: "",
-                placeholder: "Neues Password*",
+                placeholder: _vm.trans("form-labels.new-password") + "*",
               },
               model: {
                 value: _vm.fields.newPassword,
@@ -248,11 +246,12 @@ var render = function () {
             _c("form-field", {
               staticClass: "mt-4",
               attrs: {
-                label: "Passwort bestätigen*",
+                label: _vm.trans("form-labels.password-confirmation") + "*",
                 type: "password",
                 minlength: "8",
                 required: "",
-                placeholder: "Passwort bestätigen*",
+                placeholder:
+                  _vm.trans("form-labels.password-confirmation") + "*",
               },
               model: {
                 value: _vm.fields.repeatPassword,
@@ -276,7 +275,7 @@ var render = function () {
                 ],
                 staticClass: "text-danger mt-3",
               },
-              [_vm._v("Das Passwort ist zu kurz")]
+              [_vm._v(_vm._s(_vm.trans("confirm_password_err")))]
             ),
           ],
           1
@@ -285,7 +284,8 @@ var render = function () {
       _vm._v(" "),
       _c("input", {
         staticClass: "mt-4",
-        attrs: { type: "submit", value: "Speichern" },
+        attrs: { type: "submit" },
+        domProps: { value: _vm.trans("save") },
       }),
     ]
   )

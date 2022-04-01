@@ -29,15 +29,15 @@ export default {
     computed: {
         typeJobText() {
             switch(this.$route.params.typeJob) {
-                case 'umzug': return 'Umzug'
-                case 'reinigung': return 'Reinigung'
-                case 'umzug-und-reinigung': return 'Umzug und Reinigun'
-                case 'maler': return 'Maler'
-                case 'bodenleger': return 'Bodenleger'
-                case 'heizung': return 'Heizung'
-                case 'elektriker': return 'Elektriker'
-                case 'gartner': return 'Gartner'
-                case 'schreiner': return 'Schreiner'
+                case 'umzug': return this.trans('umzug')
+                case 'reinigung': return this.trans('reinigung')
+                case 'umzug-und-reinigung': return this.trans('umzug_und_reinigung')
+                case 'maler': return this.trans('maler')
+                case 'bodenleger': return this.trans('bodenleger')
+                case 'heizung': return this.trans('heizung')
+                case 'elektriker': return this.trans('elektriker')
+                case 'gartner': return this.trans('gartner')
+                case 'schreiner': return this.trans('schreiner')
             }
         },
         typeJobId() {

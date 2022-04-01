@@ -4,8 +4,8 @@
     <div class="container login__container">
         <div class="row">
             <div class="col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-                <h1 class="section-title text-start">Passwort vergessen?</h1>
-                <p class="mt-3">Geben Sie Ihre E-Mail Adresse ein und wir senden Ihnen eine E-Mail zum Zurücksetzen des Passwortes.</p>
+                <h1 class="section-title text-start">{{ __('front.password-forgot') }}</h1>
+                <p class="mt-3">{{ __('front.password-forgot-desc') }}</p>
 
                 @if (session('status'))
                     <div class="alert alert-success mb-0 mt-4" role="alert">
@@ -13,12 +13,12 @@
                     </div>
                 @endif
 
-                <div class="row mt-5">
+                <div class="row mt-4">
                     <form class="col-lg-10" method="POST" action="{{ route('password.email') }}">
                         @csrf
                         <label class="form-field">
-                            <p class="form-field__label">E-mail</p>
-                            <input type="email" name="email" value="{{ old('email') }}" required>
+                            <p class="form-field__label">{{ __('front.form-labels.email') }}</p>
+                            <input type="email" placeholder="{{ __('front.form-labels.email') }}" name="email" value="{{ old('email') }}" required>
                             @error('email')
                                 <p class="mt-2">
                                     <strong class="text-danger">
@@ -27,7 +27,7 @@
                                 </p>
                             @enderror
                         </label>
-                        <input class="mt-4 btn_width_long" type="submit" value="Passwort zurucksetzen">
+                        <input class="mt-4" type="submit" value="{{ __('front.send') }}">
                     </form>
                 </div>
             </div>

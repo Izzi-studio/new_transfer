@@ -1,6 +1,6 @@
 <template>
     <div class="filter-companies">
-        <h4 class="filter-companies__title">Filtern</h4>
+        <h4 class="filter-companies__title">{{trans('filter')}}</h4>
         <form @submit.prevent="formHandler" class="filter-companies__form">
             <div class="row">
                 <div class="col-md-4">
@@ -15,7 +15,7 @@
                     >
                         <template slot="selection" slot-scope="{ values }">
                             <span class="multiselect__single">
-                                Art von Arbeit ({{ values.length }})
+                                {{trans('type-jobs')}} ({{ values.length }})
                             </span>
                         </template>
                     </multiselect>
@@ -32,13 +32,13 @@
                     >
                         <template slot="selection" slot-scope="{ values }">
                             <span class="multiselect__single">
-                                Kanton ({{ values.length }})
+                                {{trans('regions')}} ({{ values.length }})
                             </span>
                         </template>
                     </multiselect>
                 </div>
                 <div class="col-md-4 mt-3 mt-md-0">
-                    <input type="submit" value="Senden">
+                    <input type="submit" :value="trans('search')">
                 </div>
             </div>
         </form>

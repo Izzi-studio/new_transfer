@@ -37,6 +37,7 @@ import FilterCompany from './FilterCompany'
 import Paginate from 'vuejs-paginate'
 
 export default {
+    props: ['localize'],
     data() {
         return {
             cards: [],
@@ -73,6 +74,7 @@ export default {
     },
     mounted() {
         this.loadCompanies()
+        this.$store.commit('setLocalize', JSON.parse(this.localize))
     },
     components: {
         CardCompany,

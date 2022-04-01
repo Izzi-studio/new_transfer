@@ -7,14 +7,14 @@
             <ul class="header__menu-inner">
                 @if(!(auth()->user() && auth()->user()->isPartner()))
                     <li class="header__item header__item_has-menu">
-                        <a class="header__link" href="#">Offerten</a>
+                        <a class="header__link" href="#">{{ __('front.offers') }}</a>
                         <ul class="header__submenu">
                             <li class="header__subitem">
                                 <a 
                                     class="header__sublink" 
                                     href="{{route('client.form.umzug.view')}}"
                                 >
-                                    Umzug
+                                    {{ __('front.umzug') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -22,7 +22,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.reinigung.view')}}"
                                 >
-                                    Reinigung
+                                    {{ __('front.reinigung') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -30,7 +30,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.umzug_und_reinigung.view')}}"
                                 >
-                                    Umzug + Reinigung
+                                    {{ __('front.umzug_und_reinigung') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -38,7 +38,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.malar.view')}}"
                                 >
-                                    Maler/Gipser
+                                    {{ __('front.maler') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -46,7 +46,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.bodenleger.view')}}"
                                 >
-                                    Bodenleger
+                                    {{ __('front.bodenleger') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -54,7 +54,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.heizung.view')}}"
                                 >
-                                    Heizungsanbieter
+                                    {{ __('front.heizung') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -62,7 +62,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.elektriker.view')}}"
                                 >
-                                    Elektriker
+                                    {{ __('front.elektriker') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -70,7 +70,7 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.gartner.view')}}"
                                 >
-                                    Gärtner
+                                    {{ __('front.gartner') }}
                                 </a>
                             </li>
                             <li class="header__subitem">
@@ -78,14 +78,14 @@
                                     class="header__sublink" 
                                     href="{{route('client.form.schreiner.view')}}"
                                 >
-                                    Schreiner
+                                    {{ __('front.schreiner') }}
                                 </a>
                             </li>
                         </ul>
                     </li>
                 @endif
                 <li class="header__item header__item_has-menu">
-                    <a class="header__link" href="#">Ratgeber</a>
+                    <a class="header__link" href="#">{{ __('front.counselor') }}</a>
                     <ul class="header__submenu">
                         @foreach($categories as $category)
                             <li class="header__subitem">
@@ -95,27 +95,27 @@
                     </ul>
                 </li>
                 <li class="header__item header__item_has-menu">
-                    <a class="header__link" href="#">Hilfe</a>
+                    <a class="header__link" href="#">{{ __('front.help') }}</a>
                     <ul class="header__submenu">
                         <li class="header__subitem">
-                            <a class="header__sublink" href="{{route('page.faq.view')}}">FAQ</a>
+                            <a class="header__sublink" href="{{route('page.faq.view')}}">{{ __('front.faq') }}</a>
                         </li>
                         <li class="header__subitem">
-                            <a class="header__sublink" href="{{route('staticpage.view','uber_uns')}}">Über uns</a>
+                            <a class="header__sublink" href="{{route('staticpage.view','uber_uns')}}">{{ __('front.about-us') }}</a>
                         </li>
                         <li class="header__subitem">
-                            <a class="header__sublink" href="{{route('page.contacts.view')}}">Kontakt</a>
+                            <a class="header__sublink" href="{{route('page.contacts.view')}}">{{ __('front.contact') }}</a>
                         </li>
                     </ul>
                 </li>
             </ul>
             <ul class="header__menu-inner">
                 <li class="header__item">
-                    <a class="header__link" href="{{ route('page.search.view') }}">Firmen</a>
+                    <a class="header__link" href="{{ route('page.search.view') }}">{{ __('front.companies') }}</a>
                 </li>
                 @guest
                     <li class="header__item">
-                        <a class="header__link" href="{{ route('login') }}">Anmeldung</a>
+                        <a class="header__link" href="{{ route('login') }}">{{ __('front.login') }}</a>
                     </li>
                 @else
                     @if(auth()->user()->isClient())
@@ -137,7 +137,7 @@
                                 href="#" 
                                 onclick="event.preventDefault(); logoutForm.submit();"
                             >
-                                Ausloggen
+                                {{ __('front.logout') }}
                             </a>
                         </li>
                         <form 

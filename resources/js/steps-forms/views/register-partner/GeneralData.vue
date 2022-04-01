@@ -50,10 +50,10 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            :label="trans('form-labels.house') + '*'"
+                            :label="trans('form-labels.house-number') + '*'"
                             type="text"
                             required
-                            :placeholder="trans('form-labels.house') + '*'"
+                            :placeholder="trans('form-labels.house-number') + '*'"
                             v-model="fields.house"
                         />
                     </div>

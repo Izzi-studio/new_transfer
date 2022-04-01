@@ -7,6 +7,7 @@
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.cleaning-type') }}*</p>
                             <select v-model="fields['additional_info[cleaning]']" required>
+                                <option value="" disabled hidden>-</option>
                                 <option value="Umzugsreinigung">Umzugsreinigung</option>
                                 <option value="Fensterreinigung">Fensterreinigung</option>
                                 <option value="Bodenreinigung">Bodenreinigung</option>

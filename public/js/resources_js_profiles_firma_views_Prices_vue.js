@@ -149,58 +149,64 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h4", { staticClass: "d-block d-lg-none mb-3" }, [_vm._v("Preise")]),
+    _c("h4", { staticClass: "d-block d-lg-none mb-3" }, [
+      _vm._v(_vm._s(_vm.trans("price"))),
+    ]),
     _vm._v(" "),
     _vm.servicesPrices
       ? _c("ul", { staticClass: "profile-service" }, [
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Malerarbeiten: "),
+            _vm._v("\n            " + _vm._s(this.trans("maler")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.maler) + " Chf")]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Umzug + Reinigung: "),
+            _vm._v(
+              "\n            " +
+                _vm._s(this.trans("umzug_und_reinigung")) +
+                ": "
+            ),
             _c("span", [
               _vm._v(_vm._s(_vm.servicesPrices.umzug_und_reinigung) + " Chf"),
             ]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Umzug: "),
+            _vm._v("\n            " + _vm._s(this.trans("umzug")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.umzug) + " Chf")]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Reinigung: "),
+            _vm._v("\n            " + _vm._s(this.trans("reinigung")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.reinigung) + " Chf")]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Bodenleger: "),
+            _vm._v("\n            " + _vm._s(this.trans("bodenleger")) + ": "),
             _c("span", [
               _vm._v(_vm._s(_vm.servicesPrices.bodenleger) + " Chf"),
             ]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Heizungsanbieter: "),
+            _vm._v("\n            " + _vm._s(this.trans("heizung")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.heizung) + " Chf")]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Elektriker: "),
+            _vm._v("\n            " + _vm._s(this.trans("elektriker")) + ": "),
             _c("span", [
               _vm._v(_vm._s(_vm.servicesPrices.elektriker) + " Chf"),
             ]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Gärtner: "),
+            _vm._v("\n            " + _vm._s(this.trans("gartner")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.gartner) + " Chf")]),
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "profile-service__item" }, [
-            _vm._v("\n            Schreiner: "),
+            _vm._v("\n            " + _vm._s(this.trans("schreiner")) + ": "),
             _c("span", [_vm._v(_vm._s(_vm.servicesPrices.schreiner) + " Chf")]),
           ]),
         ])

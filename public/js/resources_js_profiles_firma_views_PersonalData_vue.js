@@ -136,6 +136,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -178,7 +179,6 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function () {
         _this.isUpdate = false;
-        toastr.success("Informationen aktualisiert");
       });
     },
     updateAvatar: function updateAvatar(e) {
@@ -221,7 +221,6 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       _this2.fields.avatar = "";
-      toastr.success("Informationen geladen");
     });
   }
 });
@@ -328,7 +327,9 @@ var render = function () {
           },
         },
         [
-          _c("h4", { staticClass: "d-block d-lg-none mb-3" }, [_vm._v("Info")]),
+          _c("h4", { staticClass: "d-block d-lg-none mb-3" }, [
+            _vm._v(_vm._s(_vm.trans("info"))),
+          ]),
           _vm._v(" "),
           _c("label", { staticClass: "form-photo" }, [
             _c("input", {
@@ -342,7 +343,7 @@ var render = function () {
             }),
             _vm._v(" "),
             _c("p", { staticClass: "form-photo__label" }, [
-              _vm._v("FOTO ÄNDERN"),
+              _vm._v(_vm._s(_vm.trans("change-photo"))),
             ]),
           ]),
           _vm._v(" "),
@@ -353,10 +354,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Firma*",
+                    label: _vm.trans("form-labels.company") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Firma*",
+                    placeholder: _vm.trans("form-labels.company") + "*",
                   },
                   model: {
                     value: _vm.fields.company,
@@ -376,10 +377,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Telefon*",
+                    label: _vm.trans("form-labels.phone") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Telefon*",
+                    placeholder: _vm.trans("form-labels.phone") + "*",
                   },
                   model: {
                     value: _vm.fields.phone,
@@ -399,10 +400,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Vorname*",
+                    label: _vm.trans("form-labels.name") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Vorname*",
+                    placeholder: _vm.trans("form-labels.name") + "*",
                   },
                   model: {
                     value: _vm.fields.name,
@@ -422,10 +423,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Nachname*",
+                    label: _vm.trans("form-labels.lastname") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Nachname*",
+                    placeholder: _vm.trans("form-labels.lastname") + "*",
                   },
                   model: {
                     value: _vm.fields.lastname,
@@ -468,10 +469,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Ort*",
+                    label: _vm.trans("form-labels.city") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Ort*",
+                    placeholder: _vm.trans("form-labels.city") + "*",
                   },
                   model: {
                     value: _vm.fields.city,
@@ -491,10 +492,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Strasse*",
+                    label: _vm.trans("form-labels.street") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Strasse*",
+                    placeholder: _vm.trans("form-labels.street") + "*",
                   },
                   model: {
                     value: _vm.fields.street,
@@ -514,10 +515,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: "Hausnummer*",
+                    label: _vm.trans("form-labels.house-number") + "*",
                     type: "text",
                     required: "",
-                    placeholder: "Hausnummer*",
+                    placeholder: _vm.trans("form-labels.house-number") + "*",
                   },
                   model: {
                     value: _vm.fields.house,
@@ -530,6 +531,10 @@ var render = function () {
               ],
               1
             ),
+          ]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "mt-5" }, [
+            _vm._v(_vm._s(_vm.trans("form-labels.jobs")) + "*:"),
           ]),
           _vm._v(" "),
           _c(
@@ -576,7 +581,7 @@ var render = function () {
           ),
           _vm._v(" "),
           _c("h5", { staticClass: "mt-5" }, [
-            _vm._v("Wählen Sie Ihre Gebiete"),
+            _vm._v(_vm._s(_vm.trans("form-labels.regions")) + "*:"),
           ]),
           _vm._v(" "),
           _c(
@@ -624,7 +629,8 @@ var render = function () {
           _vm._v(" "),
           _c("input", {
             staticClass: "mt-4",
-            attrs: { type: "submit", value: "Speichern" },
+            attrs: { type: "submit" },
+            domProps: { value: _vm.trans("save") },
           }),
         ]
       )

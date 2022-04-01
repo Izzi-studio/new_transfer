@@ -146,18 +146,18 @@ __webpack_require__.r(__webpack_exports__);
       var str = '';
 
       if (this.typeJobId == 1) {
-        str += this.data.additional_info.from.rooms + ' Zimmer';
-        str += ', ' + this.data.additional_info.from.floor + ' Stock';
+        str += this.data.additional_info.from.rooms + ' ' + this.trans('room');
+        str += ', ' + this.data.additional_info.from.floor + ' ' + this.trans('form-labels.floor');
       }
 
       if (this.typeJobId == 2) {
-        str += this.data.additional_info.cleaning, str += ', ' + this.data.additional_info.windows + ' Fenster', str += ', ' + (this.data.additional_info.shower_wc || '-'), str += ', ' + (this.data.additional_info.bath_wc || '-'), str += ', ' + (this.data.additional_info.wc || '-');
+        str += this.data.additional_info.cleaning, str += ', ' + this.data.additional_info.windows + ' ' + this.trans('form-labels.windows'), str += ', ' + this.data.additional_info.shower_wc + ' ' + this.trans('form-labels.shower_wc'), str += ', ' + this.data.additional_info.bath_wc + ' ' + this.trans('form-labels.bath_wc'), str += ', ' + this.data.additional_info.wc + ' ' + this.trans('form-labels.wc');
       }
 
       if (this.typeJobId == 3) {
-        str += this.data.additional_info.from.rooms + ' Zimmer';
-        str += ', ' + this.data.additional_info.from.floor + ' Stock';
-        str += ', ' + this.data.additional_info.cleaning, str += ', ' + this.data.additional_info.windows + ' Fenster', str += ', ' + (this.data.additional_info.shower_wc || '-'), str += ', ' + (this.data.additional_info.bath_wc || '-'), str += ', ' + (this.data.additional_info.wc || '-');
+        str += this.data.additional_info.from.rooms + ' ' + this.trans('room');
+        str += ', ' + this.data.additional_info.from.floor + ' ' + this.trans('form-labels.floor');
+        str += ', ' + this.data.additional_info.cleaning + ' ' + this.trans('form-labels.cleaning'), str += ', ' + this.data.additional_info.windows + ' ' + this.trans('form-labels.windows'), str += ', ' + this.data.additional_info.shower_wc + ' ' + this.trans('form-labels.shower_wc'), str += ', ' + this.data.additional_info.bath_wc + ' ' + this.trans('form-labels.bath_wc'), str += ', ' + this.data.additional_info.wc + ' ' + this.trans('form-labels.wc');
       }
 
       if (this.typeJobId == 4 || this.typeJobId == 5 || this.typeJobId == 6 || this.typeJobId == 7 || this.typeJobId == 8 || this.typeJobId == 9) {
@@ -652,10 +652,10 @@ __webpack_require__.r(__webpack_exports__);
     requestsText: function requestsText() {
       switch (this.$route.params.requests) {
         case 'verkaufe':
-          return 'Ich verkaufe';
+          return this.trans('requests-selling');
 
         case 'kaufe':
-          return 'Ich kaufe';
+          return this.trans('requests-bought');
       }
     },
     requestsStatus: function requestsStatus() {
@@ -1246,7 +1246,13 @@ var render = function () {
               },
             },
           },
-          [_vm._v("\n            Anfrage Details\n        ")]
+          [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.trans("request-details")) +
+                "\n        "
+            ),
+          ]
         ),
       ]),
       _vm._v(" "),
@@ -1275,7 +1281,13 @@ var render = function () {
                   },
                 },
               },
-              [_vm._v("\n            Vorgeschlagene Unternehmen\n        ")]
+              [
+                _vm._v(
+                  "\n            " +
+                    _vm._s(_vm.trans("suggested-companies")) +
+                    "\n        "
+                ),
+              ]
             )
           : _vm._e(),
         _vm._v(" "),
@@ -1298,7 +1310,13 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("\n                Akzeptieren\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("accept")) +
+                      "\n            "
+                  ),
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -1312,7 +1330,13 @@ var render = function () {
                     download: "",
                   },
                 },
-                [_vm._v("\n                Download\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("download")) +
+                      "\n            "
+                  ),
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -1326,7 +1350,13 @@ var render = function () {
                     type: "button",
                   },
                 },
-                [_vm._v("\n                Bearbeiten\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("edit")) +
+                      "\n            "
+                  ),
+                ]
               )
             : _vm._e(),
           _vm._v(" "),
@@ -1342,7 +1372,13 @@ var render = function () {
                     },
                   },
                 },
-                [_vm._v("\n                Ablehnen\n            ")]
+                [
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.trans("reject")) +
+                      "\n            "
+                  ),
+                ]
               )
             : _vm._e(),
         ]),
@@ -1380,7 +1416,11 @@ var render = function () {
       _vm._v(" "),
       _vm.data.price
         ? _c("p", { staticClass: "mt-2", staticStyle: { color: "#1072D8" } }, [
-            _c("strong", [_vm._v("Preise " + _vm._s(_vm.data.price) + " €")]),
+            _c("strong", [
+              _vm._v(
+                _vm._s(_vm.trans("price")) + " " + _vm._s(_vm.data.price) + " €"
+              ),
+            ]),
           ])
         : _vm._e(),
     ],
@@ -1432,7 +1472,13 @@ var render = function () {
                   "/firmenprofil/" + company.profile_slug + "/" + _vm.offerId,
               },
             },
-            [_vm._v("\n                Profil anzeigen\n            ")]
+            [
+              _vm._v(
+                "\n                " +
+                  _vm._s(_vm.trans("show-profile")) +
+                  "\n            "
+              ),
+            ]
           ),
         ]),
         _vm._v(" "),
@@ -1493,7 +1539,9 @@ var render = function () {
           }),
           _vm._v(" "),
           _c("p", { staticClass: "offer-company__count-rating" }, [
-            _vm._v(_vm._s(company.star_count) + " Bewertungen"),
+            _vm._v(
+              _vm._s(company.star_count) + " " + _vm._s(_vm.trans("reviews"))
+            ),
           ]),
         ]),
       ])
@@ -1525,7 +1573,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "offer-details" }, [
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Adresse")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("address"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1543,7 +1593,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Termine")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("term"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.date_start)),
@@ -1551,7 +1603,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Flexibel")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.dayrange"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1563,7 +1617,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Haus")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("house"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1573,9 +1629,13 @@ var render = function () {
             _vm._s(_vm.data.additional_info.square) +
             " m2, \n            " +
             _vm._s(_vm.data.additional_info.rooms) +
-            " Zimmer, \n            " +
+            " " +
+            _vm._s(_vm.trans("room")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.floor) +
-            " Stock, \n            " +
+            " " +
+            _vm._s(_vm.trans("form-labels.floor")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.lift) +
             "\n        "
         ),
@@ -1583,7 +1643,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bodentyp")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.soil_type"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.additional_info.soil_type)),
@@ -1592,7 +1654,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Fenstergröße"),
+        _vm._v(_vm._s(_vm.trans("form-labels.window_size"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1603,7 +1665,7 @@ var render = function () {
     _vm.data.additional_info.other
       ? _c("div", { staticClass: "offer-details__item" }, [
           _c("p", { staticClass: "offer-details__title" }, [
-            _vm._v("Andere Info"),
+            _vm._v(_vm._s(_vm.trans("form-labels.other"))),
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "offer-details__txt" }, [
@@ -1617,7 +1679,9 @@ var render = function () {
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bemerkungen")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.description"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v("\n            " + _vm._s(_vm.data.description) + "\n        "),
@@ -1626,7 +1690,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Kontaktdaten"),
+        _vm._v(_vm._s(_vm.trans("contact-data"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1635,7 +1699,9 @@ var render = function () {
             _vm._s(_vm.data.client.name) +
             " " +
             _vm._s(_vm.data.client.lastname) +
-            ", \n            Telefon " +
+            ", \n            " +
+            _vm._s(_vm.trans("form-labels.phone")) +
+            " " +
             _vm._s(_vm.data.client.phone) +
             ", \n            " +
             _vm._s(_vm.data.client.email) +
@@ -1646,7 +1712,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Erreichbarkeit"),
+        _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1681,7 +1747,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "offer-details" }, [
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Adresse")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("address"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1699,7 +1767,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Termine")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("term"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.date_start)),
@@ -1707,7 +1777,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Flexibel")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.dayrange"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1719,7 +1791,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bemerkungen")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.description"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v("\n            " + _vm._s(_vm.data.description) + "\n        "),
@@ -1728,7 +1802,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Kontaktdaten"),
+        _vm._v(_vm._s(_vm.trans("contact-data"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1737,7 +1811,9 @@ var render = function () {
             _vm._s(_vm.data.client.name) +
             " " +
             _vm._s(_vm.data.client.lastname) +
-            ", \n            Telefon " +
+            ", \n            " +
+            _vm._s(_vm.trans("form-labels.phone")) +
+            " " +
             _vm._s(_vm.data.client.phone) +
             ", \n            " +
             _vm._s(_vm.data.client.email) +
@@ -1748,7 +1824,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Erreichbarkeit"),
+        _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1783,7 +1859,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "offer-details" }, [
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Adresse")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("address"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1813,7 +1891,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Termine")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("term"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.date_start)),
@@ -1821,7 +1901,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Auszug")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("abstract"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1831,9 +1913,13 @@ var render = function () {
             _vm._s(_vm.data.additional_info.from.square) +
             " m2, \n            " +
             _vm._s(_vm.data.additional_info.from.rooms) +
-            " Zimmer, \n            " +
+            " " +
+            _vm._s(_vm.trans("room")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.from.floor) +
-            " Stock, \n            " +
+            " " +
+            _vm._s(_vm.trans("form-labels.floor")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.from.lift) +
             "\n        "
         ),
@@ -1841,7 +1927,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Einzug")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("indent"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1851,7 +1939,9 @@ var render = function () {
             _vm._s(_vm.data.additional_info.to.square) +
             " m2, \n            " +
             _vm._s(_vm.data.additional_info.to.floor) +
-            " Stock, \n            " +
+            " " +
+            _vm._s(_vm.trans("form-labels.floor")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.to.lift) +
             "\n        "
         ),
@@ -1859,7 +1949,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Flexibel")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.dayrange"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1873,7 +1965,7 @@ var render = function () {
     _vm.data.additional_info.from.other
       ? _c("div", { staticClass: "offer-details__item" }, [
           _c("p", { staticClass: "offer-details__title" }, [
-            _vm._v("Andere Info"),
+            _vm._v(_vm._s(_vm.trans("form-labels.other"))),
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "offer-details__txt" }, [
@@ -1887,7 +1979,9 @@ var render = function () {
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bemerkungen")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.description"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v("\n            " + _vm._s(_vm.data.description) + "\n        "),
@@ -1896,7 +1990,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Kontaktdaten"),
+        _vm._v(_vm._s(_vm.trans("contact-data"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1905,7 +1999,9 @@ var render = function () {
             _vm._s(_vm.data.client.name) +
             " " +
             _vm._s(_vm.data.client.lastname) +
-            ", \n            Telefon " +
+            ", \n            " +
+            _vm._s(_vm.trans("form-labels.phone")) +
+            " " +
             _vm._s(_vm.data.client.phone) +
             ", \n            " +
             _vm._s(_vm.data.client.email) +
@@ -1916,7 +2012,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Erreichbarkeit"),
+        _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -1951,7 +2047,9 @@ var render = function () {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "offer-details" }, [
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Adresse")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("address"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -1981,7 +2079,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Termine")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("term"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.date_start)),
@@ -1989,7 +2089,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Flexibel")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.dayrange"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -2001,7 +2103,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Auszug")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("abstract"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -2011,9 +2115,13 @@ var render = function () {
             _vm._s(_vm.data.additional_info.from.square) +
             " m2, \n            " +
             _vm._s(_vm.data.additional_info.from.rooms) +
-            " Zimmer, \n            " +
+            " " +
+            _vm._s(_vm.trans("room")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.from.floor) +
-            " Stock, \n            " +
+            " " +
+            _vm._s(_vm.trans("form-labels.floor")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.from.lift) +
             "\n        "
         ),
@@ -2021,7 +2129,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Einzug")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("indent"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(
@@ -2031,7 +2141,9 @@ var render = function () {
             _vm._s(_vm.data.additional_info.to.square) +
             " m2, \n            " +
             _vm._s(_vm.data.additional_info.to.floor) +
-            " Stock, \n            " +
+            " " +
+            _vm._s(_vm.trans("form-labels.floor")) +
+            ", \n            " +
             _vm._s(_vm.data.additional_info.to.lift) +
             "\n        "
         ),
@@ -2039,7 +2151,9 @@ var render = function () {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bodentyp")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.soil_type"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v(_vm._s(_vm.data.additional_info.soil_type)),
@@ -2048,7 +2162,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Fenstergröße"),
+        _vm._v(_vm._s(_vm.trans("form-labels.window_size"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -2059,7 +2173,7 @@ var render = function () {
     _vm.data.additional_info.from.other
       ? _c("div", { staticClass: "offer-details__item" }, [
           _c("p", { staticClass: "offer-details__title" }, [
-            _vm._v("Andere Info"),
+            _vm._v(_vm._s(_vm.trans("form-labels.other"))),
           ]),
           _vm._v(" "),
           _c("p", { staticClass: "offer-details__txt" }, [
@@ -2073,7 +2187,9 @@ var render = function () {
       : _vm._e(),
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
-      _c("p", { staticClass: "offer-details__title" }, [_vm._v("Bemerkungen")]),
+      _c("p", { staticClass: "offer-details__title" }, [
+        _vm._v(_vm._s(_vm.trans("form-labels.description"))),
+      ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
         _vm._v("\n            " + _vm._s(_vm.data.description) + "\n        "),
@@ -2082,7 +2198,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Kontaktdaten"),
+        _vm._v(_vm._s(_vm.trans("contact-data"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [
@@ -2091,7 +2207,9 @@ var render = function () {
             _vm._s(_vm.data.client.name) +
             " " +
             _vm._s(_vm.data.client.lastname) +
-            ", \n            Telefon " +
+            ", \n            " +
+            _vm._s(_vm.trans("form-labels.phone")) +
+            " " +
             _vm._s(_vm.data.client.phone) +
             ", \n            " +
             _vm._s(_vm.data.client.email) +
@@ -2102,7 +2220,7 @@ var render = function () {
     _vm._v(" "),
     _c("div", { staticClass: "offer-details__item" }, [
       _c("p", { staticClass: "offer-details__title" }, [
-        _vm._v("Erreichbarkeit"),
+        _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "offer-details__txt" }, [

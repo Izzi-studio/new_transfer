@@ -468,6 +468,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2292,6 +2293,12 @@ var render = function () {
                     },
                   },
                   [
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
+                    _vm._v(" "),
                     _c("option", { attrs: { value: "Umzugsreinigung" } }, [
                       _vm._v("Umzugsreinigung"),
                     ]),
@@ -3004,6 +3011,7 @@ var render = function () {
                         expression: "fields['additional_info[windows]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3025,7 +3033,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                     _vm._v(" "),
@@ -3082,6 +3094,7 @@ var render = function () {
                         expression: "fields['additional_info[shower_wc]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3103,7 +3116,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                     _vm._v(" "),
@@ -3138,6 +3155,7 @@ var render = function () {
                         expression: "fields['additional_info[bath_wc]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3159,7 +3177,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                     _vm._v(" "),
@@ -3194,6 +3216,7 @@ var render = function () {
                         expression: "fields['additional_info[wc]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3215,7 +3238,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "1" } }, [_vm._v("1")]),
                     _vm._v(" "),
@@ -3250,6 +3277,7 @@ var render = function () {
                         expression: "fields['additional_info[soil_type]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3271,7 +3299,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Parkett" } }, [
                       _vm._v("Parkett"),
@@ -3318,6 +3350,7 @@ var render = function () {
                         expression: "fields['additional_info[window_size]']",
                       },
                     ],
+                    attrs: { required: "" },
                     on: {
                       change: function ($event) {
                         var $$selectedVal = Array.prototype.filter
@@ -3339,7 +3372,11 @@ var render = function () {
                     },
                   },
                   [
-                    _c("option", { attrs: { value: "" } }, [_vm._v("-")]),
+                    _c(
+                      "option",
+                      { attrs: { value: "", disabled: "", hidden: "" } },
+                      [_vm._v("-")]
+                    ),
                     _vm._v(" "),
                     _c(
                       "option",

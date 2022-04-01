@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="profile__header">
-            <h1 class="section-title">Mein Konto</h1>
+            <h1 class="section-title">{{trans('my-bill')}}</h1>
             <p class="profile__bill">CHF: 00.00</p>
         </div>
         <div class="row mt-4">
@@ -43,6 +43,7 @@ import Card from '../components/Card'
 import Paginate from 'vuejs-paginate'
 
 export default {
+    props: ['localize'],
     components: {
         FilterProposals,
         Card,
@@ -67,6 +68,7 @@ export default {
     },
     mounted() {
         this.loadCards()
+        this.$store.commit('setLocalize', JSON.parse(this.localize))
     },
     methods: {
         addOffer(id) {

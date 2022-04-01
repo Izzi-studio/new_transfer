@@ -70,23 +70,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  data: function data() {
-    return {
-      menu: [{
-        text: 'Persönliche Daten',
+  computed: {
+    menu: function menu() {
+      return [{
+        text: this.trans('personal-data'),
         submenu: [{
-          text: 'Info',
+          text: this.trans('info'),
           to: {
             name: 'personalData_client'
           }
         }, {
-          text: 'Passwort ändern',
+          text: this.trans('change-password'),
           to: {
             name: 'changePassword_client'
           }
         }]
       }, {
-        text: 'Umzug',
+        text: this.trans('umzug'),
         to: {
           params: {
             typeJob: 'umzug'
@@ -94,7 +94,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Reinigung',
+        text: this.trans('reinigung'),
         to: {
           params: {
             typeJob: 'reinigung'
@@ -102,7 +102,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Umzug + Reinigung',
+        text: this.trans('umzug_und_reinigung'),
         to: {
           params: {
             typeJob: 'umzug-und-reinigung'
@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Maler/Gipser',
+        text: this.trans('maler'),
         to: {
           params: {
             typeJob: 'maler'
@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Bodenleger',
+        text: this.trans('bodenleger'),
         to: {
           params: {
             typeJob: 'bodenleger'
@@ -126,7 +126,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Heizungsanbieter',
+        text: this.trans('heizung'),
         to: {
           params: {
             typeJob: 'heizung'
@@ -134,7 +134,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Elektriker',
+        text: this.trans('elektriker'),
         to: {
           params: {
             typeJob: 'elektriker'
@@ -142,7 +142,7 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Gärtner',
+        text: this.trans('gartner'),
         to: {
           params: {
             typeJob: 'gartner'
@@ -150,17 +150,15 @@ __webpack_require__.r(__webpack_exports__);
           name: 'requests_client'
         }
       }, {
-        text: 'Schreiner',
+        text: this.trans('schreiner'),
         to: {
           params: {
             typeJob: 'schreiner'
           },
           name: 'requests_client'
         }
-      }]
-    };
-  },
-  computed: {
+      }];
+    },
     currentComponentName: function currentComponentName() {
       return this.$route.name;
     }
@@ -207,10 +205,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: ['localize'],
   data: function data() {
     return {
       isShowSidebarMob: false
     };
+  },
+  mounted: function mounted() {
+    this.$store.commit('setLocalize', JSON.parse(this.localize));
   },
   components: {
     Sidebar: _Sidebar__WEBPACK_IMPORTED_MODULE_0__["default"]

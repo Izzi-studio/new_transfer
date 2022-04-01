@@ -32,11 +32,9 @@ export default {
     computed: {
         requestsText() {
             switch(this.$route.params.requests) {
-                case 'offene': return 'Offene'
-                case 'angenommene': return 'Angenommene'
-                case 'abgesagte': return 'Abgesagte'
-                case 'verkaufe': return 'Ich verkaufe'
-                case 'kaufe': return 'Ich kaufe'
+                case 'offene': return this.trans('request-new')
+                case 'angenommene': return this.trans('request-accepted')
+                case 'abgesagte': return this.trans('request-reject')
             }
         },
         requestsStatus() {

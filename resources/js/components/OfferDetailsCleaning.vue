@@ -1,7 +1,7 @@
 <template>
     <div class="offer-details">
         <div class="offer-details__item">
-            <p class="offer-details__title">Adresse</p>
+            <p class="offer-details__title">{{trans('address')}}</p>
             <p class="offer-details__txt">
                 {{ data.additional_info.street }} {{ data.additional_info.number }}, 
                 {{ data.additional_info.zip }}, 
@@ -9,55 +9,55 @@
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Termine</p>
+            <p class="offer-details__title">{{trans('term')}}</p>
             <p class="offer-details__txt">{{ data.date_start }}</p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Flexibel</p>
+            <p class="offer-details__title">{{trans('form-labels.dayrange')}}</p>
             <p class="offer-details__txt">
                 {{ data.additional_info.dayrange }}
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Haus</p>
+            <p class="offer-details__title">{{trans('house')}}</p>
             <p class="offer-details__txt">
                 {{ data.additional_info.house_type }}, 
                 {{ data.additional_info.square }} m2, 
-                {{ data.additional_info.rooms }} Zimmer, 
-                {{ data.additional_info.floor }} Stock, 
+                {{ data.additional_info.rooms }} {{trans('room')}}, 
+                {{ data.additional_info.floor }} {{trans('form-labels.floor')}}, 
                 {{ data.additional_info.lift }}
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Bodentyp</p>
+            <p class="offer-details__title">{{trans('form-labels.soil_type')}}</p>
             <p class="offer-details__txt">{{ data.additional_info.soil_type }}</p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Fenstergröße</p>
+            <p class="offer-details__title">{{trans('form-labels.window_size')}}</p>
             <p class="offer-details__txt">{{ data.additional_info.window_size }}</p>
         </div>
         <div v-if="data.additional_info.other" class="offer-details__item">
-            <p class="offer-details__title">Andere Info</p>
+            <p class="offer-details__title">{{trans('form-labels.other')}}</p>
             <p class="offer-details__txt">
                 {{ data.additional_info.other.join(', ') }}
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Bemerkungen</p>
+            <p class="offer-details__title">{{trans('form-labels.description')}}</p>
             <p class="offer-details__txt">
                 {{ data.description }}
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Kontaktdaten</p>
+            <p class="offer-details__title">{{trans('contact-data')}}</p>
             <p class="offer-details__txt">
                 {{ data.client.name }} {{ data.client.lastname }}, 
-                Telefon {{ data.client.phone }}, 
+                {{trans('form-labels.phone')}} {{ data.client.phone }}, 
                 {{ data.client.email }}
             </p>
         </div>
         <div class="offer-details__item">
-            <p class="offer-details__title">Erreichbarkeit</p>
+            <p class="offer-details__title">{{trans('form-labels.availability')}}</p>
             <p class="offer-details__txt">
                 {{ data.client.availability }}
             </p>

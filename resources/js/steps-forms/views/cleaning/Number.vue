@@ -13,8 +13,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.windows') }}</p>
-                            <select v-model="fields['additional_info[windows]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[windows]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -32,8 +32,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.shower_wc') }}</p>
-                            <select v-model="fields['additional_info[shower_wc]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[shower_wc]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -46,8 +46,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.bath_wc') }}</p>
-                            <select v-model="fields['additional_info[bath_wc]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[bath_wc]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -60,8 +60,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.wc') }}</p>
-                            <select v-model="fields['additional_info[wc]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[wc]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -74,8 +74,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.soil_type') }}</p>
-                            <select v-model="fields['additional_info[soil_type]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[soil_type]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="Parkett">Parkett</option>
                                 <option value="Laminat">Laminat</option>
                                 <option value="Linoleum">Linoleum</option>
@@ -88,8 +88,8 @@
                     <div class="col-md-6 mt-4">
                         <div class="form-field">
                             <p class="form-field__label">{{ trans('form-labels.window_size') }}</p>
-                            <select v-model="fields['additional_info[window_size]']">
-                                <option value="">-</option>
+                            <select required v-model="fields['additional_info[window_size]']">
+                                <option value="" disabled hidden>-</option>
                                 <option value="Höhe 120cm Breite 60cm">Höhe 120cm Breite 60cm</option>
                                 <option value="Höhe 120cm Breite 100cm">Höhe 120cm Breite 100cm</option>
                                 <option value="Höhe 200cm Breite 60cm">Höhe 200cm Breite 60cm</option>

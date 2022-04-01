@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="profile__header">
-            <h1 class="section-title">Mein Konto</h1>
+            <h1 class="section-title">{{trans('my-bill')}}</h1>
             <p class="profile__bill">CHF: 00.00</p>
         </div>
         <div class="row mt-4">
@@ -33,7 +33,7 @@
 import Sidebar from './Sidebar'
 
 export default {
-    props: ['additionalInfo'],
+    props: ['additionalInfo', 'localize'],
     data() {
         return {
             isShowSidebarMob: false,
@@ -42,6 +42,7 @@ export default {
     mounted() {
         this.$store.dispatch('profile/getProposalsCounts')
         this.$store.commit('setAdditionalInfo', JSON.parse(this.additionalInfo))
+        this.$store.commit('setLocalize', JSON.parse(this.localize))
     },
     components: {
         Sidebar,

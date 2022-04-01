@@ -988,10 +988,10 @@ var render = function () {
               [
                 _c("form-field", {
                   attrs: {
-                    label: _vm.trans("form-labels.house") + "*",
+                    label: _vm.trans("form-labels.house-number") + "*",
                     type: "text",
                     required: "",
-                    placeholder: _vm.trans("form-labels.house") + "*",
+                    placeholder: _vm.trans("form-labels.house-number") + "*",
                   },
                   model: {
                     value: _vm.fields.house,

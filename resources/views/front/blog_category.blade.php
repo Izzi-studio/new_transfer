@@ -10,7 +10,7 @@
                 <div class="card-article">
                     <img class="card-article__img" src="{{env('FRONT_PATH_BLOG_IMAGE')}}{{$blog->image}}" alt="">
                     <h3 class="card-article__title">{{$blog->getBlogDescription->name}}</h3>
-                    <a class="card-article__link" href="{{route('blog.post.view',[$blogCategory->slug,$blog->slug])}}">Weiterlesen</a>
+                    <a class="card-article__link" href="{{route('blog.post.view',[$blogCategory->slug,$blog->slug])}}">{{__('front.read-more')}}</a>
                 </div>
             </div>
         </div>
