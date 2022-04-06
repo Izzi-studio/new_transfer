@@ -1,7 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
+use App\Http\Controllers\Admin\BlogCategoriesController as AdminBlogCategoriesController;
+use App\Http\Controllers\Admin\FaqController;
+use App\Http\Controllers\Admin\SeoMetaController;
+use App\Http\Controllers\Admin\ProposalController as AdminProposalController;
+use App\Http\Controllers\Admin\ReviewMainPageController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StaticPageController;
+use App\Http\Controllers\Admin\CustomPageController as AdminCustomPageController;
+use App\Http\Controllers\Admin\PartnerController as AdminPartnerController;
+use App\Http\Controllers\Admin\InvoiceToUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,7 +35,8 @@ Route::group([
 ], function ($router) {
     Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
+    Route::get('sitemap',[\App\Http\Controllers\PageController::class,'sitemap'])->name('sitemap');
+    Route::get('sitemap.xml',[\App\Http\Controllers\PageController::class,'sitemapXml'])->name('sitemapXml');
 
     //register partner
     Route::get('/partner-werden', [App\Http\Controllers\Auth\RegisterController::class, 'registerPartnerView'])->name('partner.register.view');
@@ -89,6 +100,7 @@ Route::group([
     Route::get('/proposals/download/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'download'])->name('partner.proposals.download');
 
 
+
     Route::get('/firmenprofil/{user:profile_slug}/{proposal}', [App\Http\Controllers\Partner\PartnerController::class,'profileProxy'])->name('partner.profile.profile_proxy');
     Route::get('/firmenprofil/{user:profile_slug}', [App\Http\Controllers\Partner\PartnerController::class,'profile'])->name('partner.profile');
     Route::get('/firmenprofil/{user:profile_slug}/review/create/{proposal}', [App\Http\Controllers\Partner\PartnerController::class,'createReview'])->name('partner.profile.create_review');
@@ -105,3 +117,50 @@ Route::post('check-email', [App\Http\Controllers\Auth\RegisterController::class,
 
 //Route::post('add-request', [App\Http\Controllers\ProposalController::class, 'store'])->name('proposal.add');
 
+Route::group([
+    'middleware'=> ['admin','localeSessionRedirect', 'localizationRedirect'],
+    'prefix' =>  LaravelLocalization::setLocale().'/administrator'
+], function ($router) {
+
+    Route::get('tts', [ProposalController::class, 'tts'])
+        ->name('partner.tts');
+
+
+    Route::get('/',function (){
+        return redirect()->route('blog.index');
+    });
+    Route::resource('blog', AdminBlogController::class);
+    Route::resource('blog-categories', AdminBlogCategoriesController::class);
+    Route::resource('faq', FaqController::class);
+
+    Route::resource('seo-meta', SeoMetaController::class)->only(['store','index','create']);
+
+    Route::get('seo-meta/{seoMetaTags:type}', [SeoMetaController::class,'edit'])->name('seo-meta.edit');
+    Route::put('seo-meta/{seoMetaTags:type}', [SeoMetaController::class,'update'])->name('seo-meta.update');
+    Route::delete('seo-meta/{type}', [SeoMetaController::class,'destroy'])->name('seo-meta.destroy');
+
+    Route::resource('proposals', AdminProposalController::class)->only(['update','index','edit','destroy']);
+    Route::get('proposals-resell', [AdminProposalController::class,'resellLest'])->name('proposal.resell');
+    Route::resource('reviews', ReviewMainPageController::class);
+    Route::resource('setting', SettingController::class);
+    Route::resource('static-page', StaticPageController::class);
+    Route::resource('custom-page', AdminCustomPageController::class);
+    Route::get('custom-page/copy/{customPage}', [AdminCustomPageController::class,'copyPage'])->name('custom-page.copy');
+    Route::get('partners/request-update/{partner}/{requestCahngePartnerInfo}', [AdminPartnerController::class,'showUpdateRequest'])->name('request-update');
+    Route::post('partners/request-update/{partner}/{requestCahngePartnerInfo}', [AdminPartnerController::class,'updateRequest']);
+    Route::post('partners/request-update-delete/{requestCahngePartnerInfo}', [AdminPartnerController::class,'updateRequestDelete'])->name('request-update.destroy');
+    Route::resource('partners', AdminPartnerController::class);
+    Route::resource('invoice', InvoiceToUserController::class);
+
+
+});
+
+
+Route::group([
+    'prefix'=> LaravelLocalization::setLocale(),
+    'middleware'=> ['localeSessionRedirect', 'localizationRedirect']
+], function ($router) {
+
+    Route::get('{type_work}/{customPage:slug}',[\App\Http\Controllers\PageController::class,'customPage'])->name('custom-page.view');
+
+});

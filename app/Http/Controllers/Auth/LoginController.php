@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
+use App\Models\User;
 class LoginController extends Controller
 {
     /*
@@ -36,5 +37,30 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect After auth user.
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    protected function authenticated(Request $request, User $user)
+    {
+
+        if ($user->isAdmin() ) {
+            return  redirect()->route('blog.index');
+        }
+
+        if ($user->isPartner() ) {
+           // return  redirect()->route('partner.myInfo');
+        }
+
+        if ($user->isClient() ) {
+          //  return redirect()->route('client.myInfo');
+        }
+
+
+        return redirect('/');
     }
 }

@@ -80,6 +80,56 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\PartnerWantJobs');
     }
 
+    //admin
+    public function requestChangeInfoNew()
+    {
+        return $this->hasMany('App\Models\RequestCahngePartnerInfo')->whereStatus(1)->count();
+    }
+    public function requestChangeInfo()
+    {
+        return $this->hasMany('App\Models\RequestCahngePartnerInfo')->orderBy('id','desc');
+    }
+    /**
+     * Get Matching Users
+     *
+     * @param int $regionId,
+     * @param int $typeJobId
+     * @return $query
+     */
+    public function scopegetPartners($query)
+    {
+        return $query->where('role_id',2)->
+        leftJoin('request_change_partner_info','users.id','=','request_change_partner_info.user_id')->
+        selectRaw('users.*, (select  count(request_change_partner_info.id) AS `count` from request_change_partner_info where request_change_partner_info.status = 1 and users.id = request_change_partner_info.user_id) AS `count`')->
+        groupBy('users.id')->
+        orderBy('count','DESC')->
+        orderBy('id','DESC')->
+        paginate(200);
+
+    }
+    public function getInvoices()
+    {
+        return $this->hasOne('App\Models\InvoiceToUser', 'user_id', 'id');
+    }
+
+    /**
+     * Get Proposals to Partner  by status
+     *
+     * @param  int $status 0,1,2
+     * @return $query
+     */
+    public function getProposalsByStatus($status){
+
+        $startDate = Carbon::now()->format('Y/m/d');
+
+        return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
+            'user_id','id','id','proposal_id')
+            ->where('proposals_to_partner.status',$status)
+            ->where('date_start','>=',$startDate)
+            ->orderBy('id','DESC');
+    }
+    //admin end
+    
     /**
      * Get Proposals to Partner
      *

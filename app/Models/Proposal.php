@@ -49,6 +49,10 @@ class Proposal extends Model
     {
         return $this->whereResell(1)->wherePayed(0);
     }
+    public function scopeResell()
+    {
+        return $this->whereResell(1);
+    }
 
 
     public function getRegion()

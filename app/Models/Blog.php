@@ -9,7 +9,9 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 class Blog extends Model
 {
     use HasFactory;
-
+    protected $dates = [
+        'created_at'
+    ];
     protected $fillable = ['category_id','slug'];
     /**
      * The table associated with the model.

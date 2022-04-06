@@ -6,15 +6,17 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class StaticPage extends Model
 {
-    protected $fillable = ['slug','image','layout'];
+    protected $fillable = ['slug','image','layout','created_at'];
     /**
      * The table associated with the model.
      *
      * @var string
      */
     protected $table = 'static_page';
-    public $timestamps = false;
 
+    protected $dates = [
+        'created_at'
+    ];
     public function getPageDescription(){
         return $this->hasOne('App\Models\StaticPageDescription', 'static_page_id', 'id')
             ->where('static_page_description.locale',LaravelLocalization::getCurrentLocale());
