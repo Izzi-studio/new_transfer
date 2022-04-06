@@ -58,20 +58,20 @@
 
 <script>
 export default {
-    data: function() {
-        return {
-            menu: [
+    computed: {
+        menu() {
+            return [
                 {
-                    text: 'Persönliche Daten',
+                    text: this.trans('personal-data'),
                     submenu: [
                         {
-                            text: 'Info',
+                            text: this.trans('info'),
                             to: {
                                 name: 'personalData_client',
                             }
                         },
                         {
-                            text: 'Passwort ändern',
+                            text: this.trans('change-password'),
                             to: {
                                 name: 'changePassword_client',
                             }
@@ -79,7 +79,7 @@ export default {
                     ]
                 },
                 {
-                    text: 'Umzug',
+                    text: this.trans('umzug'),
                     to: {
                         params: {
                             typeJob: 'umzug',
@@ -88,7 +88,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Reinigung',
+                    text: this.trans('reinigung'),
                     to: {
                         params: {
                             typeJob: 'reinigung',
@@ -97,7 +97,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Umzug + Reinigung',
+                    text: this.trans('umzug_und_reinigung'),
                     to: {
                         params: {
                             typeJob: 'umzug-und-reinigung',
@@ -106,7 +106,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Maler/Gipser',
+                    text: this.trans('maler'),
                     to: {
                         params: {
                             typeJob: 'maler',
@@ -115,7 +115,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Bodenleger',
+                    text: this.trans('bodenleger'),
                     to: {
                         params: {
                             typeJob: 'bodenleger',
@@ -124,7 +124,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Heizungsanbieter',
+                    text: this.trans('heizung'),
                     to: {
                         params: {
                             typeJob: 'heizung',
@@ -133,7 +133,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Elektriker',
+                    text: this.trans('elektriker'),
                     to: {
                         params: {
                             typeJob: 'elektriker',
@@ -142,7 +142,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Gärtner',
+                    text: this.trans('gartner'),
                     to: {
                         params: {
                             typeJob: 'gartner',
@@ -151,7 +151,7 @@ export default {
                     }
                 },
                 {
-                    text: 'Schreiner',
+                    text: this.trans('schreiner'),
                     to: {
                         params: {
                             typeJob: 'schreiner',
@@ -160,9 +160,7 @@ export default {
                     }
                 }
             ]
-        }
-    },
-    computed: {
+        },
         currentComponentName() {
             return this.$route.name
         }

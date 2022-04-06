@@ -252,7 +252,6 @@ export default {
             'proposal[description]': '',
             'proposal[type_job_id]': '3',
         },
-        fieldsGroupName: 'from',
         date: new Date()
     }),
     computed: {
@@ -314,8 +313,8 @@ export default {
         },
         formHandler() {
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
             this.$store.commit('stepsForms/nextStep')
         }

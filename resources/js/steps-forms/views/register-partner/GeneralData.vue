@@ -50,10 +50,10 @@
                     </div>
                     <div class="col-md-6 mt-4">
                         <form-field
-                            :label="trans('form-labels.house') + '*'"
+                            :label="trans('form-labels.house-number') + '*'"
                             type="text"
                             required
-                            :placeholder="trans('form-labels.house') + '*'"
+                            :placeholder="trans('form-labels.house-number') + '*'"
                             v-model="fields.house"
                         />
                     </div>
@@ -116,7 +116,6 @@ export default {
             company: '',
             upload_file: null,
         },
-        fieldsGroupName: 'generalData'
     }),
     computed: {
         fileName() {
@@ -129,8 +128,8 @@ export default {
         },
         formHandler() {
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
             this.$store.commit('stepsForms/nextStep')
         }

@@ -2,7 +2,7 @@
 @section('content')
 <section class="reviews-company paddingTop60 headerHeightMarginTop">
     <div class="container">
-        <h1 class="section-title text-start">Kommentar hinterlassen</h1>
+        <h1 class="section-title text-start">{{__('front.leave-comment')}}</h1>
         <img class="reviews-company__logo" src="{{env('FRONT_PATH_AVATAR')}}{{$user->avatar}}" alt="">
         <h2 class="reviews-company__title">{{$user->company}}</h2>
         <div class="row mt-4">
@@ -32,10 +32,10 @@
                     <label for="star1"></label>
                 </div>
                 <div class="form-field mt-4">
-                    <p class="form-field__label">Bemerkungen*</p>
-                    <textarea placeholder="Bemerkungen"></textarea>
+                    <p class="form-field__label">{{__('front.reviews')}}*</p>
+                    <textarea placeholder="{{__('front.reviews')}}"></textarea>
                 </div>
-                <input class="btn btn_width_long mt-4" type="submit" value="Bewertung lassen">
+                <input class="btn btn_width_long mt-4" type="submit" value="{{__('front.send')}}">
             </form>
         </div> 
     </div> 

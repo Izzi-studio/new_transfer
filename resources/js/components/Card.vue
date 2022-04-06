@@ -20,7 +20,7 @@
                 type="button"
                 @click="isShowDetails = !isShowDetails"
             >
-                Anfrage Details
+                {{trans('request-details')}}
             </button>
         </div>
         <div class="offer__body">
@@ -34,7 +34,7 @@
                 class="offer__btn-companies" 
                 type="button"
             >
-                Vorgeschlagene Unternehmen
+                {{trans('suggested-companies')}}
             </button>
             <p v-if="isPartner" class="offer__desc">{{ offerDesc }}</p>
             <div class="offer__actions">
@@ -44,7 +44,7 @@
                     type="button"
                     @click="$emit('addOffer', data.id)"
                 >
-                    Akzeptieren
+                    {{trans('accept')}}
                 </button>
                 <a 
                     v-if="isShowBtnDownload" 
@@ -52,7 +52,7 @@
                     :href="'/proposals/download/' + data.id"
                     download 
                 >
-                    Download
+                    {{trans('download')}}
                 </a>
                 <a
                     v-if="isClient"
@@ -60,7 +60,7 @@
                     class="offer__edit" 
                     type="button"
                 >
-                    Bearbeiten
+                    {{trans('edit')}}
                 </a>
                 <button 
                     class="offer__cancel" 
@@ -68,7 +68,7 @@
                     v-if="isShowBtnCancel"
                     @click="$emit('deleteOffer', data.id)"
                 >
-                    Ablehnen
+                    {{trans('reject')}}
                 </button>
             </div>
         </div>
@@ -96,7 +96,7 @@
             style="color: #1072D8;" 
             v-if="data.price"
         >
-            <strong>Preise {{ data.price }} €</strong>
+            <strong>{{trans('price')}} {{ data.price }} €</strong>
         </p>
     </div>
 </template>
@@ -131,26 +131,26 @@ export default {
             let str = '';
 
             if(this.typeJobId == 1) {
-                str += this.data.additional_info.from.rooms + ' Zimmer'
-                str += ', ' + this.data.additional_info.from.floor + ' Stock'
+                str += this.data.additional_info.from.rooms + ' ' + this.trans('room')
+                str += ', ' + this.data.additional_info.from.floor + ' ' + this.trans('form-labels.floor')
             }
 
             if(this.typeJobId == 2) {
                 str += this.data.additional_info.cleaning, 
-                str += ', ' + this.data.additional_info.windows + ' Fenster', 
-                str += ', ' + (this.data.additional_info.shower_wc || '-'), 
-                str += ', ' + (this.data.additional_info.bath_wc || '-'), 
-                str += ', ' + (this.data.additional_info.wc || '-')
+                str += ', ' + this.data.additional_info.windows + ' ' + this.trans('form-labels.windows'), 
+                str += ', ' + this.data.additional_info.shower_wc + ' ' + this.trans('form-labels.shower_wc'), 
+                str += ', ' + this.data.additional_info.bath_wc + ' ' + this.trans('form-labels.bath_wc'), 
+                str += ', ' + this.data.additional_info.wc + ' ' + this.trans('form-labels.wc')
             }
 
             if(this.typeJobId == 3) {
-                str += this.data.additional_info.from.rooms + ' Zimmer'
-                str += ', ' + this.data.additional_info.from.floor + ' Stock'
-                str += ', ' + this.data.additional_info.cleaning, 
-                str += ', ' + this.data.additional_info.windows + ' Fenster', 
-                str += ', ' + (this.data.additional_info.shower_wc || '-'), 
-                str += ', ' + (this.data.additional_info.bath_wc || '-'), 
-                str += ', ' + (this.data.additional_info.wc || '-')
+                str += this.data.additional_info.from.rooms + ' ' + this.trans('room')
+                str += ', ' + this.data.additional_info.from.floor + ' ' + this.trans('form-labels.floor')
+                str += ', ' + this.data.additional_info.cleaning + ' ' + this.trans('form-labels.cleaning'), 
+                str += ', ' + this.data.additional_info.windows + ' ' + this.trans('form-labels.windows'), 
+                str += ', ' + this.data.additional_info.shower_wc + ' ' + this.trans('form-labels.shower_wc'), 
+                str += ', ' + this.data.additional_info.bath_wc + ' ' + this.trans('form-labels.bath_wc'), 
+                str += ', ' + this.data.additional_info.wc + ' ' + this.trans('form-labels.wc')
             }
             
             if(

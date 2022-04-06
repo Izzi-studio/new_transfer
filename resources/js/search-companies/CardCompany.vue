@@ -3,13 +3,13 @@
         <img class="card-companies__img" :src="data.avatar || '/images/default-avatar.png'" alt="">
         <p class="card-companies__title">{{ data.company }}</p>
         <p class="card-companies__location">{{ data.city }}, {{ data.street }}</p>
-        <span class="card-companies__btn-profile">Profil anzeigen</span>
+        <span class="card-companies__btn-profile">{{trans('show-profile')}}</span>
         <div class="card-companies__rating">
             <div 
                 class="rating"
                 :class="'rating_fullness_'+data.rating_avg"
             ></div>
-            <p class="card-companies__reviews-count">{{ data.review_count }} Bewertungen</p>
+            <p class="card-companies__reviews-count">{{ data.review_count }} {{trans('reviews')}}</p>
         </div>
         <div class="card-companies__contact">
             <p class="card-companies__phone">

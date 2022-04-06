@@ -45,7 +45,6 @@ export default {
         fields: {
             'regions_ids[]': [],
         },
-        fieldsGroupName: 'regions',
         isSended: false
     }),
     computed: {
@@ -65,8 +64,8 @@ export default {
             this.isSended = true
             if(this.isSelectedCheckboxes) {
                 this.$store.commit('stepsForms/setData', {
-                    key: this.fieldsGroupName,
-                    data: this.fields
+                    key: this.$options._componentTag,
+                    data: {...this.fields}
                 })
                 
                 this.$store.dispatch('stepsForms/sendData')

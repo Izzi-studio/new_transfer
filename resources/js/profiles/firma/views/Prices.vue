@@ -1,33 +1,33 @@
 <template>
     <div>
-        <h4 class="d-block d-lg-none mb-3">Preise</h4>
+        <h4 class="d-block d-lg-none mb-3">{{trans('price')}}</h4>
         <ul v-if="servicesPrices" class="profile-service">
             <li class="profile-service__item">
-                Malerarbeiten: <span>{{ servicesPrices.maler }} Chf</span>
+                {{this.trans('maler')}}: <span>{{ servicesPrices.maler }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Umzug + Reinigung: <span>{{ servicesPrices.umzug_und_reinigung }} Chf</span>
+                {{this.trans('umzug_und_reinigung')}}: <span>{{ servicesPrices.umzug_und_reinigung }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Umzug: <span>{{ servicesPrices.umzug }} Chf</span>
+                {{this.trans('umzug')}}: <span>{{ servicesPrices.umzug }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Reinigung: <span>{{ servicesPrices.reinigung }} Chf</span>
+                {{this.trans('reinigung')}}: <span>{{ servicesPrices.reinigung }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Bodenleger: <span>{{ servicesPrices.bodenleger }} Chf</span>
+                {{this.trans('bodenleger')}}: <span>{{ servicesPrices.bodenleger }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Heizungsanbieter: <span>{{ servicesPrices.heizung }} Chf</span>
+                {{this.trans('heizung')}}: <span>{{ servicesPrices.heizung }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Elektriker: <span>{{ servicesPrices.elektriker }} Chf</span>
+                {{this.trans('elektriker')}}: <span>{{ servicesPrices.elektriker }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Gärtner: <span>{{ servicesPrices.gartner }} Chf</span>
+                {{this.trans('gartner')}}: <span>{{ servicesPrices.gartner }} Chf</span>
             </li>
             <li class="profile-service__item">
-                Schreiner: <span>{{ servicesPrices.schreiner }} Chf</span>
+                {{this.trans('schreiner')}}: <span>{{ servicesPrices.schreiner }} Chf</span>
             </li>
         </ul>
     </div>

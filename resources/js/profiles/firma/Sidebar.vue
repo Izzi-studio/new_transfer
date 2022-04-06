@@ -74,16 +74,16 @@ export default {
         menu() {
             return [
                 {
-                    text: 'Persönliche Daten',
+                    text: this.trans('personal-data'),
                     submenu: [
                         {
-                            text: 'Info',
+                            text: this.trans('info'),
                             to: {
                                 name: 'personalData_firma',
                             }
                         },
                         {
-                            text: 'Passwort ändern',
+                            text: this.trans('change-password'),
                             to: {
                                 name: 'changePassword_firma',
                             }
@@ -91,10 +91,10 @@ export default {
                     ]
                 },
                 {
-                    text: 'Anfragen',
+                    text: this.trans('requests'),
                     submenu: [
                         {
-                            text: 'Offene',
+                            text: this.trans('request-new'),
                             to: {
                                 params: {
                                     requests: 'offene',
@@ -103,7 +103,7 @@ export default {
                             }
                         },
                         {
-                            text: 'Angenommene',
+                            text: this.trans('request-accepted'),
                             to: {
                                 params: {
                                     requests: 'angenommene',
@@ -112,7 +112,7 @@ export default {
                             }
                         },
                         {
-                            text: 'Abgesagte',
+                            text: this.trans('request-reject'),
                             to: {
                                 params: {
                                     requests: 'abgesagte',
@@ -123,10 +123,10 @@ export default {
                     ]
                 },
                 {
-                    text: 'Anträge von Firmen',
+                    text: this.trans('requests-from-companies'),
                     submenu: [
                         {
-                            text: 'Ich verkaufe',
+                            text: this.trans('requests-selling'),
                             to: {
                                 params: {
                                     requests: 'verkaufe',
@@ -135,7 +135,7 @@ export default {
                             }
                         },
                         {
-                            text: 'Ich kaufe',
+                            text: this.trans('requests-bought'),
                             to: {
                                 params: {
                                     requests: 'kaufe',
@@ -144,31 +144,31 @@ export default {
                             }
                         },
                         {
-                            text: 'Anfrage verkaufen',
+                            text: this.trans('request-sell'),
                             to: {
                                 name: 'sellList_firma'
                             }
                         },
                         {
-                            text: 'Wiederverkauf',
+                            text: this.trans('requests-trade'),
                             href: this.$store.state.additionalInfo.resellUrl
                         },
                     ]
                 },
                 {
-                    text: 'Abgeschlossene Bewerbungen',
+                    text: this.trans('requests-completed'),
                     to: {
                         name: 'reviews_firma',
                     }
                 },
                 {
-                    text: 'Guthaben Aufladen',
+                    text: this.trans('top-up-bill'),
                     to: {
                         name: 'payment_firma',
                     }
                 },
                 {
-                    text: 'Preise',
+                    text: this.trans('price'),
                     to: {
                         name: 'prices_firma',
                     }

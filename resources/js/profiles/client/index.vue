@@ -27,10 +27,14 @@
 import Sidebar from './Sidebar'
 
 export default {
+    props: ['localize'],
     data() {
         return {
             isShowSidebarMob: false,
         }
+    },
+    mounted() {
+        this.$store.commit('setLocalize', JSON.parse(this.localize))
     },
     components: {
         Sidebar,

@@ -8,7 +8,7 @@
         </div>
         <div class="profile-company__inner">
             <div>
-                <p class="profile-company__subtitle">Kontakte</p>
+                <p class="profile-company__subtitle">{{__('front.contacts')}}</p>
                 <div class="row mt-4">
                     <div class="col-auto"><a class="profile-company__link profile-company__link_phone"
                             href="tel:{{$user->phone}}">{{$user->phone}}</a></div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <p class="profile-company__subtitle">Art von Arbeit</p>
+                <p class="profile-company__subtitle">{{__('front.type-jobs')}}</p>
                 <div class="row">
                     @foreach($typesofjobs as $typeofjob)
                         @if($typeofjob->checked)
@@ -33,7 +33,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <p class="profile-company__subtitle">Regionen</p>
+                <p class="profile-company__subtitle">{{__('front.regions')}}</p>
                 <div class="row">
                     <div class="col-lg-9">
                         <div class="row">
@@ -52,7 +52,7 @@
                 </div>
             </div>
             <div class="mt-4">
-                <p class="profile-company__subtitle">Bewertungen</p>
+                <p class="profile-company__subtitle">{{__('front.reviews')}}</p>
                 <div class="row">
                     <div class="col-lg-8">
                         @foreach($reviews as $review)
@@ -77,7 +77,7 @@
                             class="btn btn_width_long"
                             href="{{ route('partner.profile.create_review',[$user->profile_slug,$proposalId]) }}"
                         >
-                            Kommentar hinterlassen
+                            {{__('front.leave-comment')}}
                         </a>
                     </div>
                 @endif

@@ -5,7 +5,7 @@
         @input="isSended = false"
         @submit.prevent="formHandler"
     >   
-        <h4 class="d-block d-lg-none mb-3">Info</h4>
+        <h4 class="d-block d-lg-none mb-3">{{trans('info')}}</h4>
         <label class="form-photo">
             <input 
                 @change="updateAvatar" 
@@ -13,42 +13,42 @@
                 accept="image/*"
             >
             <img class="form-photo__img" :src="avatarUrl" alt="">
-            <p class="form-photo__label">FOTO ÄNDERN</p>
+            <p class="form-photo__label">{{trans('change-photo')}}</p>
         </label>
         <div class="row">
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Firma*"
+                    :label="trans('form-labels.company') + '*'"
                     type="text"
                     required
-                    placeholder="Firma*"
+                    :placeholder="trans('form-labels.company') + '*'"
                     v-model="fields.company"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Telefon*"
+                    :label="trans('form-labels.phone') + '*'"
                     type="text"
                     required
-                    placeholder="Telefon*"
+                    :placeholder="trans('form-labels.phone') + '*'"
                     v-model="fields.phone"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Vorname*"
+                    :label="trans('form-labels.name') + '*'"
                     type="text"
                     required
-                    placeholder="Vorname*"
+                    :placeholder="trans('form-labels.name') + '*'"
                     v-model="fields.name"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Nachname*"
+                    :label="trans('form-labels.lastname') + '*'"
                     type="text"
                     required
-                    placeholder="Nachname*"
+                    :placeholder="trans('form-labels.lastname') + '*'"
                     v-model="fields.lastname"
                 />
             </div>
@@ -63,33 +63,34 @@
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Ort*"
+                    :label="trans('form-labels.city') + '*'"
                     type="text"
                     required
-                    placeholder="Ort*"
+                    :placeholder="trans('form-labels.city') + '*'"
                     v-model="fields.city"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Strasse*"
+                    :label="trans('form-labels.street') + '*'"
                     type="text"
                     required
-                    placeholder="Strasse*"
+                    :placeholder="trans('form-labels.street') + '*'"
                     v-model="fields.street"
                 />
             </div>
             <div class="col-sm-6 mt-4">
                 <form-field
-                    label="Hausnummer*"
+                    :label="trans('form-labels.house-number') + '*'"
                     type="text"
                     required
-                    placeholder="Hausnummer*"
+                    :placeholder="trans('form-labels.house-number') + '*'"
                     v-model="fields.house"
                 />
             </div>
         </div>
         <!--  -->
+        <h5 class="mt-5">{{ trans('form-labels.jobs') }}*:</h5>
         <div class="row">
             <div 
                 v-for="typesJob in typesJobs"
@@ -104,7 +105,7 @@
             </div>
         </div>
         <p v-show="!fields['type_jobs_partners[]'].length && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
-        <h5 class="mt-5">Wählen Sie Ihre Gebiete</h5>
+        <h5 class="mt-5">{{ trans('form-labels.regions') }}*:</h5>
         <div class="row">
             <div 
                 v-for="region in regions"
@@ -120,7 +121,7 @@
         </div>
         <p v-show="!fields['regions_partners[]'].length && isSended" class="text-danger mt-3">{{ trans('err-empty-list') }}</p>
         <!--  -->
-        <input class="mt-4" type="submit" value="Speichern">
+        <input class="mt-4" type="submit" :value="trans('save')">
     </form>
 </template>
 <script>
@@ -164,7 +165,6 @@ export default {
             })
                 .then(() => {
                     this.isUpdate = false
-                    toastr.success("Informationen aktualisiert");
                 })
         },
         updateAvatar(e) {
@@ -207,8 +207,6 @@ export default {
                     this.avatarUrl = '/images/default-avatar.png'
                 }
                 this.fields.avatar = ""
-
-                toastr.success("Informationen geladen");
             })
     }
 }

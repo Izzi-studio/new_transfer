@@ -27,8 +27,8 @@ export default {
     computed: {
         requestsText() {
             switch(this.$route.params.requests) {
-                case 'verkaufe': return 'Ich verkaufe'
-                case 'kaufe': return 'Ich kaufe'
+                case 'verkaufe': return this.trans('requests-selling')
+                case 'kaufe': return this.trans('requests-bought')
             }
         },
         requestsStatus() {

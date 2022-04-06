@@ -20,7 +20,13 @@ const mutations = {
         state.currentStep = state.currentStep - 1
     },
     nextStep(state, payload) {
-        state.currentStep = state.currentStep + 1
+        $([document.documentElement, document.body]).animate({
+            scrollTop: $(".form-progress").offset().top - $('.header').outerHeight() - 30
+        }, 600);
+
+        setTimeout(() => {
+            state.currentStep = state.currentStep + 1
+        }, 400)
     },
     setUrlHandler(state, payload) {
         state.urlHandler = payload

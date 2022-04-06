@@ -11,7 +11,7 @@
                     class="offer-company__link" 
                     :href="`/firmenprofil/${company.profile_slug}/${offerId}`"
                 >
-                    Profil anzeigen
+                    {{trans('show-profile')}}
                 </a>
             </div>
             <div class="offer-company__body">
@@ -40,7 +40,7 @@
             </div>
             <div class="offer-company__footer">
                 <div :class="'rating rating_fullness_'+company.rating_avg+' offer-company__rating'"></div>
-                <p class="offer-company__count-rating">{{ company.star_count }} Bewertungen</p>
+                <p class="offer-company__count-rating">{{ company.star_count }} {{trans('reviews')}}</p>
             </div>
         </div>
     </div>

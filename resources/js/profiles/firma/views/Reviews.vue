@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h4 class="d-block d-lg-none mb-3">Abgeschlossene Bewerbungen</h4>
+        <h4 class="d-block d-lg-none mb-3">{{trans('requests-completed')}}</h4>
         <div
             v-for="card in cards"
             :key="card.id"

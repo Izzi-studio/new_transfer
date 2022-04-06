@@ -81,7 +81,6 @@ export default {
             'client[email]': '',
             'client[availability]': '',
         },
-        fieldsGroupName: 'contact',
         isSended: false
     }),
     computed: {
@@ -100,8 +99,8 @@ export default {
             if(this.isHasEmail) return
 
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
 
             this.$store.dispatch('stepsForms/sendData')

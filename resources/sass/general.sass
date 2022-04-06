@@ -5,6 +5,9 @@
   font-family: $font-family
   line-height: normal
 
+\:root
+  scroll-behavior: initial
+
 body, html
   font-size: 16px
   min-width: 320px
@@ -144,7 +147,21 @@ p, li
 .mx-datepicker
   width: 100%
 
+.mx-icon-calendar, .mx-icon-clear
+  right: 13px
+
 .mx-calendar-content
   .cell.active
     div
       color: #fff
+
+.sitemap__subtitle
+  font-weight: bold
+  font-size: 19px
+
+.sitemap__link
+  color: $blueColor
+  font-size: 18px
+
+.sitemap__link:hover
+  text-decoration: underline

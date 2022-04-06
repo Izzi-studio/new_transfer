@@ -1,6 +1,6 @@
 <template>
     <form @submit.prevent="formHandler" class="profile-sidebar">
-        <h4>Filtern</h4>
+        <h4>{{trans('filter')}}</h4>
         <div class="form-field mt-3">
             <date-picker
                 ref="datePicker"
@@ -21,7 +21,7 @@
         >
             <template slot="selection" slot-scope="{ values }">
                 <span class="multiselect__single">
-                    Art von Arbeit ({{ values.length }})
+                    {{trans('type-jobs')}} ({{ values.length }})
                 </span>
             </template>
         </multiselect>
@@ -36,11 +36,11 @@
         >
             <template slot="selection" slot-scope="{ values }">
                 <span class="multiselect__single">
-                    Kanton ({{ values.length }})
+                    {{trans('regions')}} ({{ values.length }})
                 </span>
             </template>
         </multiselect>
-        <input class="mt-4" type="submit" value="Senden">
+        <input class="mt-4" type="submit" :value="trans('search')">
     </form>
 </template>
 <script>

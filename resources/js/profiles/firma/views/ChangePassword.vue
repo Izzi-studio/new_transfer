@@ -4,39 +4,39 @@
         @submit.prevent="formHandler"
         @input="isSended = false"
     >
-        <h4 class="d-block d-lg-none mb-3">Passwort ändern</h4>
+        <h4 class="d-block d-lg-none mb-3">{{trans('change-password')}}</h4>
         <div class="row">
             <div class="col-lg-5">
                 <form-field
-                    label="Altes Password*"
+                    :label="trans('form-labels.old-password') + '*'"
                     type="password"
                     minlength="8"
                     required
-                    placeholder="Altes Password*"
+                    :placeholder="trans('form-labels.old-password') + '*'"
                     v-model="fields.currentPassword"
                 />
                 <form-field
                     class="mt-4"
-                    label="Neues Password*"
+                    :label="trans('form-labels.new-password') + '*'"
                     type="password"
                     minlength="8"
                     required
-                    placeholder="Neues Password*"
+                    :placeholder="trans('form-labels.new-password') + '*'"
                     v-model="fields.newPassword"
                 />
                 <form-field
                     class="mt-4"
-                    label="Passwort bestätigen*"
+                    :label="trans('form-labels.password-confirmation') + '*'"
                     type="password"
                     minlength="8"
                     required
-                    placeholder="Passwort bestätigen*"
+                    :placeholder="trans('form-labels.password-confirmation') + '*'"
                     v-model="fields.repeatPassword"
                 />
-                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">Das Passwort ist zu kurz</p>
+                <p v-show="!isMatchPasswords && isSended" class="text-danger mt-3">{{trans('confirm_password_err')}}</p>
             </div>
         </div>
-        <input class="mt-4" type="submit" value="Speichern">
+        <input class="mt-4" type="submit" :value="trans('save')">
     </form>
 </template>
 <script>
@@ -78,11 +78,9 @@ export default {
             })
                 .then(() => {
                     this.isUpdate = false
-                    toastr.success("Informationen aktualisiert");
                 })
                 .catch(({ response }) => {
                     this.isUpdate = false
-                    toastr.error(response.data.old_password_err || 'Etwas ist schief gelaufen');
                 })
         }
     },
