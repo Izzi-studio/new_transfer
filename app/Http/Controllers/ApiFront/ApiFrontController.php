@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\ApiFront;
 
 use App\Http\Resources\CompaniesCollection;
+use App\Mail\ContactForm;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\RegionCollection;
@@ -12,6 +13,7 @@ use App\Models\TypesOfJobs;
 use App\Models\User;
 use App\Models\PartnerWantJobs;
 use App\Models\PartnerRegions;
+use Illuminate\Support\Facades\Mail;
 
 class ApiFrontController extends Controller
 {
@@ -58,6 +60,14 @@ class ApiFrontController extends Controller
         }
 
         return new CompaniesCollection($result->paginate(12));
+    }
+
+    public function contactForm()
+    {
+
+        $mailable = new ContactForm(request()->email,request()->name,request()->description);
+        Mail::to('dv@gg.com')->queue($mailable);
+        return response()->json(['success'=>true]);
     }
 
 
