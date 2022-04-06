@@ -5,6 +5,9 @@
   font-family: $font-family
   line-height: normal
 
+\:root
+  scroll-behavior: initial
+
 body, html
   font-size: 16px
   min-width: 320px
@@ -152,10 +155,13 @@ p, li
     div
       color: #fff
 
-.fade-enter-active,
-.fade-leave-active
-  transition: opacity 0.5s ease
+.sitemap__subtitle
+  font-weight: bold
+  font-size: 19px
 
-.fade-enter-from,
-.fade-leave-to
-  opacity: 0
+.sitemap__link
+  color: $blueColor
+  font-size: 18px
+
+.sitemap__link:hover
+  text-decoration: underline

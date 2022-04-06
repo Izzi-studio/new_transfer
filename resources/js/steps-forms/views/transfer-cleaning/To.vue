@@ -133,7 +133,6 @@ export default {
             'additional_info[to][floor]': '',
             'additional_info[to][square]': '',
         },
-        fieldsGroupName: 'to'
     }),
     computed: {
         regions() {
@@ -162,8 +161,8 @@ export default {
     methods: {
         formHandler() {
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
             this.$store.commit('stepsForms/nextStep')
         }

@@ -62,7 +62,6 @@ export default {
             password_confirmation: '',
             'types_of_jobs[]': [],
         },
-        fieldsGroupName: 'profile',
         isSended: false
     }),
     computed: {
@@ -81,8 +80,8 @@ export default {
             this.isSended = true
             if(this.isMatchPasswords && this.isSelectedCheckboxes) {
                 this.$store.commit('stepsForms/setData', {
-                    key: this.fieldsGroupName,
-                    data: this.fields
+                    key: this.$options._componentTag,
+                    data: {...this.fields}
                 })
                 this.$store.commit('stepsForms/nextStep')
             }

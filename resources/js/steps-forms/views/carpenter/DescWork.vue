@@ -179,7 +179,6 @@ export default {
             'proposal[type_job_id]': '9',
         },
         isSended: false,
-        fieldsGroupName: 'desc-work',
         date: new Date()
     }),
     computed: {
@@ -243,8 +242,8 @@ export default {
             if(!this.isSelectedCheckboxes) return
 
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
 
             if(this.isAuth) {

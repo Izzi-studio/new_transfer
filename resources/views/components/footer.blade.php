@@ -21,6 +21,9 @@
                 <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4">
                     <a class="footer__header-link" href="{{ route('staticpage.view','impressum') }}">{{ __('front.imprint') }}</a>
                 </div>
+                <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4">
+                    <a class="footer__header-link" href="{{ route('sitemap') }}">Sitemap</a>
+                </div>
                 @guest
                 <div class="col-6 col-lg-auto mt-lg-0 mt-4 order-4">
                     <a class="footer__header-link" href="{{ route('partner.register.view') }}">{{ __('front.company-register') }}</a>

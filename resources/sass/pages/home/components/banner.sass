@@ -3,7 +3,11 @@
     padding-bottom: 140px
     overflow: hidden
     position: relative
+    min-height: 820px
+    +r($wide)
+        min-height: 720px
     +r($desktop)
+        min-height: initial
         padding-bottom: 0
         overflow: visible
     +r($mobile)

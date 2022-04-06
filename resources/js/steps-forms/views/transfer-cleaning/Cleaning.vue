@@ -130,7 +130,6 @@ export default {
             'additional_info[soil_type]': '',
             'additional_info[window_size]': '',
         },
-        fieldsGroupName: 'cleaning'
     }),
     computed: {
         isAuth() {
@@ -154,8 +153,8 @@ export default {
     methods: {
         formHandler() {
             this.$store.commit('stepsForms/setData', {
-                key: this.fieldsGroupName,
-                data: this.fields
+                key: this.$options._componentTag,
+                data: {...this.fields}
             })
 
             if(this.isAuth) {

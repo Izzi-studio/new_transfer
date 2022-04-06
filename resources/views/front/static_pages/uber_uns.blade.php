@@ -2,7 +2,7 @@
 @section('content')
 <section class="about-us paddingTop60 headerHeightMarginTop">
     <div class="container">
-        <div class="row align-items-center">
+        <div class="row">
             <div class="col-lg-5">
                 <h1 class="section-title text-start">{{$staticPage->getPageDescription->name}}</h1>
                 <div class="about-us__inner contentStyles">

@@ -108,7 +108,7 @@
                 <div class="swiper-slide reviews__slide">
                     <p class="reviews__slide-date">{{$review->date}}</p>
                     <p class="reviews__slide-company">{{$review->company}}</p>
-                    <p class="reviews__slide-txt">{!! $review->getReviewDescription->message !!}</p>
+                    <p class="reviews__slide-txt">{{$review->getReviewDescription->message}}</p>
                     <div class="reviews__slide-wrap">
                         <div class="reviews__slide-author">{{$review->getReviewDescription->name}}</div>
                         <div class="rating rating_fullness_{{$review->rating}} reviews__slide-rating"></div>
@@ -307,23 +307,32 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <form class="form-callback__inner" action="#">
+                <form id="form-callback" class="form-callback__inner" method="POST" action="{{route('api.contactForm')}}">
                     <h3 class="form-callback__title">{{ __('front.callback') }}</h3>
                     <div class="row">
-                        <div class="col-md-5">
-                            <label class="form-field">
+                        <div class="col-lg-6 mt-4">
+                            <div class="form-field">
+                                <p class="form-field__label">{{ __('front.form-labels.name') }}</p>
+                                <input type="text" placeholder="{{ __('front.form-labels.name') }}" required name="name">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 mt-4">
+                            <div class="form-field">
                                 <p class="form-field__label">{{ __('front.form-labels.email') }}</p>
-                                <input type="email" placeholder="{{ __('front.form-labels.email') }}" required>
-                            </label>
+                                <input type="email" placeholder="{{ __('front.form-labels.email') }}" required name="email">
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-4">
                         <div class="col-12">
                             <label class="form-field">
                                 <p class="form-field__label">{{ __('front.form-labels.description') }}</p>
-                                <textarea placeholder="{{ __('front.form-labels.description') }}" required></textarea>
+                                <textarea placeholder="{{ __('front.form-labels.description') }}" name="description"></textarea>
                             </label>
                         </div>
+                    </div>
+                    <div id="success-message" style="display: none" class="alert alert-success mb-0 mt-4" role="alert">
+                        Mail erfolgreich gesendet
                     </div>
                     <div class="row mt-4">
                         <div class="col-12">

@@ -128,7 +128,7 @@
                         </li>
                     @else
                         <li class="header__item">
-                            <a class="header__link" href="#">{{auth()->user()->name}}</a>
+                            <a class="header__link" href="{{ route('blog.index') }}">{{auth()->user()->name}}</a>
                         </li>
                     @endif
                         <li class="header__item">

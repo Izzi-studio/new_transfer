@@ -60,7 +60,6 @@ return [
     'login' => 'Anmeldung',
     'logout' => 'Ausloggen',
     'privacy' => 'Datenschutz',
-    'search' => '',
     'conditions' => 'AGB',
     'imprint' => 'Impressum',
     'company-register' => 'Firma registrieren',

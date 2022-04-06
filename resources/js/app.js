@@ -23,6 +23,7 @@ import headerHeightFun from './functions/headerHeightFun'
 import scrollTop from './functions/scrollTop'
 import sectionNavigation from './functions/sectionNavigation'
 import vhModule from './functions/vhModule'
+import axios from 'axios'
 
 Vue.filter('capitalize', function (value) {
     if (!value) return '';
@@ -73,7 +74,7 @@ $(document).ready(function() {
     burgerMenu()
     headerHeightFun()
     scrollTop()
-    sectionNavigation()
+    // sectionNavigation()
     vhModule()
 
     window.addEventListener('resize', () => {
@@ -119,6 +120,26 @@ $(document).ready(function() {
 
     $('.offer__btn-companies').click(function () {
         $(this).closest('.offer').toggleClass('offer_open_companies')
+    })
+
+    document.getElementById('form-callback').addEventListener('submit', (e) => {
+        e.preventDefault()
+        axios
+            .post(e.target.action, {
+                name: e.target.name.value,
+                email: e.target.email.value,
+                description: e.target.description.value,
+            })
+            .then(({ data }) => {
+                if (data.success) {
+                    e.target.reset()
+                    e.target.querySelector('#success-message').style.display = 'block'
+                }
+            })
+    })
+
+    document.getElementById('form-callback').addEventListener('input', function() {
+        this.querySelector('#success-message').style.display = 'none'
     })
 
     new Swiper('.reviews__slider', {
