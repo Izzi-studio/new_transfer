@@ -116,9 +116,10 @@ class StaticPageController extends Controller
                 'slug' => ['required', 'unique:static_page'],
                 'layout' => ['required']
             ]);
+            $staticPage->slug = Str::slug($request->slug);
         }
 
-        $staticPage->slug = Str::slug($request->slug);
+
         $staticPage->layout = $request->layout;
 
         if ($request->hasFile('image')) {
