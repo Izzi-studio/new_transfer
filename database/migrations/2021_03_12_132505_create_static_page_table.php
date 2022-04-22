@@ -18,6 +18,7 @@ class CreateStaticPageTable extends Migration
             $table->string('slug');
             $table->string('image');
             $table->string('layout');
+            $table->timestamps();
         });
     }
 

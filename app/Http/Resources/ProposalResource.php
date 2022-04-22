@@ -53,13 +53,18 @@ class ProposalResource extends JsonResource
         $return['additional_info'] =  $this->additional_info;
         $return['date_start'] =   $this->date_start->format('d-m-Y');
         $return['created_at'] =  $this->created_at->format('d-m-Y - H:i');
-        $return['client'] = [
-            'name'=>$this->getUser->name,
-            'lastname'=>$this->getUser->lastname,
-            'phone'=>$this->getUser->phone,
-            'email'=>$this->getUser->email,
-            'availability'=>$this->getUser->availability,
-        ];
+
+        $arrayViewContactsStatuses = ['accepted','resell','resell-accepted'];
+ 
+        if(in_array($request->status, $arrayViewContactsStatuses)) {
+            $return['client'] = [
+                'name' => $this->getUser->name,
+                'lastname' => $this->getUser->lastname,
+                'phone' => $this->getUser->phone,
+                'email' => $this->getUser->email,
+                'availability' => $this->getUser->availability,
+            ];
+        }
 
         if($this->type_job_id == 1 || $this->type_job_id == 3){
             $return['region_to']  =  __('front.'.$this->additional_info['to']['region_name']);
