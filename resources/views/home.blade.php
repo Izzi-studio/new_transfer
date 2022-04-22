@@ -4,11 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7">
-                <h1 class="banner__title">Umziehen war noch nie so einfach – dank Offerten <strong>Umzug Heroes</strong>
+                <h1 class="banner__title">Umziehen war noch nie so einfach – dank Offerten <strong>Offerten Hummer</strong>
                     haben Sie Ihren Umzug im Handumdrehen&nbsp;erledigt!</h1>
                 <p class="banner__txt">Vergleichen Sie innerhalb kürzester Zeit bis zu 6 Angebote von erfahrenen
                     Umzugsunternehmen. </p>
-                <p class="banner__txt">Sparen Sie mit Offerten Umzug Heroes:</p>
+                <p class="banner__txt">Sparen Sie mit Offerten Hummer Heroes:</p>
                 <ul class="banner__list">
                     <li class="banner__item">Zeit</li>
                     <li class="banner__item">Geld</li>
@@ -50,7 +50,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="section-title">Wie es funktioniert</h2>
+                <h2 class="section-title">Was unsere Kunden sagen</h2>
                 <p class="steps__subtitle">Nehmen Sie Kontakt zu Umzugsunternehmen auf, die Ihren Anforderungen
                     entsprechen</p>
                 <p class="steps__txt">Freuen Sie sich auf Ihr neues Zuhause und lassen Sie uns die schwere Arbeit
