@@ -122,25 +122,27 @@ $(document).ready(function() {
         $(this).closest('.offer').toggleClass('offer_open_companies')
     })
 
-    document.getElementById('form-callback').addEventListener('submit', (e) => {
-        e.preventDefault()
-        axios
-            .post(e.target.action, {
-                name: e.target.name.value,
-                email: e.target.email.value,
-                description: e.target.description.value,
-            })
-            .then(({ data }) => {
-                if (data.success) {
-                    e.target.reset()
-                    e.target.querySelector('#success-message').style.display = 'block'
-                }
-            })
-    })
+    if (document.getElementById('form-callback')) {
+        document.getElementById('form-callback').addEventListener('submit', (e) => {
+            e.preventDefault()
+            axios
+                .post(e.target.action, {
+                    name: e.target.name.value,
+                    email: e.target.email.value,
+                    description: e.target.description.value,
+                })
+                .then(({ data }) => {
+                    if (data.success) {
+                        e.target.reset()
+                        e.target.querySelector('#success-message').style.display = 'block'
+                    }
+                })
+        })
 
-    document.getElementById('form-callback').addEventListener('input', function() {
-        this.querySelector('#success-message').style.display = 'none'
-    })
+        document.getElementById('form-callback').addEventListener('input', function() {
+            this.querySelector('#success-message').style.display = 'none'
+        })
+    }
 
     new Swiper('.reviews__slider', {
         modules: [ Navigation ],

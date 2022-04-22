@@ -34,7 +34,7 @@
                             <p class="mt-4"><a href="{{ route('password.request') }}">{{ __('front.password-forgot') }}?</a></p>
                         @endif
                         <label class="form-checkbox mt-4">
-                            <input type="checkbox" required name="remember" {{ old('remember') ? 'checked' : '' }}>
+                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                             <div class="form-checkbox__checkbox"></div>
                             <p class="form-checkbox__label">{{ __('front.data-remember') }}</p>
                         </label>

@@ -101,7 +101,7 @@
                             <a class="header__sublink" href="{{route('page.faq.view')}}">{{ __('front.faq') }}</a>
                         </li>
                         <li class="header__subitem">
-                            <a class="header__sublink" href="{{route('staticpage.view','uber_uns')}}">{{ __('front.about-us') }}</a>
+                            <a class="header__sublink" href="{{route('staticpage.view','uber-uns')}}">{{ __('front.about-us') }}</a>
                         </li>
                         <li class="header__subitem">
                             <a class="header__sublink" href="{{route('page.contacts.view')}}">{{ __('front.contact') }}</a>

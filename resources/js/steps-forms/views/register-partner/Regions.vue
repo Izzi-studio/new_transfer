@@ -7,7 +7,7 @@
                     type="button"
                     @click="$store.commit('stepsForms/prevStep')"
                 >
-                    {{ trans('zurich') }}
+                    {{ trans('zuruck') }}
                 </button>           
                 <h5 class="mt-5">{{ trans('form-labels.regions') }}*:</h5>
                 <div class="row">

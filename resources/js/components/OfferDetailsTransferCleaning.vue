@@ -60,20 +60,22 @@
                 {{ data.description }}
             </p>
         </div>
-        <div class="offer-details__item">
-            <p class="offer-details__title">{{trans('contact-data')}}</p>
-            <p class="offer-details__txt">
-                {{ data.client.name}} {{ data.client.lastname}}, 
-                {{trans('form-labels.phone')}} {{ data.client.phone}}, 
-                {{ data.client.email}}
-            </p>
-        </div>
-        <div class="offer-details__item">
-            <p class="offer-details__title">{{trans('form-labels.availability')}}</p>
-            <p class="offer-details__txt">
-                {{ data.client.availability}}
-            </p>
-        </div>
+        <template>
+            <div class="offer-details__item">
+                <p class="offer-details__title">{{trans('contact-data')}}</p>
+                <p class="offer-details__txt">
+                    {{ data.client.name}} {{ data.client.lastname}}, 
+                    {{trans('form-labels.phone')}} {{ data.client.phone}}, 
+                    {{ data.client.email}}
+                </p>
+            </div>
+            <div class="offer-details__item">
+                <p class="offer-details__title">{{trans('form-labels.availability')}}</p>
+                <p class="offer-details__txt">
+                    {{ data.client.availability}}
+                </p>
+            </div>
+        </template>
     </div>
 </template>
 
