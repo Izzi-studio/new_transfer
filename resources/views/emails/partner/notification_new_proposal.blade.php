@@ -27,7 +27,10 @@ Hallo {{$name}}. Sie haben eine neue Anfrage erhalten.
 @endif
 
 @if($proposal->type_job_id == 4)
-    @php $types = str_replace(array('[',']','"'),array('','',''),$proposal->additional_info->worktype) @endphp
+
+@if(isset($proposal->additional_info->work_should_be_done))
+implode(', ', $proposal->additional_info->work_should_be_done)
+@endif
 
 <strong>Ort</strong> {{__('front.'.$proposal->getRegion->name)}} {{$proposal->additional_info->city}} <br />
 <b>Termine</b> {{$proposal->date_start->format('d.m.Y')}}<br>
