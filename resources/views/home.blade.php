@@ -50,7 +50,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h2 class="section-title">Was unsere Kunden sagen</h2>
+                <h2 class="section-title">Wie es funktioniert</h2>
                 <p class="steps__subtitle">Nehmen Sie Kontakt zu Umzugsunternehmen auf, die Ihren Anforderungen
                     entsprechen</p>
                 <p class="steps__txt">Freuen Sie sich auf Ihr neues Zuhause und lassen Sie uns die schwere Arbeit
@@ -101,7 +101,7 @@
 </section>
 <section class="reviews section_bg_blue section_padding_blue">
     <div class="container">
-        <h2 class="section-title">Wie es funktioniert</h2>
+        <h2 class="section-title">Was unsere Kunden sagen</h2>
         <div class="swiper reviews__slider">
             <div class="swiper-wrapper">
                 @foreach($reviews as $review)
