@@ -16,13 +16,15 @@ class ProposalResource extends JsonResource
     public function toArray($request)
     {
         $return = [];
-        if(auth()->user()->isClient()) {
+        if(auth()->user()->isClient()  ||  auth()->user()->id == $this->user_id) {
             $responded = $this->getResponded()->get();
 
             $partnersResponded = [];
             foreach ($responded as $partner) {
                 $partnersResponded[] = [
+                    'id' => $partner->getPartner->id,
                     'name' => $partner->getPartner->name,
+                    'status' => $partner->status,
                     'lastname' => $partner->getPartner->lastname,
                     'phone' => $partner->getPartner->phone,
                     'email' => $partner->getPartner->email,
@@ -50,12 +52,13 @@ class ProposalResource extends JsonResource
         $return['region_from'] =  __('front.'.$this->getRegion->name);
         $return['description'] =  $this->description;
         $return['region_id'] =  $this->region_id;
+        $return['performed'] =  $this->payed == 1 ? true : false;
         $return['additional_info'] =  $this->additional_info;
         $return['date_start'] =   $this->date_start->format('d-m-Y');
         $return['created_at'] =  $this->created_at->format('d-m-Y - H:i');
 
         $arrayViewContactsStatuses = ['accepted','resell','resell-accepted'];
- 
+
         if(in_array($request->status, $arrayViewContactsStatuses)) {
             $return['client'] = [
                 'name' => $this->getUser->name,

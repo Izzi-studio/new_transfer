@@ -42,6 +42,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\EmailChangeInfoPartner' => [
             'App\Listeners\EmailChangeInfoPartnerListener',
         ],
+        'App\Events\ChoosePerformedProposal' => [
+            'App\Listeners\PerformedProposalListener',
+        ],
     ];
 
     /**

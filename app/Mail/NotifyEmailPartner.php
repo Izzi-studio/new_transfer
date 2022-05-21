@@ -36,12 +36,17 @@ class NotifyEmailPartner extends Mailable
 				'1'=>'Neue Umzugsanfrage',
 				'2'=>'Neue Reinigungsanfrage',
 				'3'=>'Neue Umzugs - und Reinigungsanfrage',
-				'4'=>'Neue Maleranfrage'
+				'4'=>'Neue Maleranfrage',
+				'5'=>'Neue bodenlegeranfrage',
+				'6'=>'Neue heizunganfrage',
+				'7'=>'Neue elektrikeranfrage',
+				'8'=>'Neue gartneranfrage',
+				'9'=>'Neue schreineranfrage',
 		];
-		
+
 		$this->type = $arraySubjects[$this->proposal->type_job_id];
-		 
-		 
+
+
         return $this->markdown('emails.partner.notification_new_proposal')->subject('Neue Anfrage');
     }
 }

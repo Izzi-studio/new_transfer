@@ -129,7 +129,7 @@ class User extends Authenticatable
             ->orderBy('id','DESC');
     }
     //admin end
-    
+
     /**
      * Get Proposals to Partner
      *
@@ -153,7 +153,15 @@ class User extends Authenticatable
             ->whereResell(0)
             ->whereStatus('<>',0);
     }
+    /**
+     * Get Proposals to Partner
+     *
+     * @return $query
+     */
+    public function getProposalsToPartner(){
 
+        return $this->hasMany( 'App\Models\ProposalToPartner', 'user_id','id');
+    }
     /**
      * Get Users Proposals by Type Job
      *

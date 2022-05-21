@@ -9,7 +9,7 @@ use Carbon\Carbon;
 class Proposal extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['type','type_job_id','user_id','region_id','additional_info','description','date_start','resell','price','payed'];
+    protected $fillable = ['type','type_job_id','user_id','region_id','additional_info','description','date_start','resell','price','payed','hide'];
     /**
      * The table associated with the model.
      *
@@ -47,8 +47,10 @@ class Proposal extends Model
      */
     public function scopeResellNoPay()
     {
-        return $this->whereResell(1)->wherePayed(0);
+        return $this->whereResell(1)->wherePayed(0)->where('user_id','<>',auth()->user()->id);
     }
+
+
     public function scopeResell()
     {
         return $this->whereResell(1);
@@ -69,7 +71,7 @@ class Proposal extends Model
     {
         return $this->hasMany('App\Models\ProposalToPartner', 'proposal_id', 'id')
             ->orderBy('id','DESC')
-            ->where('status',1);
+            ->whereIn('status',[1,4]);
     }
     public function getReceivedInvitation()
     {

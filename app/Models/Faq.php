@@ -30,7 +30,7 @@ class Faq extends Model
     public function faqDescriptionDestroy(){
         return $this->hasMany('App\Models\FaqDescription', 'faq_id', 'id');
     }
-	
+
     public function scopeTransfer(){
         return $this->where('type_job_id',1);
     }
@@ -38,13 +38,33 @@ class Faq extends Model
     public function scopeCleaning(){
         return $this->where('type_job_id',2);
     }
-	
+
     public function scopeTransferCleaning(){
         return $this->where('type_job_id',3);
-    } 
-	
+    }
+
 	public function scopeMalar(){
         return $this->where('type_job_id',4);
+    }
+
+    public function scopeBodenleger(){
+        return $this->where('type_job_id',5);
+    }
+
+    public function scopeHeizung(){
+        return $this->where('type_job_id',6);
+    }
+
+    public function scopeElektriker(){
+        return $this->where('type_job_id',7);
+    }
+
+    public function scopeGartner(){
+        return $this->where('type_job_id',8);
+    }
+
+    public function scopeSchreiner(){
+        return $this->where('type_job_id',9);
     }
 
 }

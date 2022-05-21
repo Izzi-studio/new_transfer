@@ -19,7 +19,7 @@ class ProposalController extends Controller
      */
     public function index()
     {
-        $proposals = Proposal::orderBy('id','DESC')->get();
+        $proposals = Proposal::orderBy('id','DESC')->whereResell(0)->get();
         $resell = false;
         return view('admin.proposal.list',compact(['proposals','resell']));
     }

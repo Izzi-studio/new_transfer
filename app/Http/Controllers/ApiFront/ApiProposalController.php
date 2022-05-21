@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\ApiFront;
 
+use App\Events\ChoosePerformedProposal;
 use App\Events\NewProposal;
 use App\Models\TypesOfJobs;
 use http\Env\Response;
@@ -16,6 +17,8 @@ use App\Events\ProposalDelete;
 use App\Events\ProposalAccepted;
 use Log;
 use PDF;
+use App\Models\User;
+
 class ApiProposalController extends Controller
 {
 
@@ -51,6 +54,30 @@ class ApiProposalController extends Controller
         return new ProposalCollection($proposals);
     }
 
+    /**
+     * Show proposal.
+     * @param Request $request
+     * @param Proposal $proposal
+     *
+     */
+    public function choosePerformerProposal(Request $request, Proposal $proposal){
+
+
+        ProposalToPartner::whereProposalId($proposal->id)
+            ->where('user_id','<>', $request->user_id)
+            ->forceDelete();
+
+
+        $proposal->payed = 1;
+        $proposal->hide = 1;
+        $proposal->save();
+
+
+        event(new ChoosePerformedProposal($proposal, User::whereId($request->user_id)->first()));
+
+        return response()->json(['status'=>true]);
+    }
+
 
     /**
      * Show proposals resell.
@@ -76,6 +103,7 @@ class ApiProposalController extends Controller
         if($typeJobId){
             $proposals = $proposals->whereIn('type_job_id',$typeJobId);
         }
+        $proposals =  $proposals->where('user_id','<>',auth()->user()->id)->whereHide(0);
 
         return new ProposalCollection($proposals->paginate(10));
     }
@@ -237,17 +265,32 @@ class ApiProposalController extends Controller
      * @param Proposal $proposal
      */
     private function resellProcess(Proposal $proposal){
+
+        $isset = ProposalToPartner::whereProposalId($proposal->id)
+            ->where('user_id', auth()->ID())->first();
+
+        if ($isset){
+            return response()->json(['data'=>['result'=>false,'message'=>'Isset request']]);
+        }
+
+
         $authUser = auth()->user();
 
+        $proposalToPartners = ProposalToPartner::where('proposal_id', $proposal->id)
+            ->where('status', 1);
+
+        if (Setting::getByKey('system.setting.limit_responded_resell') <= $proposalToPartners->count()) {
+            $proposal->hide = 1;
+        }
         ProposalToPartner::create([
             'user_id'=>auth()->ID(),
             'proposal_id'=>$proposal->id,
             'status'=> 1,
         ]);
 
-        $price = (int)$proposal->price;
+       // $price = (int)$proposal->price;
 
-        if($authUser->status_pay == 1){
+       /* if($authUser->status_pay == 1){
 
             if($authUser->coins - $price >= 0) {
                 $authUser->coins = $authUser->coins - $price;
@@ -255,16 +298,16 @@ class ApiProposalController extends Controller
             }else{
                 return response()->json(['data'=>['result'=>false ,'no_coin'=>__('front.no_coin')]]);
             }
-        }
+        } */
 
-        Log::info('Partner ID: ' . $authUser->id . ', Name: ' . $authUser->name . ' PAY Proposal Resell ID: ' . $proposal->id.' Price: '.$price);
+        Log::info('Partner ID: ' . $authUser->id . ', Name: ' . $authUser->name . ' PAY Proposal Resell ID: ' . $proposal->id);
         event(new ProposalAccepted($proposal));
         Log::info('----DONE----');
 
-        $proposal->payed = 1;
+        //$proposal->payed = 1;
         $proposal->save();
 
-        return response()->json(['data'=>['result'=>true]]);
+        return response()->json(['data'=>['result'=>true,'message'=>'Success']]);
     }
 
     /**
