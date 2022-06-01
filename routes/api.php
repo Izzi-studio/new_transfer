@@ -39,6 +39,7 @@ Route::prefix('front')->middleware('auth:api')->group(function () {
         Route::get('/proposals', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposals'])->name('api.partner.proposals');
         Route::get('/proposals-counts', [App\Http\Controllers\ApiFront\ApiProposalController::class,'partnerProposalsCounts'])->name('api.partner.proposals.counts');
         Route::put('/proposals/process/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'processProposals'])->name('api.partner.proposals.process');
+        Route::put('/proposals/choose-performer/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'choosePerformerProposal'])->name('api.partner.proposals.choose');
         Route::get('/proposals/prices', [App\Http\Controllers\ApiFront\ApiProposalController::class,'prices'])->name('api.partner.prices');
         Route::put('/password/update', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'updatePassword'])->name('api.partner.password.update');
         Route::get('/reviews', [App\Http\Controllers\ApiFront\ApiPartnerController::class,'partnerReviews'])->name('api.partner.reviews');

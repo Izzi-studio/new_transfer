@@ -24,10 +24,10 @@ trait ProposalsFormTrait {
         $zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::transfer()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::transfer()->get();
 
-        return view('front.client.forms.umzug-form', compact(['action','zip']));
+        return view('front.client.forms.umzug-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -42,10 +42,10 @@ trait ProposalsFormTrait {
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::transferCleaning()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::transferCleaning()->get();
 
-        return view('front.client.forms.umzug-reinigung-form', compact(['action','zip']));
+        return view('front.client.forms.umzug-reinigung-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -59,10 +59,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::cleaning()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::cleaning()->get();
 
-        return view('front.client.forms.reinigung-form', compact(['action','zip']));
+        return view('front.client.forms.reinigung-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -76,10 +76,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::malar()->get();
 
-        return view('front.client.forms.malar-form', compact(['action','zip']));
+        return view('front.client.forms.malar-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -93,10 +93,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::bodenleger()->get();
 
-        return view('front.client.forms.bodenleger-form', compact(['action','zip']));
+        return view('front.client.forms.bodenleger-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -110,10 +110,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::heizung()->get();
 
-        return view('front.client.forms.heizung-form', compact(['action','zip']));
+        return view('front.client.forms.heizung-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -127,10 +127,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::elektriker()->get();
 
-        return view('front.client.forms.elektriker-form', compact(['action','zip']));
+        return view('front.client.forms.elektriker-form', compact(['action','zip','faqs','reviews']));
     }
 
 
@@ -145,10 +145,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::gartner()->get();
 
-        return view('front.client.forms.gartner-form', compact(['action','zip']));
+        return view('front.client.forms.gartner-form', compact(['action','zip','faqs','reviews']));
     }
 
     /**
@@ -162,10 +162,10 @@ trait ProposalsFormTrait {
 		$zip = $request->zip;
         $action = Auth::user() ? route('proposal.add') : route('client.register.post');
 
-		//$reviews = ReviewsOnMainPage::all();
-		//$faqs = Faq::malar()->get();
+		$reviews = ReviewsOnMainPage::all();
+		$faqs = Faq::schreiner()->get();
 
-        return view('front.client.forms.schreiner-form', compact(['action','zip']));
+        return view('front.client.forms.schreiner-form', compact(['action','zip','faqs','reviews']));
     }
 
     ////////////////////////////////////////////////////////////////////////////////
@@ -181,38 +181,47 @@ trait ProposalsFormTrait {
         switch ($proposal['type_job_id']) {
             case 1:
                 $template = 'umzug-form';
+                $faqs = Faq::transfer()->get();
                 break;
             case 2:
                 $template = 'reinigung-form';
+                $faqs = Faq::cleaning()->get();
                 break;
             case 3:
                 $template = 'umzug-reinigung-form';
+                $faqs = Faq::transferCleaning()->get();
                 break;
             case 4:
                 $template = 'malar-form';
+                $faqs = Faq::malar()->get();
                 break;
             case 5:
                 $template = 'bodenleger-form';
+                $faqs = Faq::bodenleger()->get();
                 break;
             case 6:
                 $template = 'heizung-form';
+                $faqs = Faq::heizung()->get();
                 break;
             case 7:
                 $template = 'elektriker-form';
+                $faqs = Faq::elektriker()->get();
                 break;
             case 8:
                 $template = 'gartner-form';
+                $faqs = Faq::gartner()->get();
                 break;
             case 9:
                 $template = 'schreiner-form';
+                $faqs = Faq::schreiner()->get();
                 break;
             default:
                 Log::info('Add Request. Wrong Job Type: '.$proposal['type_job_id']);
                 return response()->json(['url'=> route('client.myInfo')]);
         }
         $action = route('api.user.proposals.update',$proposal->id);
+        $reviews = ReviewsOnMainPage::all();
 
-
-        return view('front.client.forms.'.$template, compact(['action']));
+        return view('front.client.forms.'.$template, compact(['action','reviews','faqs']));
     }
 }

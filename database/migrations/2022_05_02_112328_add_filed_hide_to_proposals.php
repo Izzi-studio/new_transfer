@@ -14,11 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('proposals', function (Blueprint $table) {
-            $table->integer('price')->after('additional_info')->nullable();
-            $table->integer('resell')->after('price')->default(0);
-            $table->integer('payed')->after('resell')->default(0);
+            $table->integer('hide')->after('payed')->default(0);
         });
-
     }
 
     /**
@@ -29,9 +26,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('proposals', function (Blueprint $table) {
-            $table->dropColumn('price');
-            $table->dropColumn('resell');
-            $table->dropColumn('payed');
+            $table->dropColumn('hide');
         });
     }
 };

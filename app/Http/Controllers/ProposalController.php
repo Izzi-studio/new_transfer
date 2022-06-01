@@ -97,6 +97,7 @@ class ProposalController extends Controller
                         ->where('status', 0)
                         ->forceDelete();
                 }
+
                 return redirect()->route('partner.getAcceptedRequests');
 
             }else{
