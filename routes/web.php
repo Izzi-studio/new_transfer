@@ -105,7 +105,7 @@ Route::group([
     Route::get('/firmenprofil/{user:profile_slug}', [App\Http\Controllers\Partner\PartnerController::class,'profile'])->name('partner.profile');
     Route::get('/firmenprofil/{user:profile_slug}/review/create/{proposal}', [App\Http\Controllers\Partner\PartnerController::class,'createReview'])->name('partner.profile.create_review');
 
-
+    Route::post('payment', [App\Http\Controllers\Partner\PaymentControllerIdealPay::class, 'index'])->name('api.payment-post');
 });
 
 
