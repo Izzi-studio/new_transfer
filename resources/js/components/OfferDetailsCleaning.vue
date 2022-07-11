@@ -57,7 +57,7 @@
                     {{ data.client.email }}
                 </p>
             </div>
-            <div class="offer-details__item">
+            <div v-if="data.client.availability" class="offer-details__item">
                 <p class="offer-details__title">{{trans('form-labels.availability')}}</p>
                 <p class="offer-details__txt">
                     {{ data.client.availability }}

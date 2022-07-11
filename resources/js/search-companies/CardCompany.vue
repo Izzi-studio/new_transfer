@@ -1,6 +1,6 @@
 <template>
     <a :href="data.link" class="card-companies">
-        <img class="card-companies__img" :src="data.avatar || '/images/default-avatar.png'" alt="">
+        <img class="card-companies__img" :src="data.avatar || '/images/default-avatar.webp'" alt="">
         <p class="card-companies__title">{{ data.company }}</p>
         <p class="card-companies__location">{{ data.city }}, {{ data.street }}</p>
         <span class="card-companies__btn-profile">{{trans('show-profile')}}</span>

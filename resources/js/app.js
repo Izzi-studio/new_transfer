@@ -1,10 +1,10 @@
 window.axios = require('axios')
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 window.$ = window.jQuery = require('jquery')
-// window.toastr = require('toastr');
-// window.toastr.options = {
-//   "positionClass": "toast-bottom-right",
-// }
+window.toastr = require('toastr');
+window.toastr.options = {
+  "positionClass": "toast-bottom-right",
+}
 
 import Vue from 'vue'
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
     burgerMenu()
     headerHeightFun()
     scrollTop()
-    // sectionNavigation()
+    sectionNavigation()
     vhModule()
 
     window.addEventListener('resize', () => {

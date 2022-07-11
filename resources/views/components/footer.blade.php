@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row footer__wrap-logo">
                 <div class="col-12">
-                    <img src="/images/logo.png" alt="">
+                    <img src="/images/logo.webp" alt="">
                 </div>
             </div>
             <div class="row justify-content-between">

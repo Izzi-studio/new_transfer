@@ -13,7 +13,7 @@
                     <li class="banner__item">Zeit</li>
                     <li class="banner__item">Geld</li>
                     <li class="banner__item">Nerven</li>
-                </ul><img class="banner__mobile-img" src="/images/banner-img.png" alt="">
+                </ul><img class="banner__mobile-img" src="/images/banner-img.webp" alt="">
                 
                 @if(!(auth()->user() && auth()->user()->isPartner()))
                     <form id="bannerForm" class="banner-form banner__banner-form" action="#" method="GET">
@@ -42,7 +42,7 @@
                     </form>
                 @endif
             </div>
-            <div class="col-lg-5"><img class="banner__desktop-img" src="/images/banner-img.png" alt=""></div>
+            <div class="col-lg-5"><img class="banner__desktop-img" src="/images/offerten-hummer.webp" alt=""></div>
         </div>
     </div>
 </section>
@@ -86,7 +86,7 @@
     </div>
 </section>
 <section class="banner-txt marginTop100">
-    <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_1.png)">
+    <div class="container banner-txt__container" style="background-image: url(/images/offerten-hummer-banner1.webp)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Umzugs-Angebot einholen</h2>
@@ -189,12 +189,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6"><img class="advantages__img" src="/images/advantages-img.png" alt=""></div>
+            <div class="col-lg-6"><img class="advantages__img" src="/images/offerten-hummer-vorteile.webp" alt=""></div>
         </div>
     </div>
 </section>
 <section class="banner-txt marginTop100">
-    <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_2.png)">
+    <div class="container banner-txt__container" style="background-image: url(/images/offerten-hummer-banner2.webp)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Reinigungs-Angebot einholen</h2>
@@ -263,7 +263,7 @@
     </div>
 </section>
 <section class="banner-txt marginTop100">
-    <div class="container banner-txt__container" style="background-image: url(/images/banner-txt_3.png)">
+    <div class="container banner-txt__container" style="background-image: url(/images/offerten-hummer-banner3.webp)">
         <div class="row justify-content-center">
             <div class="col-lg-8">
                 <h2 class="section-title">Jetzt Umzugs+Reinigungs Angebot einholen</h2>

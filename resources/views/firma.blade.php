@@ -12,7 +12,7 @@
                     'reinigungUrl' => route('client.form.reinigung.view'),
                     'umzugUndReinigungUrl' => route('client.form.umzug_und_reinigung.view'),
                     'malarUrl' => route('client.form.malar.view'),
-                    'bodenlegerUrl' => route('client.form.bodenleger.view'),
+                    'bodenlegerUrl' => route('client.form.bodenleger.iew'),
                     'heizungUrl' => route('client.form.heizung.view'),
                     'elektrikerUrl' => route('client.form.elektriker.view'),
                     'gartnerUrl' => route('client.form.gartner.view'),

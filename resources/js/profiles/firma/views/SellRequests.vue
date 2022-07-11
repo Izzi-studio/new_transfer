@@ -10,6 +10,7 @@
                 :type-job-id="card.type_job_id"
                 :is-show-btn-cancel="isShowBtnCancel"
                 :is-show-btn-download="isShowBtnDownload"
+                @acceptCompany="acceptCompany"
                 @deleteOffer="deleteOffer"
             />
         </div>
@@ -45,6 +46,16 @@ export default {
         },
     },
     methods: {
+        acceptCompany(data) {
+            axios.put(`/api/front/partner/proposals/choose-performer/${data.proposalId}`, {
+                user_id: data.userId
+            })
+                .then((dataStatus) => {
+                    if(dataStatus.data.status) {
+                        this.cards.filter(i => i.id === data.proposalId)[0].performed = true
+                    }
+                })
+        },  
         deleteOffer(id) {
             const isConfirm = confirm('Sind Sie sicher, dass Sie den Auftrag löschen wollen?')
 

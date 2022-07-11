@@ -118,7 +118,7 @@ __webpack_require__.r(__webpack_exports__);
       if (_this2.fields.avatar) {
         _this2.avatarUrl = _this2.fields.avatar;
       } else {
-        _this2.avatarUrl = '/images/default-avatar.png';
+        _this2.avatarUrl = '/images/default-avatar.webp';
       }
 
       _this2.fields.avatar = "";

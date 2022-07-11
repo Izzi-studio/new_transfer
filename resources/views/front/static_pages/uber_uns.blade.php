@@ -10,7 +10,7 @@
                 </div>
             </div>
             <div class="col-lg-7 mt-4">
-                <div class="about-us__img"><img src="/images/about-us.png" alt=""></div>
+                <div class="about-us__img"><img src="/images/about-us.webp" alt=""></div>
             </div>
         </div>
     </div>

@@ -77,7 +77,9 @@ export default {
             })
                 .then(({ data }) => {
                     if(data.data.result) {
-                        this.loadCards()
+                        toastr.success(data.data.message)
+                    } else {
+                        toastr.error(data.data.message)
                     }
                 })
         },
