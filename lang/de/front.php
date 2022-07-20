@@ -54,6 +54,7 @@ return [
     'counselor' => 'Ratgeber',
     'help' => 'Hilfe',
     'faq' => 'FAQ',
+    'total' => 'Betrag',
     'about-us' => 'Über uns',
     'contact' => 'Kontakt',
     'companies' => 'Firmen',

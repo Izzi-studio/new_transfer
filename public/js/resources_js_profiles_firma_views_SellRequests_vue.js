@@ -119,6 +119,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -186,31 +201,31 @@ __webpack_require__.r(__webpack_exports__);
     offerType: function offerType() {
       switch (this.typeJobId) {
         case 1:
-          return 'Umzug';
+          return 'umzug';
 
         case 2:
-          return 'Reinigung';
+          return 'reinigung';
 
         case 3:
-          return 'Umzug und Reinigun';
+          return 'umzug_und_reinigung';
 
         case 4:
-          return 'Maler';
+          return 'maler';
 
         case 5:
-          return 'Bodenleger';
+          return 'bodenleger';
 
         case 6:
-          return 'Heizung';
+          return 'heizung';
 
         case 7:
-          return 'Elektriker';
+          return 'elektriker';
 
         case 8:
-          return 'Gartner';
+          return 'gartner';
 
         case 9:
-          return 'Schreiner';
+          return 'schreiner';
       }
     }
   },
@@ -283,8 +298,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['data', 'offerId']
+  props: ['data', 'offerId', 'isShowBtnAcceptCompany', 'isPerformed']
 });
 
 /***/ }),
@@ -649,6 +674,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
@@ -683,14 +709,27 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    deleteOffer: function deleteOffer(id) {
+    acceptCompany: function acceptCompany(data) {
       var _this = this;
+
+      axios.put("/api/front/partner/proposals/choose-performer/".concat(data.proposalId), {
+        user_id: data.userId
+      }).then(function (dataStatus) {
+        if (dataStatus.data.status) {
+          _this.cards.filter(function (i) {
+            return i.id === data.proposalId;
+          })[0].performed = true;
+        }
+      });
+    },
+    deleteOffer: function deleteOffer(id) {
+      var _this2 = this;
 
       var isConfirm = confirm('Sind Sie sicher, dass Sie den Auftrag löschen wollen?');
 
       if (isConfirm) {
         axios["delete"]("/api/front/partner/proposals/delete/".concat(id)).then(function () {
-          _this.cards = _this.cards.filter(function (i) {
+          _this2.cards = _this2.cards.filter(function (i) {
             return i.id != id;
           });
         });
@@ -698,7 +737,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
     axios.get('/api/front/partner/proposals', {
       params: {
@@ -706,7 +745,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }).then(function (_ref) {
       var data = _ref.data;
-      _this2.cards = data.data;
+      _this3.cards = data.data;
     });
   },
   components: {
@@ -1221,6 +1260,7 @@ var render = function () {
       class: {
         offer_open_details: _vm.isShowDetails,
         offer_open_companies: _vm.isShowCompanies,
+        offer_performed: _vm.data.performed,
       },
     },
     [
@@ -1239,7 +1279,7 @@ var render = function () {
         _vm._v(" "),
         _vm.isPartner
           ? _c("h4", { staticClass: "offer__type" }, [
-              _vm._v(_vm._s(_vm.offerType)),
+              _vm._v(_vm._s(_vm.trans(_vm.offerType))),
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -1264,17 +1304,105 @@ var render = function () {
         ),
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "offer__body" }, [
-        _vm.isClient
-          ? _c("p", { staticClass: "offer__desc" }, [
-              _vm._v(_vm._s(_vm.offerDesc)),
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.isPartner
-          ? _c("h4", [_vm._v(_vm._s(_vm.offerDirection))])
-          : _vm._e(),
-      ]),
+      _c(
+        "div",
+        { staticClass: "offer__body" },
+        [
+          _vm.isClient
+            ? _c("p", { staticClass: "offer__desc" }, [
+                _vm._v(_vm._s(_vm.offerDesc)),
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.isPartner
+            ? _c("h4", [_vm._v(_vm._s(_vm.offerDirection))])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.data.price
+            ? _c(
+                "p",
+                { staticClass: "mt-2", staticStyle: { color: "#1072D8" } },
+                [
+                  _c("strong", [
+                    _vm._v(
+                      _vm._s(_vm.trans("price")) +
+                        " " +
+                        _vm._s(_vm.data.price) +
+                        " €"
+                    ),
+                  ]),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.isPartner &&
+          _vm.data.responded_partners &&
+          _vm.data.responded_partners.length
+            ? _c(
+                "button",
+                {
+                  staticClass: "offer__btn-companies mt-2",
+                  attrs: { type: "button" },
+                  on: {
+                    click: function ($event) {
+                      _vm.isShowCompanies = !_vm.isShowCompanies
+                    },
+                  },
+                },
+                [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.trans("suggested-companies")) +
+                      "\n        "
+                  ),
+                ]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.data.responded_partners && _vm.data.responded_partners.length
+            ? _c("offer-companies", {
+                attrs: {
+                  data: _vm.data.responded_partners,
+                  "offer-id": _vm.data.id,
+                  "is-show-btn-accept-company": true,
+                  "is-performed": _vm.data.performed,
+                },
+                on: {
+                  acceptCompany: function ($event) {
+                    return _vm.$emit("acceptCompany", {
+                      proposalId: _vm.data.id,
+                      userId: $event,
+                    })
+                  },
+                },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.typeJobId == 1
+            ? _c("offer-details-transfer", { attrs: { data: _vm.data } })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.typeJobId == 2
+            ? _c("offer-details-cleaning", { attrs: { data: _vm.data } })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.typeJobId == 3
+            ? _c("offer-details-transfer-cleaning", {
+                attrs: { data: _vm.data },
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.typeJobId == 4 ||
+          _vm.typeJobId == 5 ||
+          _vm.typeJobId == 6 ||
+          _vm.typeJobId == 7 ||
+          _vm.typeJobId == 8 ||
+          _vm.typeJobId == 9
+            ? _c("offer-details-flexble", { attrs: { data: _vm.data } })
+            : _vm._e(),
+        ],
+        1
+      ),
       _vm._v(" "),
       _c("div", { staticClass: "offer__footer" }, [
         _vm.isClient && _vm.data.responded_partners.length
@@ -1354,7 +1482,7 @@ var render = function () {
                 {
                   staticClass: "offer__edit",
                   attrs: {
-                    href: "/proposal/edit/" + _vm.data.id,
+                    href: "/proposal/edit/" + _vm.data.id + "#section-steps",
                     type: "button",
                   },
                 },
@@ -1368,7 +1496,7 @@ var render = function () {
               )
             : _vm._e(),
           _vm._v(" "),
-          _vm.isShowBtnCancel
+          _vm.isShowBtnCancel && !_vm.data.performed
             ? _c(
                 "button",
                 {
@@ -1391,48 +1519,7 @@ var render = function () {
             : _vm._e(),
         ]),
       ]),
-      _vm._v(" "),
-      _vm.typeJobId == 1
-        ? _c("offer-details-transfer", { attrs: { data: _vm.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.typeJobId == 2
-        ? _c("offer-details-cleaning", { attrs: { data: _vm.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.typeJobId == 3
-        ? _c("offer-details-transfer-cleaning", { attrs: { data: _vm.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.typeJobId == 4 ||
-      _vm.typeJobId == 5 ||
-      _vm.typeJobId == 6 ||
-      _vm.typeJobId == 7 ||
-      _vm.typeJobId == 8 ||
-      _vm.typeJobId == 9
-        ? _c("offer-details-flexble", { attrs: { data: _vm.data } })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.isClient && _vm.data.responded_partners.length
-        ? _c("offer-companies", {
-            attrs: {
-              data: _vm.data.responded_partners,
-              "offer-id": _vm.data.id,
-            },
-          })
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.data.price
-        ? _c("p", { staticClass: "mt-2", staticStyle: { color: "#1072D8" } }, [
-            _c("strong", [
-              _vm._v(
-                _vm._s(_vm.trans("price")) + " " + _vm._s(_vm.data.price) + " €"
-              ),
-            ]),
-          ])
-        : _vm._e(),
-    ],
-    1
+    ]
   )
 }
 var staticRenderFns = []
@@ -1466,28 +1553,52 @@ var render = function () {
           _c("img", {
             staticClass: "offer-company__logo",
             attrs: {
-              src: company.avatar || "/images/default-avatar.png",
+              src: company.avatar || "/images/default-avatar.webp",
               alt: "",
             },
           }),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "offer-company__link",
-              attrs: {
-                href:
-                  "/firmenprofil/" + company.profile_slug + "/" + _vm.offerId,
+          _c("div", { staticClass: "d-flex flex-column" }, [
+            _vm.isShowBtnAcceptCompany && !_vm.isPerformed
+              ? _c(
+                  "button",
+                  {
+                    staticClass: "offer__accept mb-2",
+                    attrs: { type: "button" },
+                    on: {
+                      click: function ($event) {
+                        return _vm.$emit("acceptCompany", company.id)
+                      },
+                    },
+                  },
+                  [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.trans("accept")) +
+                        "\n                "
+                    ),
+                  ]
+                )
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "offer-company__link",
+                attrs: {
+                  href:
+                    "/firmenprofil/" + company.profile_slug + "/" + _vm.offerId,
+                },
               },
-            },
-            [
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.trans("show-profile")) +
-                  "\n            "
-              ),
-            ]
-          ),
+              [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(_vm.trans("show-profile")) +
+                    "\n                "
+                ),
+              ]
+            ),
+          ]),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "offer-company__body" }, [
@@ -1725,19 +1836,21 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "offer-details__item" }, [
-              _c("p", { staticClass: "offer-details__title" }, [
-                _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "offer-details__txt" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.data.client.availability) +
-                    "\n            "
-                ),
-              ]),
-            ]),
+            _vm.data.client.availability
+              ? _c("div", { staticClass: "offer-details__item" }, [
+                  _c("p", { staticClass: "offer-details__title" }, [
+                    _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "offer-details__txt" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.data.client.availability) +
+                        "\n            "
+                    ),
+                  ]),
+                ])
+              : _vm._e(),
           ]
         : _vm._e(),
     ],
@@ -1850,19 +1963,21 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "offer-details__item" }, [
-              _c("p", { staticClass: "offer-details__title" }, [
-                _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "offer-details__txt" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.data.client.availability) +
-                    "\n            "
-                ),
-              ]),
-            ]),
+            _vm.data.client.availability
+              ? _c("div", { staticClass: "offer-details__item" }, [
+                  _c("p", { staticClass: "offer-details__title" }, [
+                    _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "offer-details__txt" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.data.client.availability) +
+                        "\n            "
+                    ),
+                  ]),
+                ])
+              : _vm._e(),
           ]
         : _vm._e(),
     ],
@@ -2051,19 +2166,21 @@ var render = function () {
               ]),
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "offer-details__item" }, [
-              _c("p", { staticClass: "offer-details__title" }, [
-                _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "offer-details__txt" }, [
-                _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.data.client.availability) +
-                    "\n            "
-                ),
-              ]),
-            ]),
+            _vm.data.client.availability
+              ? _c("div", { staticClass: "offer-details__item" }, [
+                  _c("p", { staticClass: "offer-details__title" }, [
+                    _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "offer-details__txt" }, [
+                    _vm._v(
+                      "\n                " +
+                        _vm._s(_vm.data.client.availability) +
+                        "\n            "
+                    ),
+                  ]),
+                ])
+              : _vm._e(),
           ]
         : _vm._e(),
     ],
@@ -2271,19 +2388,21 @@ var render = function () {
           ]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "offer-details__item" }, [
-          _c("p", { staticClass: "offer-details__title" }, [
-            _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "offer-details__txt" }, [
-            _vm._v(
-              "\n                " +
-                _vm._s(_vm.data.client.availability) +
-                "\n            "
-            ),
-          ]),
-        ]),
+        _vm.data.client.availability
+          ? _c("div", { staticClass: "offer-details__item" }, [
+              _c("p", { staticClass: "offer-details__title" }, [
+                _vm._v(_vm._s(_vm.trans("form-labels.availability"))),
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "offer-details__txt" }, [
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.data.client.availability) +
+                    "\n            "
+                ),
+              ]),
+            ])
+          : _vm._e(),
       ],
     ],
     2
@@ -2328,7 +2447,10 @@ var render = function () {
             "is-show-btn-cancel": _vm.isShowBtnCancel,
             "is-show-btn-download": _vm.isShowBtnDownload,
           },
-          on: { deleteOffer: _vm.deleteOffer },
+          on: {
+            acceptCompany: _vm.acceptCompany,
+            deleteOffer: _vm.deleteOffer,
+          },
         })
       }),
       1

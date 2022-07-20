@@ -204,7 +204,7 @@ export default {
                 if(this.fields.avatar) {
                     this.avatarUrl = this.fields.avatar
                 } else {
-                    this.avatarUrl = '/images/default-avatar.png'
+                    this.avatarUrl = '/images/default-avatar.webp'
                 }
                 this.fields.avatar = ""
             })

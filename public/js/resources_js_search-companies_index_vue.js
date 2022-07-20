@@ -500,7 +500,7 @@ var render = function () {
       _c("img", {
         staticClass: "card-companies__img",
         attrs: {
-          src: _vm.data.avatar || "/images/default-avatar.png",
+          src: _vm.data.avatar || "/images/default-avatar.webp",
           alt: "",
         },
       }),

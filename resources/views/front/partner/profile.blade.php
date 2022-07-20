@@ -60,7 +60,7 @@
                                 @if($review->getPostedUser->avatar)
                                     <img class="review__img" src="{{env('FRONT_PATH_AVATAR')}}{{$review->getPostedUser->avatar}}" alt="">
                                 @else
-                                    <img class="review__img" src="/images/default-avatar.png" alt="">
+                                    <img class="review__img" src="/images/default-avatar.webp" alt="">
                                 @endif
                                 <div class="review__info">
                                     <h3 class="review__title">{{$review->getPostedUser->name}}, {{$review->created_at->format('d.m.Y')}}</h3>

@@ -3,13 +3,13 @@
         <div class="row">
             <div class="col-lg-7">
                 {!! $customPage->getCustomPageDescription->b1_text!!}
-                <img class="banner__mobile-img" src="/images/banner-img.png" alt="">
+                <img class="banner__mobile-img" src="/images/banner-img.webp" alt="">
                 <div class="d-flex mt-3">
                     <a class="btn" href="#section-steps">{{$customPage->getCustomPageDescription->b1_btn}}</a>
                 </div>
             </div>
             <div class="col-lg-5">
-                <img class="banner__desktop-img" src="/images/banner-img.png" alt="">
+                <img class="banner__desktop-img" src="/images/banner-img.webp" alt="">
             </div>
         </div>
     </div>
@@ -69,7 +69,7 @@
         <h2 class="section-title">{{$customPage->getCustomPageDescription->b5_title}}</h2>
         <div class="row advantages__wrap">
             {!!$customPage->getCustomPageDescription->b5_content!!}
-            <div class="col-lg-6"><img class="advantages__img" src="/images/advantages-img.png" alt=""></div>
+            <div class="col-lg-6"><img class="advantages__img" src="/images/advantages-img.webp" alt=""></div>
         </div>
     </div>
 </section>

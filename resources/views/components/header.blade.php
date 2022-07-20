@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container header__container">
         <a class="header__logo" href="/">
-            <img src="/images/logo.png">
+            <img src="/images/logo.webp">
         </a>
         <nav class="header__menu">
             <ul class="header__menu-inner">

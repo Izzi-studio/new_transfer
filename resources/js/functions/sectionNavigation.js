@@ -6,7 +6,7 @@ export default function sectionNavigation() {
         .on('click', 'a[href^="#section"]', function () {
             let el = $(this).attr('href');
             $('body, html').animate({
-                scrollTop: $(el).offset().top
+                scrollTop: $(el).offset().top - $('.header').outerHeight()
             }, 1000);
             return false;
         })

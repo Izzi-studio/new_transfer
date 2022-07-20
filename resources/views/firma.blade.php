@@ -18,6 +18,7 @@
                     'gartnerUrl' => route('client.form.gartner.view'),
                     'schreinerUrl' => route('client.form.schreiner.view'),
                     'resellUrl' => route('partner.resell.view'),
+                    'paymentUrl' => route('api.payment-post'),
                 ))}}"
             />
         </div>

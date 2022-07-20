@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="login__decor"><img class="login__decor-img" src="/images/decor.png" alt=""></div>
+        <div class="login__decor"><img class="login__decor-img" src="/images/decor.webp" alt=""></div>
     </div>
 </section>
 @endsection

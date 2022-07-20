@@ -165,57 +165,91 @@ var render = function () {
     _vm._v(" "),
     _c("ul", [
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.umzugUrl } }, [
-          _vm._v("\n                Umzug\n            "),
-        ]),
+        _c(
+          "a",
+          { attrs: { href: _vm.additionalInfo.umzugUrl + "#section-steps" } },
+          [_vm._v("\n                Umzug\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.reinigungUrl } }, [
-          _vm._v("\n                Reinigung\n            "),
-        ]),
+        _c(
+          "a",
+          {
+            attrs: { href: _vm.additionalInfo.reinigungUrl + "#section-steps" },
+          },
+          [_vm._v("\n                Reinigung\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.umzugUndReinigungUrl } }, [
-          _vm._v("\n                Umzug + Reinigung\n            "),
-        ]),
+        _c(
+          "a",
+          {
+            attrs: {
+              href: _vm.additionalInfo.umzugUndReinigungUrl + "#section-steps",
+            },
+          },
+          [_vm._v("\n                Umzug + Reinigung\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.malarUrl } }, [
-          _vm._v("\n                Maler/Gipser\n            "),
-        ]),
+        _c(
+          "a",
+          { attrs: { href: _vm.additionalInfo.malarUrl + "#section-steps" } },
+          [_vm._v("\n                Maler/Gipser\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.bodenlegerUrl } }, [
-          _vm._v("\n                Bodenleger\n            "),
-        ]),
+        _c(
+          "a",
+          {
+            attrs: {
+              href: _vm.additionalInfo.bodenlegerUrl + "#section-steps",
+            },
+          },
+          [_vm._v("\n                Bodenleger\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.heizungUrl } }, [
-          _vm._v("\n                Heizungsanbieter\n            "),
-        ]),
+        _c(
+          "a",
+          { attrs: { href: _vm.additionalInfo.heizungUrl + "#section-steps" } },
+          [_vm._v("\n                Heizungsanbieter\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.elektrikerUrl } }, [
-          _vm._v("\n                Elektriker\n            "),
-        ]),
+        _c(
+          "a",
+          {
+            attrs: {
+              href: _vm.additionalInfo.elektrikerUrl + "#section-steps",
+            },
+          },
+          [_vm._v("\n                Elektriker\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.gartnerUrl } }, [
-          _vm._v("\n                Gärtner\n            "),
-        ]),
+        _c(
+          "a",
+          { attrs: { href: _vm.additionalInfo.gartnerUrl + "#section-steps" } },
+          [_vm._v("\n                Gärtner\n            ")]
+        ),
       ]),
       _vm._v(" "),
       _c("li", { staticClass: "mt-2" }, [
-        _c("a", { attrs: { href: _vm.additionalInfo.schreinerUrl } }, [
-          _vm._v("\n                Schreiner\n            "),
-        ]),
+        _c(
+          "a",
+          {
+            attrs: { href: _vm.additionalInfo.schreinerUrl + "#section-steps" },
+          },
+          [_vm._v("\n                Schreiner\n            ")]
+        ),
       ]),
     ]),
   ])

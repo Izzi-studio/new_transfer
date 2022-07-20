@@ -4,6 +4,7 @@
         :class="{
             'offer_open_details': isShowDetails,
             'offer_open_companies': isShowCompanies,
+            'offer_performed': data.performed,
         }"
     >
         <p class="offer__date mb-1">{{ data.created_at }}</p>
@@ -14,7 +15,7 @@
             >
                 {{ offerDirection }}
             </h4>
-            <h4 v-if="isPartner" class="offer__type">{{ offerType }}</h4>
+            <h4 v-if="isPartner" class="offer__type">{{ trans(offerType) }}</h4>
             <button 
                 class="offer__btn-details btn"
                 type="button"
@@ -26,6 +27,46 @@
         <div class="offer__body">
             <p v-if="isClient" class="offer__desc">{{ offerDesc }}</p>
             <h4 v-if="isPartner">{{ offerDirection }}</h4>
+            <p 
+                class="mt-2"
+                style="color: #1072D8;" 
+                v-if="data.price"
+            >
+                <strong>{{trans('price')}} {{ data.price }} €</strong>
+            </p>
+            <button 
+                v-if="isPartner && data.responded_partners && data.responded_partners.length" 
+                @click="isShowCompanies = !isShowCompanies"
+                class="offer__btn-companies mt-2" 
+                type="button"
+            >
+                {{trans('suggested-companies')}}
+            </button>
+            <offer-companies 
+                v-if="data.responded_partners && data.responded_partners.length" 
+                :data="data.responded_partners"
+                :offer-id="data.id"
+                :is-show-btn-accept-company="true"
+                :is-performed="data.performed"
+                @acceptCompany="$emit('acceptCompany', {
+                    proposalId: data.id,
+                    userId: $event,
+                })"
+            />
+            <offer-details-transfer :data="data" v-if="typeJobId == 1" />
+            <offer-details-cleaning :data="data" v-if="typeJobId == 2" />
+            <offer-details-transfer-cleaning :data="data" v-if="typeJobId == 3" />
+            <offer-details-flexble 
+                :data="data" 
+                v-if="
+                    typeJobId == 4 ||
+                    typeJobId == 5 ||
+                    typeJobId == 6 ||
+                    typeJobId == 7 ||
+                    typeJobId == 8 ||
+                    typeJobId == 9
+                " 
+            />
         </div>
         <div class="offer__footer">
             <button 
@@ -56,7 +97,7 @@
                 </a>
                 <a
                     v-if="isClient"
-                    :href="'/proposal/edit/' + data.id" 
+                    :href="'/proposal/edit/' + data.id + '#section-steps'" 
                     class="offer__edit" 
                     type="button"
                 >
@@ -65,39 +106,13 @@
                 <button 
                     class="offer__cancel" 
                     type="button"
-                    v-if="isShowBtnCancel"
+                    v-if="isShowBtnCancel && !data.performed"
                     @click="$emit('deleteOffer', data.id)"
                 >
                     {{trans('reject')}}
                 </button>
             </div>
         </div>
-        <offer-details-transfer :data="data" v-if="typeJobId == 1" />
-        <offer-details-cleaning :data="data" v-if="typeJobId == 2" />
-        <offer-details-transfer-cleaning :data="data" v-if="typeJobId == 3" />
-        <offer-details-flexble 
-            :data="data" 
-            v-if="
-                typeJobId == 4 ||
-                typeJobId == 5 ||
-                typeJobId == 6 ||
-                typeJobId == 7 ||
-                typeJobId == 8 ||
-                typeJobId == 9
-            " 
-        />
-        <offer-companies 
-            v-if="isClient && data.responded_partners.length" 
-            :data="data.responded_partners"
-            :offer-id="data.id"
-        />
-        <p 
-            class="mt-2"
-            style="color: #1072D8;" 
-            v-if="data.price"
-        >
-            <strong>{{trans('price')}} {{ data.price }} €</strong>
-        </p>
     </div>
 </template>
 
@@ -193,15 +208,15 @@ export default {
         },
         offerType() {
             switch (this.typeJobId) {
-                case 1: return 'Umzug'
-                case 2: return 'Reinigung'
-                case 3: return 'Umzug und Reinigun'
-                case 4: return 'Maler'
-                case 5: return 'Bodenleger'
-                case 6: return 'Heizung'
-                case 7: return 'Elektriker'
-                case 8: return 'Gartner' 
-                case 9: return 'Schreiner'
+                case 1: return 'umzug'
+                case 2: return 'reinigung'
+                case 3: return 'umzug_und_reinigung'
+                case 4: return 'maler'
+                case 5: return 'bodenleger'
+                case 6: return 'heizung'
+                case 7: return 'elektriker'
+                case 8: return 'gartner' 
+                case 9: return 'schreiner'
             }
         }
     },

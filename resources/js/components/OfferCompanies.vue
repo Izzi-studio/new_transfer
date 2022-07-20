@@ -6,13 +6,23 @@
             class="offer-company"
         >
             <div class="offer-company__header">
-                <img class="offer-company__logo" :src="company.avatar || '/images/default-avatar.png'" alt="">
-                <a 
-                    class="offer-company__link" 
-                    :href="`/firmenprofil/${company.profile_slug}/${offerId}`"
-                >
-                    {{trans('show-profile')}}
-                </a>
+                <img class="offer-company__logo" :src="company.avatar || '/images/default-avatar.webp'" alt="">
+                <div class="d-flex flex-column">
+                    <button
+                        v-if="isShowBtnAcceptCompany && !isPerformed"
+                        class="offer__accept mb-2" 
+                        type="button"
+                        @click="$emit('acceptCompany', company.id)"
+                    >
+                        {{trans('accept')}}
+                    </button>
+                    <a 
+                        class="offer-company__link" 
+                        :href="`/firmenprofil/${company.profile_slug}/${offerId}`"
+                    >
+                        {{trans('show-profile')}}
+                    </a>
+                </div>
             </div>
             <div class="offer-company__body">
                 <div class="offer-company__col">
@@ -48,6 +58,6 @@
 
 <script>
 export default {
-    props: ['data', 'offerId'],
+    props: ['data', 'offerId', 'isShowBtnAcceptCompany', 'isPerformed'],
 }
 </script>
