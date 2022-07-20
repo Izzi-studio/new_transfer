@@ -46,7 +46,6 @@ class NotifyEmailPartner extends Mailable
 
 		$this->type = $arraySubjects[$this->proposal->type_job_id];
 
-
         return $this->markdown('emails.partner.notification_new_proposal')->subject('Neue Anfrage');
     }
 }
