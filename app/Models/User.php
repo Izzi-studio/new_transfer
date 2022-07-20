@@ -151,6 +151,7 @@ class User extends Authenticatable
         return $this->hasManyThrough('App\Models\Proposal', 'App\Models\ProposalToPartner',
             'user_id','id','id','proposal_id')
             ->whereResell(0)
+            ->orderBy('id','DESC')
             ->whereStatus('<>',0);
     }
     /**

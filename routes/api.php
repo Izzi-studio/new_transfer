@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -49,8 +48,8 @@ Route::prefix('front')->middleware('auth:api')->group(function () {
         Route::get('/proposals/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'show'])->name('api.partner.proposals.show');
         Route::put('/proposals/update/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'update'])->name('api.partner.proposals.update');
         Route::delete('/proposals/delete/{proposal}', [App\Http\Controllers\ApiFront\ApiProposalController::class,'destroy'])->name('api.partner.proposals.delete');
-    });
 
+    });
 
     Route::post('add-request', [App\Http\Controllers\ApiFront\ApiProposalController::class, 'store'])->name('proposal.add');
 
@@ -64,7 +63,6 @@ Route::prefix('front')->middleware('api')->group(function () {
 
 
     Route::post('/contact-form', [App\Http\Controllers\ApiFront\ApiFrontController::class,'contactForm'])->name('api.contactForm');
-
-
+    Route::post('processed-payment', [App\Http\Controllers\Partner\PaymentControllerIdealPay::class, 'prosessedPayment'])->name('api.processedPayment');
 
 });
