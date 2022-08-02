@@ -4,7 +4,7 @@
 Hallo {{$name}}, Vorschlag
 
 @if($proposal->type_job_id == 1)
-	UMZUG von: {{$proposal->getRegion->name}}  >  {{$proposal->additional_info->to->region_name}}
+	UMZUG von: {{$proposal->getRegion->name}}  >  {{$proposal->additional_info['to']['region_name']}}
 
 @endif
 
