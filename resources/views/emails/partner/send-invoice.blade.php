@@ -1,4 +1,4 @@
-Sehr geehrtes Partnerunternehmen, anbei erhalten Sie die monatliche Kontakt Vermittlungsübersicht von Offerten-365.ch<br>
+Sehr geehrtes Partnerunternehmen, anbei erhalten Sie die monatliche Kontakt Vermittlungsübersicht von OffertenHammer.ch<br>
 Rechnung wird Ihnen separat in Kürze zugestellt.<br>
 Mitglieder, die nicht am Lastschriftverfahren teilnehmen, bitten wir um die Überweisung des offenen Betrages bis zum an:<br>
 Kontoinhaber:<br>

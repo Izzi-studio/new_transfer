@@ -5,9 +5,9 @@
 
 @endif
 
-@component('mail::button', ['url' => 'https://offerten-365.ch/info'])
+@component('mail::button', ['url' => 'http://70.34.197.103/info'])
 Zur Website
 @endcomponent
 
-Ihr Offerten 365 Team<br>
+Ihr OffertenHammer Team<br>
 @endcomponent

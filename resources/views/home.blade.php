@@ -216,7 +216,7 @@
                 <h3 class="advantages2__block-title">Umzugsfirma finden – so geht das!</h3>
                 <button class="advantages2__block-btn"></button>
                 <p class="advantages2__block-txt">Für einen Umzug gibt es Dutzende Gründe. Aber egal, ob Sie aus
-                    persönlichen oder beruflichen Gründen umziehen möchten: Offerten 365 hilft Ihnen ohne Wenn und Aber,
+                    persönlichen oder beruflichen Gründen umziehen möchten: OffertenHammer hilft Ihnen ohne Wenn und Aber,
                     Ihre Koffer beziehungsweise Umzugskartons zu packen. Insbesondere für Selbstständige und
                     Alleinlebende gelingt der Adressenwechsel mit einer Umzugsfirma am einfachsten. Wir vermitteln
                     zwischen Hunderten erfahrenen Anbietern und interessierten Kunden, die sowohl Unterstützung suchen
@@ -231,7 +231,7 @@
                 <p class="advantages2__block-txt">Durch die Nutzung unserer Anfragenformulare werden Ihnen bis zu 6
                     Umzugsfirmen vorgeschlagen. Im Handumdrehen können Sie die Leistung und Preis vergleichen. Zudem
                     erhalten Sie einen Einblick in die Bewertungs-Historie des Unternehmens. Vor allem aber kümmert sich
-                    Offerten 365 darum, dass Ihnen lokale Anbieter vorgestellt werden. So umgehen sie zum Beispiel teure
+                    OffertenHammer darum, dass Ihnen lokale Anbieter vorgestellt werden. So umgehen sie zum Beispiel teure
                     Anfahrtsgebühren und haben die Möglichkeit, auch persönlich, etwa im Büro des Anbieters, Fragen zu
                     stellen. Überdies gelingt so ein Besichtigungstermin wesentlich einfacher, sodass die Planung
                     detaillierter abläuft.</p>
@@ -244,7 +244,7 @@
                     Qualität einer Dienstleistung oftmals diametral gegenüberstehen. Wer also einen billigen Umzug
                     sucht, nimmt nicht selten Einbussen bei der Qualität in Kauf. Wer jedoch Qualität schätzt, muss
                     vermeintlich tiefer in die Tasche greifen. Dieser Gedanke ist jedoch überholt! Für jeden Umzug gibt
-                    es das richtige Unternehmen, das sowohl zuverlässig als auch günstig arbeitet. Offerten 365
+                    es das richtige Unternehmen, das sowohl zuverlässig als auch günstig arbeitet. OffertenHammer
                     vermittelt kompetente Umzugsfirmen und ermöglicht einen einfachen Preisvergleich!</p>
             </div>
             <div class="advantages2__block">
@@ -252,7 +252,7 @@
                 <h3 class="advantages2__block-title">Ihre Meinung zählt: Anbieter bewerten und Kunden helfen</h3>
                 <button class="advantages2__block-btn"></button>
                 <p class="advantages2__block-txt">Wie kann man zwischen einem „guten“ Umzugsunternehmen und einem
-                    weniger „guten“ Umzugsunternehmen unterscheiden? Offerten 365 macht Ihnen diese Aufgabe einfach:
+                    weniger „guten“ Umzugsunternehmen unterscheiden? OffertenHammer macht Ihnen diese Aufgabe einfach:
                     Anhand Tausender Kundenmeinungen, die in den letzten Jahren gesammelt wurden, ist es auf einen Blick
                     möglich, den Service eines Anbieters zu beurteilen. Kam der Anbieter rechtzeitig an und wurden die
                     Möbel gut behandelt? Sobald Sie die Bewertungen öffnen, erfahren Sie zu diesen und vielen weiteren
